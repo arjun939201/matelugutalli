@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dictionary - Main Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 { color: #333; margin-bottom: 20px; }
+
+    /* Search Section */
+    .search-box {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover { background: #0056b3; }
+.button-row {
+  display: flex;           /* Arrange children in a row */
+  justify-content: space-around; /* Evenly space buttons */
+  gap: 10px;               /* Optional spacing between buttons */
+}
+
+.read-btn {
+  padding: auto;      /* Adjust button size */
+  font-size: 16px;
+  cursor: pointer;
+}
+    
+    /* Results + Random Word */
+    .result-box, .random-box {
+      width: 90%;
+      max-width: 600px;
+      min-height: 120px;
+      margin-top: 15px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 10px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+    .box-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    .result-entry {
+      margin-bottom: 8px;
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .category-label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #555;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    .nav-buttons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      background: #28a745;
+    }
+    .nav-buttons button:hover { background: #1e7e34; }
+
+    /* Read Button */
+    .read-btn {
+      margin-top: 30px;
+      padding: 12px 20px;
+      font-size: 18px;
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .read-btn:hover { background: #5147d8; }
+  .vocab-box {
+  width: 90%;
+  max-width: 600px;
+  min-height: 120px;
+  margin-top: 15px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 10px;
+  text-align: left;
+  box-sizing: border-box;
+  }
+ 
+   .result-box, .random-box, .vocab-box {
+  word-break: break-all;
+  white-space: pre-line; /* preserves line breaks, but still wraps */
+  overflow-x: auto;    /* hides any possible overflow */
+    }
+    section h1 {
+ font-size: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📖 తెలుగు తెల్లడి </h1>
+
+  <!-- Search -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="ఏదైనా వెతకండి...">
+    <button onclick="searchWord()">వెతుకు</button>
+  </div>
+
+  <!-- Search Result -->
+  <div class="result-box">
+    <div class="box-title">🔎 వెతుకు పంటకాలు</div>
+    <div id="searchResult">ఇంకా వెతకలేదు.</div>
+  </div>
+
+  <!-- Random Word -->
+  <div class="random-box">
+    <div class="box-title">🎲 మీకోసం</div>
+    <div id="randomWord">తెస్తున్నా...</div>
+    <div class="nav-buttons">
+      <button onclick="prevWord()">← వెనకది</button>
+      <button onclick="nextWord()">తర్వాతది→</button>
+    </div>
+  </div>
+
+    <!-- Vocabulary Section -->
+  <div class="vocab-box">
+    <div class="box-title">🗂️ మాటోలి (vocabulary)</div>
+    <div id="vocabContent">తెస్తున్న...</div>
+    <div class="nav-buttons">
+      <button onclick="prevVocab()">← వెనకది</button>
+      <button onclick="nextVocab()">తర్వాతది→</button>
+    </div>
+  </div>
+  
+  <div class="button-row">
+  <button class="read-btn" onclick="window.location.href='read.html'">చదువు</button>
+  <button class="read-btn" onclick="window.location.href='games.html'">ఆటలు</button>
+  <button class="read-btn" onclick="window.location.href='neologism.html'">కొత్తమాటకట్లు</button>
+</div>
+
+  <script>
+    // Map file names to category labels
+    const categoryLabels = {
+      "noun.txt": "Noun",
+      "pronoun.txt": "Pronoun",
+      "verb.txt": "Verb",
+      "adjective.txt": "Adjective",
+      "adverb.txt": "Adverb",
+      "synonyms.txt": "Synonym",
+      "antonyms.txt": "Antonym",
+      "idioms.txt": "Idiom",
+      "proverbs.txt": "Proverb",
+      "phrasal_verbs.txt": "Phrasal Verb",
+      "homonyms.txt": "Homonym",
+      "interjections.txt": "Interjection",
+      "conjunctions.txt": "Conjunction",
+      "prepositions.txt": "Preposition",
+      "quantifiers.txt": "Quantifier",
+      "derivatives.txt": "Derivative",
+      "numbers.txt": "Number",
+      "dictionary.txt": "Dictionary",
+      "dictionary2.txt": "Dictionary 2"
+    };
+
+    const files = Object.keys(categoryLabels);
+
+    let randomWords = [];
+    let currentIndex = 0;
+
+    // Load random words from all files
+    async function loadRandomWordList() {
+      randomWords = [];
+      for (let file of files) {
+        try {
+          let res = await fetch(file);
+          let text = await res.text();
+          let words = text.split(/\r?\n/).filter(Boolean);
+          randomWords.push(...words);
+        } catch {}
+      }
+      shuffleArray(randomWords);
+      showRandomWord();
+    }
+
+    function showRandomWord() {
+      if (randomWords.length === 0) {
+        document.getElementById("randomWord").innerText = "No words available.";
+        return;
+      }
+      document.getElementById("randomWord").innerText = randomWords[currentIndex];
+    }
+
+    function nextWord() {
+      if (randomWords.length > 0) {
+        currentIndex = (currentIndex + 1) % randomWords.length;
+        showRandomWord();
+      }
+    }
+
+    function prevWord() {
+      if (randomWords.length > 0) {
+        currentIndex = (currentIndex - 1 + randomWords.length) % randomWords.length;
+        showRandomWord();
+      }
+    }
+
+      async function searchWord() {
+  let query = document.getElementById("searchInput").value.toLowerCase();
+  let resultBox = document.getElementById("searchResult");
+  resultBox.innerHTML = "వెతుకుతున్న...";
+
+  if (!query) {
+    resultBox.innerHTML = "ఏదైనా వ్రాయండి...";
+    return;
+  }
+
+  let results = [];
+
+  // Search word files
+  for (let file of files) {
+    try {
+      let res = await fetch(file);
+      let text = await res.text();
+      let lines = text.split(/\r?\n/);
+      for (let line of lines) {
+        if (line.toLowerCase().includes(query)) {
+          results.push(`<div class="result-entry">${line} <span class="category-label">${categoryLabels[file]}</span></div>`);
+        }
+      }
+    } catch {}
+  }
+
+
+  if (results.length > 0) {
+    resultBox.innerHTML = results.join("");
+  } else {
+    resultBox.innerHTML = "❌ ఈ పదం దొరకలేదు.";
+  }
+      }
+
+    // Shuffle helper
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+// Vocabulary Section
+let vocabSections = [];
+let vocabIndex = 0;
+
+async function loadVocabulary() {
+  try {
+    let res = await fetch('vocabulary.html');
+    let html = await res.text();
+
+    // Create a DOM parser to extract <section> elements
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(html, 'text/html');
+    vocabSections = Array.from(doc.querySelectorAll('section'));
+
+    if (vocabSections.length === 0) {
+      document.getElementById('vocabContent').innerText = "ఏమిలేవు🙃";
+    } else {
+      vocabIndex = 0;
+      showVocab();
+    }
+  } catch {
+    document.getElementById('vocabContent').innerText = "ఏది తేవలేకపోయా🥲.";
+  }
+}
+
+function showVocab() {
+  if (vocabSections.length === 0) return;
+  document.getElementById('vocabContent').innerHTML = vocabSections[vocabIndex].innerHTML;
+}
+
+function nextVocab() {
+  if (vocabSections.length > 0) {
+    vocabIndex = (vocabIndex + 1) % vocabSections.length;
+    showVocab();
+  }
+}
+
+function prevVocab() {
+  if (vocabSections.length > 0) {
+    vocabIndex = (vocabIndex - 1 + vocabSections.length) % vocabSections.length;
+    showVocab();
+  }
+}
+// Load vocabulary on page load
+loadVocabulary();
+    // On load
+    loadRandomWordList();
+  </script>
+</body>
+</html>
