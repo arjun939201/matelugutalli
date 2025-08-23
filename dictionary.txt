@@ -54,5 +54,355 @@
     "meaning": "నెల పేరు",
     "grammar": "noun",
     "category": "months"
+  },
+  {
+    "word": "ఆమె",
+    "equivalent": "woman",
+    "meaning": "స్త్రీ",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "అబ్బాయి",
+    "equivalent": "boy",
+    "meaning": "పిల్లవాడు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "అమ్మాయి",
+    "equivalent": "girl",
+    "meaning": "పిల్లవి",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "రెంచ",
+    "equivalent": "human, మనిషి",
+    "meaning": "మనిషి",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నోలు",
+    "equivalent": "book, ఆఁకం",
+    "meaning": "చదవడానికి ఉపయోగించే వస్తువు లేదా ఆఁకం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "ఇల్లు",
+    "equivalent": "house",
+    "meaning": "వాస స్థలం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "పిల్లి",
+    "equivalent": "cat",
+    "meaning": "పెంపుడు జంతువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "కుక్క",
+    "equivalent": "dog",
+    "meaning": "పెంపుడు జంతువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "బడి",
+    "equivalent": "school",
+    "meaning": "చదువుకునే స్థలం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "దేశం",
+    "equivalent": "country",
+    "meaning": "దేశము",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "పల్లె",
+    "equivalent": "village",
+    "meaning": "గ్రామం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "వటారం",
+    "equivalent": "town",
+    "meaning": "పట్టణం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "పని",
+    "equivalent": "work",
+    "meaning": "చేసే పని",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "చెట్టు",
+    "equivalent": "tree",
+    "meaning": "పెద్ద మొక్క",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "పండు",
+    "equivalent": "fruit",
+    "meaning": "తినే ఫలం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నీరు",
+    "equivalent": "water",
+    "meaning": "పానీయద్రవ్యం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "తిండి, కూడు",
+    "equivalent": "food",
+    "meaning": "తినే పదార్థం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నెసరు, ప్రొద్దు",
+    "equivalent": "sun, సూర్యుడు",
+    "meaning": "సూర్యుడు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నెల, జాబిలి",
+    "equivalent": "moon, చంద్రుడు",
+    "meaning": "చంద్రుడు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "మిలారం, చుక్క",
+    "equivalent": "star, నక్షత్రం",
+    "meaning": "నక్షత్రం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నింగి, మిన్ను",
+    "equivalent": "sky, ఆకాశం",
+    "meaning": "ఆకాశం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "పారి, నేల",
+    "equivalent": "earth, భూమి",
+    "meaning": "భూమి",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "గాలి",
+    "equivalent": "air",
+    "meaning": "వాయువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "మంచు",
+    "equivalent": "snow",
+    "meaning": "ధరపై పడే మంచు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "వాన, జల్లు",
+    "equivalent": "rain, వర్షం",
+    "meaning": "వర్షం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "జత, చెలి, నేస్తం",
+    "equivalent": "friend",
+    "meaning": "స్నేహితుడు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "పగఱ",
+    "equivalent": "enemy",
+    "meaning": "శత్రువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "కల",
+    "equivalent": "dream",
+    "meaning": "స్వప్నం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "బ్రదిమానం",
+    "equivalent": "life",
+    "meaning": "జీవితం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "చావు",
+    "equivalent": "death",
+    "meaning": "మరణం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "అమ్మ",
+    "equivalent": "mother",
+    "meaning": "తల్లి",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నాన్న",
+    "equivalent": "father",
+    "meaning": "తండ్రి",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "బావ",
+    "equivalent": "brother-in-law",
+    "meaning": "బావమరిది",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "అక్క",
+    "equivalent": "elder sister",
+    "meaning": "పెద్ద అక్క",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "చెల్లి",
+    "equivalent": "younger sister",
+    "meaning": "చిన్న చెల్లెలు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "అన్న",
+    "equivalent": "elder brother",
+    "meaning": "పెద్ద అన్న",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "తమ్ముడు",
+    "equivalent": "younger brother",
+    "meaning": "చిన్న తమ్ముడు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "కాంచువు",
+    "equivalent": "teacher, గురువు",
+    "meaning": "గురువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "నేర్వాను",
+    "equivalent": "student",
+    "meaning": "విద్యార్థి",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "అంకుడు, వేల్పు, పైవాడు",
+    "equivalent": "god, దేవుడు",
+    "meaning": "దేవుడు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "గుడి",
+    "equivalent": "temple",
+    "meaning": "దేవాలయం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "కడలి",
+    "equivalent": "sea",
+    "meaning": "సముద్రం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "ఏరు",
+    "equivalent": "river",
+    "meaning": "నది",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "కప్పు",
+    "equivalent": "cup",
+    "meaning": "పానపాత్ర",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "తలుపు",
+    "equivalent": "door",
+    "meaning": "ప్రవేశ ద్వారం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "బల్ల",
+    "equivalent": "table",
+    "meaning": "పని చేసే పీట",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "కుర్చీ",
+    "equivalent": "chair",
+    "meaning": "కూర్చునే వస్తువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "రంగు",
+    "equivalent": "color",
+    "meaning": "వర్ణం",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "బట్ట",
+    "equivalent": "cloth",
+    "meaning": "దుస్తులు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "డబ్బు",
+    "equivalent": "money",
+    "meaning": "నగదు",
+    "grammar": "noun",
+    "category": "general"
   }
 ]
