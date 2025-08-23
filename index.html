@@ -172,159 +172,143 @@
 </div>
 
   <script>
-    // Map file names to category labels
-    const categoryLabels = {
-      "noun.txt": "Noun",
-      "pronoun.txt": "Pronoun",
-      "verb.txt": "Verb",
-      "adjective.txt": "Adjective",
-      "adverb.txt": "Adverb",
-      "synonyms.txt": "Synonym",
-      "antonyms.txt": "Antonym",
-      "idioms.txt": "Idiom",
-      "proverbs.txt": "Proverb",
-      "phrasal_verbs.txt": "Phrasal Verb",
-      "homonyms.txt": "Homonym",
-      "interjections.txt": "Interjection",
-      "conjunctions.txt": "Conjunction",
-      "prepositions.txt": "Preposition",
-      "quantifiers.txt": "Quantifier",
-      "derivatives.txt": "Derivative",
-      "numbers.txt": "Number",
-      "dictionary.txt": "Dictionary",
-      "dictionary2.txt": "Dictionary 2"
-    };
+  let dictionary = [];
+  let currentIndex = 0;
 
-    const files = Object.keys(categoryLabels);
+  // For Vocabulary (grouped by category field)
+  let vocabCategories = {};
+  let vocabKeys = [];
+  let vocabIndex = 0;
 
-    let randomWords = [];
-    let currentIndex = 0;
+  // Load dictionary
+  async function loadDictionary() {
+    try {
+      let res = await fetch("dictionary.txt");
+      dictionary = await res.json();
 
-    // Load random words from all files
-    async function loadRandomWordList() {
-      randomWords = [];
-      for (let file of files) {
-        try {
-          let res = await fetch(file);
-          let text = await res.text();
-          let words = text.split(/\r?\n/).filter(Boolean);
-          randomWords.push(...words);
-        } catch {}
-      }
-      shuffleArray(randomWords);
+      prepareVocabCategories();
+
+      // Show first displays
+      showRandomWord();
+      showVocab();
+    } catch (err) {
+      console.error("Error loading dictionary:", err);
+    }
+  }
+
+  // 🔎 Search
+  function searchWord() {
+    let query = document.getElementById("searchInput").value.toLowerCase();
+    let resultBox = document.getElementById("searchResult");
+
+    if (!query) {
+      resultBox.innerHTML = "ఏదైనా వ్రాయండి...";
+      return;
+    }
+
+    let results = dictionary.filter(
+      entry =>
+        entry.word.toLowerCase().includes(query) ||
+        entry.equivalent.toLowerCase().includes(query) ||
+        entry.meaning.toLowerCase().includes(query) ||
+        (entry.category && entry.category.toLowerCase().includes(query))
+    );
+
+    if (results.length > 0) {
+      resultBox.innerHTML = results
+        .map(
+          e => `
+          <div class="result-entry">
+            <b>${e.word}</b> (${e.grammar})
+            <br>💡 ${e.equivalent}
+            <br>📖 ${e.meaning}
+            <br><span class="category-label">${e.category || e.grammar}</span>
+          </div>`
+        )
+        .join("");
+    } else {
+      resultBox.innerHTML = "❌ ఈ పదం దొరకలేదు.";
+    }
+  }
+
+  // 🎲 Random Word
+  function showRandomWord() {
+    if (dictionary.length === 0) {
+      document.getElementById("randomWord").innerText = "No words available.";
+      return;
+    }
+    let e = dictionary[currentIndex];
+    document.getElementById("randomWord").innerHTML = `
+      <b>${e.word}</b> (${e.grammar})
+      <br>💡 ${e.equivalent}
+      <br>📖 ${e.meaning}
+      <br><span class="category-label">${e.category || e.grammar}</span>
+    `;
+  }
+
+  function nextWord() {
+    if (dictionary.length > 0) {
+      currentIndex = (currentIndex + 1) % dictionary.length;
       showRandomWord();
     }
-
-    function showRandomWord() {
-      if (randomWords.length === 0) {
-        document.getElementById("randomWord").innerText = "No words available.";
-        return;
-      }
-      document.getElementById("randomWord").innerText = randomWords[currentIndex];
-    }
-
-    function nextWord() {
-      if (randomWords.length > 0) {
-        currentIndex = (currentIndex + 1) % randomWords.length;
-        showRandomWord();
-      }
-    }
-
-    function prevWord() {
-      if (randomWords.length > 0) {
-        currentIndex = (currentIndex - 1 + randomWords.length) % randomWords.length;
-        showRandomWord();
-      }
-    }
-
-      async function searchWord() {
-  let query = document.getElementById("searchInput").value.toLowerCase();
-  let resultBox = document.getElementById("searchResult");
-  resultBox.innerHTML = "వెతుకుతున్న...";
-
-  if (!query) {
-    resultBox.innerHTML = "ఏదైనా వ్రాయండి...";
-    return;
   }
 
-  let results = [];
-
-  // Search word files
-  for (let file of files) {
-    try {
-      let res = await fetch(file);
-      let text = await res.text();
-      let lines = text.split(/\r?\n/);
-      for (let line of lines) {
-        if (line.toLowerCase().includes(query)) {
-          results.push(`<div class="result-entry">${line} <span class="category-label">${categoryLabels[file]}</span></div>`);
-        }
-      }
-    } catch {}
-  }
-
-
-  if (results.length > 0) {
-    resultBox.innerHTML = results.join("");
-  } else {
-    resultBox.innerHTML = "❌ ఈ పదం దొరకలేదు.";
-  }
-      }
-
-    // Shuffle helper
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
+  function prevWord() {
+    if (dictionary.length > 0) {
+      currentIndex = (currentIndex - 1 + dictionary.length) % dictionary.length;
+      showRandomWord();
     }
-// Vocabulary Section
-let vocabSections = [];
-let vocabIndex = 0;
+  }
 
-async function loadVocabulary() {
-  try {
-    let res = await fetch('vocabulary.html');
-    let html = await res.text();
+  // 🗂️ Vocabulary
+  function prepareVocabCategories() {
+    vocabCategories = {};
+    dictionary.forEach(entry => {
+      let cat = entry.category || entry.grammar; // fallback
+      if (!vocabCategories[cat]) {
+        vocabCategories[cat] = [];
+      }
+      vocabCategories[cat].push(entry);
+    });
+    vocabKeys = Object.keys(vocabCategories);
+  }
 
-    // Create a DOM parser to extract <section> elements
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(html, 'text/html');
-    vocabSections = Array.from(doc.querySelectorAll('section'));
+  function showVocab() {
+    if (vocabKeys.length === 0) {
+      document.getElementById("vocabContent").innerText = "ఏమిలేవు🙃";
+      return;
+    }
+    let category = vocabKeys[vocabIndex];
+    let words = vocabCategories[category];
+    document.getElementById("vocabContent").innerHTML = `
+      <b>${category}</b> (${words.length} పదాలు)
+      <ul>
+        ${words
+          .map(
+            e =>
+              `<li><b>${e.word}</b> – ${e.equivalent} <br><small>${e.meaning}</small></li>`
+          )
+          .join("")}
+      </ul>
+    `;
+  }
 
-    if (vocabSections.length === 0) {
-      document.getElementById('vocabContent').innerText = "ఏమిలేవు🙃";
-    } else {
-      vocabIndex = 0;
+  function nextVocab() {
+    if (vocabKeys.length > 0) {
+      vocabIndex = (vocabIndex + 1) % vocabKeys.length;
       showVocab();
     }
-  } catch {
-    document.getElementById('vocabContent').innerText = "ఏది తేవలేకపోయా🥲.";
   }
-}
 
-function showVocab() {
-  if (vocabSections.length === 0) return;
-  document.getElementById('vocabContent').innerHTML = vocabSections[vocabIndex].innerHTML;
-}
-
-function nextVocab() {
-  if (vocabSections.length > 0) {
-    vocabIndex = (vocabIndex + 1) % vocabSections.length;
-    showVocab();
+  function prevVocab() {
+    if (vocabKeys.length > 0) {
+      vocabIndex = (vocabIndex - 1 + vocabKeys.length) % vocabKeys.length;
+      showVocab();
+    }
   }
-}
 
-function prevVocab() {
-  if (vocabSections.length > 0) {
-    vocabIndex = (vocabIndex - 1 + vocabSections.length) % vocabSections.length;
-    showVocab();
-  }
-}
-// Load vocabulary on page load
-loadVocabulary();
-    // On load
-    loadRandomWordList();
-  </script>
+  // Load on startup
+  loadDictionary();
+</script>
 </body>
 </html>
