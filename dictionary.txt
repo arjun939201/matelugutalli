@@ -1,0 +1,58 @@
+[
+  {
+    "word": "పుస్తకం",
+    "equivalent": "book",
+    "meaning": "చదవడానికి ఉపయోగించే వస్తువు",
+    "grammar": "noun",
+    "category": "general"
+  },
+  {
+    "word": "ఆడండి",
+    "equivalent": "play",
+    "meaning": "ఆటలో పాల్గొనడం",
+    "grammar": "verb",
+    "category": "general"
+  },
+  {
+    "word": "వేగంగా",
+    "equivalent": "quickly",
+    "meaning": "త్వరగా",
+    "grammar": "adverb",
+    "category": "general"
+  },
+  {
+    "word": "అందమైన",
+    "equivalent": "beautiful",
+    "meaning": "ఆకర్షణీయంగా ఉండే",
+    "grammar": "adjective",
+    "category": "general"
+  },
+  {
+    "word": "సోమవారం",
+    "equivalent": "Monday",
+    "meaning": "వారం లో ఒక రోజు",
+    "grammar": "noun",
+    "category": "weeks"
+  },
+  {
+    "word": "మంగళవారం",
+    "equivalent": "Tuesday",
+    "meaning": "వారం లో ఒక రోజు",
+    "grammar": "noun",
+    "category": "weeks"
+  },
+  {
+    "word": "జనవరి",
+    "equivalent": "January",
+    "meaning": "నెల పేరు",
+    "grammar": "noun",
+    "category": "months"
+  },
+  {
+    "word": "ఫిబ్రవరి",
+    "equivalent": "February",
+    "meaning": "నెల పేరు",
+    "grammar": "noun",
+    "category": "months"
+  }
+]
