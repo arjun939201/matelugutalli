@@ -404,5 +404,341 @@
     "meaning": "నగదు",
     "grammar": "noun",
     "category": "general"
+  },
+  {
+    "word": "నేను",
+    "equivalent": "I",
+    "meaning": "నేనే",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "నువ్వు",
+    "equivalent": "you (singular)",
+    "meaning": "సింగ్యులర్ నీవు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "మీరు",
+    "equivalent": "you (plural/respect)",
+    "meaning": "గౌరవప్రదంగా మీరు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "అతను",
+    "equivalent": "he",
+    "meaning": "ఆయన",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఆమె",
+    "equivalent": "she",
+    "meaning": "ఆమె",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "అది",
+    "equivalent": "it/that",
+    "meaning": "అది",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "వారు",
+    "equivalent": "they",
+    "meaning": "వారు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "మనము",
+    "equivalent": "we",
+    "meaning": "మనం",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "మేము",
+    "equivalent": "we (exclusive)",
+    "meaning": "మేమే",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "మన",
+    "equivalent": "our",
+    "meaning": "మన యొక్క",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "నా",
+    "equivalent": "my",
+    "meaning": "నాకు సంబంధించిన",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "నీ",
+    "equivalent": "your",
+    "meaning": "నీ యొక్క",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "మీ",
+    "equivalent": "your (plural/respect)",
+    "meaning": "మీ యొక్క",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "తన",
+    "equivalent": "his/her",
+    "meaning": "తన యొక్క",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "వారి",
+    "equivalent": "their",
+    "meaning": "వారి యొక్క",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవరు",
+    "equivalent": "who",
+    "meaning": "ఎవరు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏది",
+    "equivalent": "which",
+    "meaning": "ఏది",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎక్కడ",
+    "equivalent": "where",
+    "meaning": "ఎక్కడ",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎప్పుడు",
+    "equivalent": "when",
+    "meaning": "ఎప్పుడు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎందుకు",
+    "equivalent": "why",
+    "meaning": "ఎందుకు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎలా",
+    "equivalent": "how",
+    "meaning": "ఎలా",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఇది",
+    "equivalent": "this",
+    "meaning": "ఇది",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఇవి",
+    "equivalent": "these",
+    "meaning": "ఇవి",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "అవి",
+    "equivalent": "those",
+    "meaning": "అవి",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవరో",
+    "equivalent": "someone",
+    "meaning": "ఏదో ఒకరు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవ్వరూ",
+    "equivalent": "no one",
+    "meaning": "ఎవరూ కాదు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏదో",
+    "equivalent": "something",
+    "meaning": "ఏదో",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏమీలేదు",
+    "equivalent": "nothing",
+    "meaning": "ఏమీ లేదు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవరైనా",
+    "equivalent": "anyone",
+    "meaning": "ఎవరైనా",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏదైనా",
+    "equivalent": "anything",
+    "meaning": "ఏదైనా",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ప్రతీది",
+    "equivalent": "everything",
+    "meaning": "ప్రతి ఒక్కటి",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ప్రతివాడు",
+    "equivalent": "everyone",
+    "meaning": "ప్రతి వాడు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఇతడు",
+    "equivalent": "this man",
+    "meaning": "ఈ వాడు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఆతడు",
+    "equivalent": "that man",
+    "meaning": "అ వాడు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఇకడు",
+    "equivalent": "this person (near)",
+    "meaning": "ఇక్కడ ఉన్నవాడు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "అక్కడివాడు",
+    "equivalent": "that person (far)",
+    "meaning": "అక్కడ ఉన్నవాడు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవరిదీ",
+    "equivalent": "whose",
+    "meaning": "ఎవరి యొక్క",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏవో",
+    "equivalent": "some",
+    "meaning": "కొన్ని",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవరయినా",
+    "equivalent": "whoever",
+    "meaning": "ఎవరయినా",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవరో ఒకరు",
+    "equivalent": "somebody",
+    "meaning": "ఎవరైనా ఒకరు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎవ్వరో",
+    "equivalent": "others",
+    "meaning": "ఇతరులు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏమి",
+    "equivalent": "what",
+    "meaning": "ఏమి",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఏదీ కాదు",
+    "equivalent": "none",
+    "meaning": "ఏదీ కాదు",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఇంత",
+    "equivalent": "this much",
+    "meaning": "ఇంత",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "అంత",
+    "equivalent": "that much",
+    "meaning": "అంత",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎంత",
+    "equivalent": "how much",
+    "meaning": "ఎంత",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "ఎన్నో",
+    "equivalent": "many",
+    "meaning": "చాలా",
+    "grammar": "pronoun",
+    "category": "pronoun"
+  },
+  {
+    "word": "కొన్ని",
+    "equivalent": "some",
+    "meaning": "కొన్ని",
+    "grammar": "pronoun",
+    "category": "pronoun"
   }
 ]
