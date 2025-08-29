@@ -1,0 +1,45 @@
+.app-page {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-page header {
+  background: #6200ea;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-page main {
+  padding: 20px;
+}
+
+.setting-option {
+  background: #f4f4f4;
+  padding: 10px 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.setting-details {
+  display: none;
+  background: #e0e0e0;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.setting-details.open {
+  display: block;
+}
+
+.setting-details label {
+  display: block;
+  margin: 10px 0;
+}
