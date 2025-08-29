@@ -1,146 +1,146 @@
 /* General Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-  font-family: 'Noto Sans Telugu', sans-serif;
-  background: #121212;
-  color: #fff;
+  background-color: #121212;
+  color: #ffffff;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  font-size: 16px;
 }
 
 /* Notification Panel */
 .notification-drawer {
-  position: fixed;
-  top: -80%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #1f1f1f;
-  color: white;
-  z-index: 10;
-  transition: top 0.3s ease;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 10px;
   border-bottom: 1px solid #333;
 }
-.notification-drawer.open {
-  top: 0;
-}
+
 .notification-drawer .header {
-  padding: 15px;
-  background: #2c2c2c;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 14px;
 }
+
 .notification-drawer .body {
-  padding: 20px;
-  font-size: 16px;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
 /* Home Screen */
 .home-screen {
-  padding-top: 80px;
-  padding-bottom: 60px;
+  flex: 1;
+  background: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 140px);
+  padding: 20px;
+  overflow-y: auto;
 }
+
 .app-icons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 25px;
+  text-align: center;
 }
+
 .app-icon {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 10px;
-  text-align: center;
-  color: #fff;
-  transition: background 0.2s, transform 0.2s;
-  width: 60px;
-  height: 70px;
-  font-size: 14px;
-}
-.app-icon:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-.app-icon i {
-  font-size: 24px;
-  display: block;
-  margin-bottom: 5px;
-}
-.app-icon span {
-  display: block;
-  font-size: 13px;
-  line-height: 1.2;
-  word-break: break-word;
-  color: #eee;
-  text-align: center;
-}
-.app-icon a {
-  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
   text-decoration: none;
+  background-color: #1f1f1f;
+  padding: 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease;
+}
+
+.app-icon i {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.app-icon span {
+  font-size: 12px;
+}
+
+.app-icon:hover {
+  transform: scale(1.05);
 }
 
 /* Bottom Navigation Bar */
 .bottom-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #2c2c2c;
+  background-color: #1e1e1e;
+  height: 60px;
   display: flex;
   justify-content: space-around;
-  padding: 12px 0;
-  border-top: 1px solid #444;
+  align-items: center;
+  border-top: 1px solid #333;
 }
+
 .bottom-bar button {
   background: none;
   border: none;
   color: white;
   font-size: 22px;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
-/* Side Drawer Menu */
+.bottom-bar button:hover {
+  transform: scale(1.2);
+}
+
+/* Side Drawer */
 .drawer {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 250px;
+  left: -240px;
+  width: 240px;
   height: 100%;
-  background: #222;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-  z-index: 9;
-  transition: left 0.3s ease;
+  background-color: #1e1e1e;
+  padding: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 100;
 }
+
 .drawer.open {
   left: 0;
 }
-.drawer nav {
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-}
+
 .drawer nav a {
-  padding: 15px 20px;
-  font-size: 16px;
+  display: block;
   color: white;
   text-decoration: none;
+  margin-bottom: 15px;
+  font-size: 16px;
+  padding: 10px 0;
   border-bottom: 1px solid #333;
 }
+
 .drawer nav a:hover {
-  background: #333;
+  color: #4caf50;
 }
 
-/* Scrollbar Hidden (Optional) */
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+/* Android Feel */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Responsive */
+@media (max-width: 480px) {
+  .app-icons {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
