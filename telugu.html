@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>తెలుగు నేర్చుకో🌸</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans Telugu', sans-serif;
+        }
+        
+        .search-expanded {
+            width: 300px;
+        }
+        
+        .search-collapsed {
+            width: 40px;
+        }
+        
+        .card-enter {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-3xl font-bold">తెలుగు నేర్చుకో🌸</h1>
+                <div class="flex items-center">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="వెతకండి..." 
+                        class="search-collapsed transition-all duration-300 px-3 py-2 rounded-lg text-gray-800 focus:outline-none opacity-0 pointer-events-none"
+                    >
+                    <button 
+                        id="searchBtn" 
+                        class="ml-2 p-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all duration-200"
+                    >
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Breadcrumb -->
+            <div id="breadcrumb" class="text-sm opacity-90">
+                <span>హోమ్</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto p-6">
+        <!-- Topics List -->
+        <div id="topicsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-blue-500" onclick="openLetters()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">అ</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">అక్షరాలు</h3>
+                </div>
+                <p class="text-gray-600">తెలుగు వర్ణమాల నేర్చుకోండి</p>
+            </div>
+
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-green-500" onclick="openPartsOfSpeech()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">📝</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">వ్యాకరణం</h3>
+                </div>
+                <p class="text-gray-600">పదాల రకాలు మరియు వ్యాకరణ నియమాలు</p>
+            </div>
+
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-purple-500" onclick="openWords()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">📚</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">పదాలు</h3>
+                </div>
+                <p class="text-gray-600">రోజువారీ వాడుకలో వచ్చే పదాలు</p>
+            </div>
+
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-red-500" onclick="openNumbers()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">🔢</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">సంఖ్యలు</h3>
+                </div>
+                <p class="text-gray-600">తెలుగులో సంఖ్యలు నేర్చుకోండి</p>
+            </div>
+
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-yellow-500" onclick="openConversations()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">💬</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">సంభాషణ</h3>
+                </div>
+                <p class="text-gray-600">రోజువారీ సంభాషణలు మరియు వాక్యాలు</p>
+            </div>
+
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-indigo-500" onclick="openPractice()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">అభ్యాసం</h3>
+                </div>
+                <p class="text-gray-600">వ్యాయామాలు మరియు పరీక్షలు</p>
+            </div>
+        </div>
+
+        <!-- Parts of Speech List -->
+        <div id="partsOfSpeechList" class="hidden">
+            <div class="flex items-center mb-6">
+                <button onclick="goBack()" class="mr-4 p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <h2 class="text-2xl font-bold text-gray-800">వ్యాకరణం - పదాల రకాలు</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('pronouns')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">సర్వనామాలు</h3>
+                    <p class="text-gray-600 text-sm">నేను, నువ్వు, అతను, ఆమె...</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('verbs')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">క్రియలు</h3>
+                    <p class="text-gray-600 text-sm">వచ్చు, వెళ్ళు, తిను, చూడు...</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('postpositions')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">విభక్తులు</h3>
+                    <p class="text-gray-600 text-sm">కు, తో, లో, నుండి...</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('adjectives')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">విశేషణాలు</h3>
+                    <p class="text-gray-600 text-sm">మంచి, చెడ్డ, పెద్ద, చిన్న...</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('nouns')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">నామవాచకాలు</h3>
+                    <p class="text-gray-600 text-sm">ఇల్లు, పుస్తకం, చెట్టు...</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('adverbs')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">క్రియా విశేషణాలు</h3>
+                    <p class="text-gray-600 text-sm">త్వరగా, నెమ్మదిగా, బాగా...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards View -->
+        <div id="cardsView" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <button onclick="goBack()" class="mr-4 p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <h2 id="cardsTitle" class="text-2xl font-bold text-gray-800"></h2>
+                </div>
+                
+                <div class="flex items-center space-x-2">
+                    <span id="cardCounter" class="text-gray-600"></span>
+                </div>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-enter">
+                    <div class="text-center">
+                        <div id="cardContent" class="mb-6">
+                            <!-- Card content will be inserted here -->
+                        </div>
+                        
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <button id="soundBtn" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M6.343 6.343A8 8 0 004.222 12a8.001 8.001 0 002.121 5.657"></path>
+                                </svg>
+                                ధ్వని వినండి
+                            </button>
+                            
+                            <button id="voiceTestBtn" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                                </svg>
+                                వాయిస్ టెస్ట్
+                            </button>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button id="prevBtn" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                మునుపటిది
+                            </button>
+                            
+                            <button id="nextBtn" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center">
+                                తరువాతది
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // State management
+        let currentView = 'topics';
+        let currentCardIndex = 0;
+        let currentCardSet = [];
+        let searchExpanded = false;
+
+        // Data
+        const teluguLetters = [
+            { letter: 'అ', pronunciation: 'a', meaning: 'అ అక్షరం' },
+            { letter: 'ఆ', pronunciation: 'aa', meaning: 'ఆ అక్షరం' },
+            { letter: 'ఇ', pronunciation: 'i', meaning: 'ఇ అక్షరం' },
+            { letter: 'ఈ', pronunciation: 'ee', meaning: 'ఈ అక్షరం' },
+            { letter: 'ఉ', pronunciation: 'u', meaning: 'ఉ అక్షరం' },
+            { letter: 'ఊ', pronunciation: 'oo', meaning: 'ఊ అక్షరం' },
+            { letter: 'ఋ', pronunciation: 'ru', meaning: 'ఋ అక్షరం' },
+            { letter: 'ౠ', pronunciation: 'ruu', meaning: 'ౠ అక్షరం' },
+            { letter: 'ఌ', pronunciation: 'lu', meaning: 'ఌ అక్షరం' },
+            { letter: 'ౡ', pronunciation: 'luu', meaning: 'ౡ అక్షరం' },
+            { letter: 'ఎ', pronunciation: 'e', meaning: 'ఎ అక్షరం' },
+            { letter: 'ఏ', pronunciation: 'ae', meaning: 'ఏ అక్షరం' },
+            { letter: 'ఐ', pronunciation: 'ai', meaning: 'ఐ అక్షరం' },
+            { letter: 'ఒ', pronunciation: 'o', meaning: 'ఒ అక్షరం' },
+            { letter: 'ఓ', pronunciation: 'oo', meaning: 'ఓ అక్షరం' },
+            { letter: 'ఔ', pronunciation: 'au', meaning: 'ఔ అక్షరం' }
+        ];
+
+        const grammarData = {
+            pronouns: [
+                { word: 'నేను', pronunciation: 'naenu', meaning: 'I/me', example: 'నేను వస్తాను' },
+                { word: 'నువ్వు', pronunciation: 'nuvvu', meaning: 'you', example: 'నువ్వు ఎక్కడికి వెళ్తావు?' },
+                { word: 'అతను', pronunciation: 'athanu', meaning: 'he', example: 'అతను మంచివాడు' },
+                { word: 'ఆమె', pronunciation: 'aame', meaning: 'she', example: 'ఆమె అందంగా ఉంది' },
+                { word: 'మేము', pronunciation: 'maemu', meaning: 'we', example: 'మేము కలిసి వెళ్తాము' }
+            ],
+            verbs: [
+                { word: 'వచ్చు', pronunciation: 'vacchu', meaning: 'to come', example: 'నేను రేపు వస్తాను' },
+                { word: 'వెళ్ళు', pronunciation: 'vellu', meaning: 'to go', example: 'అతను ఇంటికి వెళ్తాడు' },
+                { word: 'తిను', pronunciation: 'thinu', meaning: 'to eat', example: 'నేను అన్నం తింటాను' },
+                { word: 'చూడు', pronunciation: 'choodu', meaning: 'to see', example: 'సినిమా చూడాలి' },
+                { word: 'చెప్పు', pronunciation: 'cheppu', meaning: 'to say', example: 'నిజం చెప్పు' }
+            ],
+            postpositions: [
+                { word: 'కు', pronunciation: 'ku', meaning: 'to/for', example: 'ఇంటికు వెళ్ళు' },
+                { word: 'తో', pronunciation: 'tho', meaning: 'with', example: 'నాతో రా' },
+                { word: 'లో', pronunciation: 'lo', meaning: 'in', example: 'ఇంట్లో ఉన్నాను' },
+                { word: 'నుండి', pronunciation: 'nundi', meaning: 'from', example: 'ఇంటి నుండి వచ్చాను' },
+                { word: 'వరకు', pronunciation: 'varaku', meaning: 'until', example: 'రాత్రి వరకు పని' }
+            ],
+            adjectives: [
+                { word: 'మంచి', pronunciation: 'manchi', meaning: 'good', example: 'మంచి పుస్తకం' },
+                { word: 'చెడ్డ', pronunciation: 'chedda', meaning: 'bad', example: 'చెడ్డ వాతావరణం' },
+                { word: 'పెద్ద', pronunciation: 'pedda', meaning: 'big', example: 'పెద్ద ఇల్లు' },
+                { word: 'చిన్న', pronunciation: 'chinna', meaning: 'small', example: 'చిన్న పిల్లవాడు' },
+                { word: 'అందమైన', pronunciation: 'andamaina', meaning: 'beautiful', example: 'అందమైన పువ్వు' }
+            ],
+            nouns: [
+                { word: 'ఇల్లు', pronunciation: 'illu', meaning: 'house', example: 'మా ఇల్లు పెద్దది' },
+                { word: 'పుస్తకం', pronunciation: 'pusthakam', meaning: 'book', example: 'మంచి పుస్తకం చదువు' },
+                { word: 'చెట్టు', pronunciation: 'chettu', meaning: 'tree', example: 'పెద్ద చెట్టు కింద కూర్చున్నాను' },
+                { word: 'నీరు', pronunciation: 'neeru', meaning: 'water', example: 'చల్లని నీరు తాగు' },
+                { word: 'అన్నం', pronunciation: 'annam', meaning: 'rice/food', example: 'రుచికరమైన అన్నం' }
+            ],
+            adverbs: [
+                { word: 'త్వరగా', pronunciation: 'twaraga', meaning: 'quickly', example: 'త్వరగా రా' },
+                { word: 'నెమ్మదిగా', pronunciation: 'nemmadiga', meaning: 'slowly', example: 'నెమ్మదిగా నడువు' },
+                { word: 'బాగా', pronunciation: 'baaga', meaning: 'well/good', example: 'బాగా చదువు' },
+                { word: 'చాలా', pronunciation: 'chaala', meaning: 'very/much', example: 'చాలా మంచిది' },
+                { word: 'కొంచెం', pronunciation: 'konchem', meaning: 'little/some', example: 'కొంచెం నీరు ఇవ్వు' }
+            ]
+        };
+
+        const wordsData = [
+            { word: 'నమస్కారం', pronunciation: 'namaskaram', meaning: 'hello/greetings', example: 'అందరికీ నమస్కారం' },
+            { word: 'ధన్యవాదాలు', pronunciation: 'dhanyavadalu', meaning: 'thank you', example: 'మీకు ధన్యవాదాలు' },
+            { word: 'క్షమించండి', pronunciation: 'kshaminchandhi', meaning: 'sorry/excuse me', example: 'దయచేసి క్షమించండి' },
+            { word: 'అవును', pronunciation: 'avunu', meaning: 'yes', example: 'అవును, నేను వస్తాను' },
+            { word: 'కాదు', pronunciation: 'kaadhu', meaning: 'no', example: 'కాదు, అది నాది కాదు' }
+        ];
+
+        const numbersData = [
+            { word: 'ఒకటి', pronunciation: 'okati', meaning: '1', example: 'ఒకటి పుస్తకం' },
+            { word: 'రెండు', pronunciation: 'rendu', meaning: '2', example: 'రెండు కళ్ళు' },
+            { word: 'మూడు', pronunciation: 'moodu', meaning: '3', example: 'మూడు రోజులు' },
+            { word: 'నాలుగు', pronunciation: 'naalugu', meaning: '4', example: 'నాలుగు వైపులు' },
+            { word: 'అయిదు', pronunciation: 'ayidhu', meaning: '5', example: 'అయిదు వేళ్ళు' },
+            { word: 'ఆరు', pronunciation: 'aaru', meaning: '6', example: 'ఆరు గంటలు' },
+            { word: 'ఏడు', pronunciation: 'aedu', meaning: '7', example: 'ఏడు రోజులు' },
+            { word: 'ఎనిమిది', pronunciation: 'enimidhi', meaning: '8', example: 'ఎనిమిది గంటలు' },
+            { word: 'తొమ్మిది', pronunciation: 'thommidhi', meaning: '9', example: 'తొమ్మిది నెలలు' },
+            { word: 'పది', pronunciation: 'padhi', meaning: '10', example: 'పది వేళ్ళు' }
+        ];
+
+        const conversationsData = [
+            { word: 'మీ పేరు ఏమిటి?', pronunciation: 'mee paeru aemiti?', meaning: 'What is your name?', example: 'నా పేరు రాము' },
+            { word: 'మీరు ఎలా ఉన్నారు?', pronunciation: 'meeru aela unnaaru?', meaning: 'How are you?', example: 'నేను బాగున్నాను' },
+            { word: 'మీరు ఎక్కడ నుండి వచ్చారు?', pronunciation: 'meeru ekkada nundi vachaaru?', meaning: 'Where are you from?', example: 'నేను హైదరాబాద్ నుండి వచ్చాను' },
+            { word: 'ఇది ఎంత?', pronunciation: 'idhi entha?', meaning: 'How much is this?', example: 'ఇది పది రూపాయలు' },
+            { word: 'సమయం ఎంత అయింది?', pronunciation: 'samayam entha ayindhi?', meaning: 'What time is it?', example: 'ఇప్పుడు మూడు గంటలు' }
+        ];
+
+        const practiceData = [
+            { word: 'అక్షరాలు వ్రాయండి', pronunciation: 'aksharalu vraayandhi', meaning: 'Write the letters', example: 'అ ఆ ఇ ఈ వ్రాయండి' },
+            { word: 'పదాలు చదవండి', pronunciation: 'padhaalu chadhavandhi', meaning: 'Read the words', example: 'ఈ పదాలను బిగ్గరగా చదవండి' },
+            { word: 'వాక్యాలు పూర్తి చేయండి', pronunciation: 'vaakyaalu poorti chaeyandhi', meaning: 'Complete the sentences', example: 'నేను _____ వెళ్తాను' },
+            { word: 'అనువాదం చేయండి', pronunciation: 'anuvaadham chaeyandhi', meaning: 'Translate', example: 'ఈ వాక్యాన్ని ఇంగ్లీష్‌లోకి అనువదించండి' },
+            { word: 'ఉచ్చారణ అభ్యాసం', pronunciation: 'uchchaarana abhyaasam', meaning: 'Pronunciation practice', example: 'సరైన ఉచ్చారణతో చెప్పండి' }
+        ];
+
+        // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const searchInput = document.getElementById('searchInput');
+            searchExpanded = !searchExpanded;
+            
+            if (searchExpanded) {
+                searchInput.classList.remove('search-collapsed', 'opacity-0', 'pointer-events-none');
+                searchInput.classList.add('search-expanded', 'opacity-100');
+                searchInput.focus();
+            } else {
+                searchInput.classList.add('search-collapsed', 'opacity-0', 'pointer-events-none');
+                searchInput.classList.remove('search-expanded', 'opacity-100');
+                searchInput.value = '';
+                clearSearchResults();
+            }
+        });
+
+        // Search input functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            if (query.length > 0) {
+                performSearch(query);
+            } else {
+                clearSearchResults();
+            }
+        });
+
+        function performSearch(query) {
+            const allData = [
+                ...teluguLetters.map(item => ({...item, category: 'అక్షరాలు', type: 'letters'})),
+                ...wordsData.map(item => ({...item, category: 'పదాలు', type: 'words'})),
+                ...numbersData.map(item => ({...item, category: 'సంఖ్యలు', type: 'numbers'})),
+                ...conversationsData.map(item => ({...item, category: 'సంభాషణ', type: 'conversations'})),
+                ...practiceData.map(item => ({...item, category: 'అభ్యాసం', type: 'practice'})),
+                ...Object.entries(grammarData).flatMap(([key, items]) => 
+                    items.map(item => ({...item, category: 'వ్యాకరణం', type: key}))
+                )
+            ];
+
+            const results = allData.filter(item => 
+                (item.letter && item.letter.includes(query)) ||
+                (item.word && item.word.toLowerCase().includes(query)) ||
+                (item.pronunciation && item.pronunciation.toLowerCase().includes(query)) ||
+                (item.meaning && item.meaning.toLowerCase().includes(query))
+            );
+
+            displaySearchResults(results);
+        }
+
+        function displaySearchResults(results) {
+            const topicsList = document.getElementById('topicsList');
+            
+            if (results.length === 0) {
+                topicsList.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <div class="text-gray-500 text-lg">వెతుకున్న పదం దొరకలేదు</div>
+                        <button onclick="clearSearchResults()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                            అన్ని విషయాలు చూడండి
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            topicsList.innerHTML = results.map(result => `
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer border-l-4 border-blue-500" 
+                     onclick="openSearchResult('${result.type}', '${result.category}', '${encodeURIComponent(JSON.stringify(result))}')">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-3">${result.letter || '📝'}</span>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">${result.letter || result.word}</h3>
+                            <p class="text-sm text-blue-600">${result.category}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">${result.meaning}</p>
+                </div>
+            `).join('');
+        }
+
+        function openSearchResult(type, category, encodedResult) {
+            const result = JSON.parse(decodeURIComponent(encodedResult));
+            
+            // Find the appropriate dataset and index
+            let dataset, title, breadcrumb;
+            
+            if (type === 'letters') {
+                dataset = teluguLetters;
+                title = 'తెలుగు అక్షరాలు';
+                breadcrumb = 'హోమ్ > అక్షరాలు';
+            } else if (type === 'words') {
+                dataset = wordsData;
+                title = 'రోజువారీ పదాలు';
+                breadcrumb = 'హోమ్ > పదాలు';
+            } else if (type === 'numbers') {
+                dataset = numbersData;
+                title = 'తెలుగు సంఖ్యలు';
+                breadcrumb = 'హోమ్ > సంఖ్యలు';
+            } else if (type === 'conversations') {
+                dataset = conversationsData;
+                title = 'రోజువారీ సంభాషణలు';
+                breadcrumb = 'హోమ్ > సంభాషణ';
+            } else if (type === 'practice') {
+                dataset = practiceData;
+                title = 'అభ్యాస వ్యాయామాలు';
+                breadcrumb = 'హోమ్ > అభ్యాసం';
+            } else {
+                dataset = grammarData[type];
+                const titles = {
+                    pronouns: 'సర్వనామాలు',
+                    verbs: 'క్రియలు',
+                    postpositions: 'విభక్తులు',
+                    adjectives: 'విశేషణాలు',
+                    nouns: 'నామవాచకాలు',
+                    adverbs: 'క్రియా విశేషణాలు'
+                };
+                title = titles[type];
+                breadcrumb = `హోమ్ > వ్యాకరణం > ${title}`;
+            }
+            
+            // Find the index of the result in the dataset
+            const index = dataset.findIndex(item => 
+                (item.letter && item.letter === result.letter) ||
+                (item.word && item.word === result.word)
+            );
+            
+            currentView = 'cards';
+            currentCardSet = dataset;
+            currentCardIndex = index >= 0 ? index : 0;
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = title;
+            
+            updateBreadcrumb(breadcrumb);
+            displayCard();
+            
+            // Clear search
+            document.getElementById('searchInput').value = '';
+            searchExpanded = false;
+            const searchInput = document.getElementById('searchInput');
+            searchInput.classList.add('search-collapsed', 'opacity-0', 'pointer-events-none');
+            searchInput.classList.remove('search-expanded', 'opacity-100');
+        }
+
+        function clearSearchResults() {
+            const topicsList = document.getElementById('topicsList');
+            topicsList.innerHTML = `
+                <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-blue-500" onclick="openLetters()">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">అ</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">అక్షరాలు</h3>
+                    </div>
+                    <p class="text-gray-600">తెలుగు వర్ణమాల నేర్చుకోండి</p>
+                </div>
+
+                <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-green-500" onclick="openPartsOfSpeech()">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">📝</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">వ్యాకరణం</h3>
+                    </div>
+                    <p class="text-gray-600">పదాల రకాలు మరియు వ్యాకరణ నియమాలు</p>
+                </div>
+
+                <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-purple-500" onclick="openWords()">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">📚</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">పదాలు</h3>
+                    </div>
+                    <p class="text-gray-600">రోజువారీ వాడుకలో వచ్చే పదాలు</p>
+                </div>
+
+                <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-red-500" onclick="openNumbers()">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">🔢</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">సంఖ్యలు</h3>
+                    </div>
+                    <p class="text-gray-600">తెలుగులో సంఖ్యలు నేర్చుకోండి</p>
+                </div>
+
+                <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-yellow-500" onclick="openConversations()">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">💬</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">సంభాషణ</h3>
+                    </div>
+                    <p class="text-gray-600">రోజువారీ సంభాషణలు మరియు వాక్యాలు</p>
+                </div>
+
+                <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-indigo-500" onclick="openPractice()">
+                    <div class="flex items-center mb-3">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">అభ్యాసం</h3>
+                    </div>
+                    <p class="text-gray-600">వ్యాయామాలు మరియు పరీక్షలు</p>
+                </div>
+            `;
+        }
+
+        // Navigation functions
+        function updateBreadcrumb(path) {
+            document.getElementById('breadcrumb').innerHTML = path;
+        }
+
+        function openLetters() {
+            currentView = 'cards';
+            currentCardSet = teluguLetters;
+            currentCardIndex = 0;
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'తెలుగు అక్షరాలు';
+            
+            updateBreadcrumb('హోమ్ > అక్షరాలు');
+            displayCard();
+        }
+
+        function openPartsOfSpeech() {
+            currentView = 'partsOfSpeech';
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('partsOfSpeechList').classList.remove('hidden');
+            
+            updateBreadcrumb('హోమ్ > వ్యాకరణం');
+        }
+
+        function openWords() {
+            currentView = 'cards';
+            currentCardSet = wordsData;
+            currentCardIndex = 0;
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'రోజువారీ పదాలు';
+            
+            updateBreadcrumb('హోమ్ > పదాలు');
+            displayCard();
+        }
+
+        function openNumbers() {
+            currentView = 'cards';
+            currentCardSet = numbersData;
+            currentCardIndex = 0;
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'తెలుగు సంఖ్యలు';
+            
+            updateBreadcrumb('హోమ్ > సంఖ్యలు');
+            displayCard();
+        }
+
+        function openConversations() {
+            currentView = 'cards';
+            currentCardSet = conversationsData;
+            currentCardIndex = 0;
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'రోజువారీ సంభాషణలు';
+            
+            updateBreadcrumb('హోమ్ > సంభాషణ');
+            displayCard();
+        }
+
+        function openPractice() {
+            currentView = 'cards';
+            currentCardSet = practiceData;
+            currentCardIndex = 0;
+            
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'అభ్యాస వ్యాయామాలు';
+            
+            updateBreadcrumb('హోమ్ > అభ్యాసం');
+            displayCard();
+        }
+
+        function openCards(type) {
+            currentView = 'cards';
+            currentCardSet = grammarData[type];
+            currentCardIndex = 0;
+            
+            const titles = {
+                pronouns: 'సర్వనామాలు',
+                verbs: 'క్రియలు',
+                postpositions: 'విభక్తులు',
+                adjectives: 'విశేషణాలు',
+                nouns: 'నామవాచకాలు',
+                adverbs: 'క్రియా విశేషణాలు'
+            };
+            
+            document.getElementById('partsOfSpeechList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = titles[type];
+            
+            updateBreadcrumb(`హోమ్ > వ్యాకరణం > ${titles[type]}`);
+            displayCard();
+        }
+
+        function goBack() {
+            if (currentView === 'cards') {
+                if (document.getElementById('partsOfSpeechList').classList.contains('hidden')) {
+                    // Coming from letters
+                    currentView = 'topics';
+                    document.getElementById('cardsView').classList.add('hidden');
+                    document.getElementById('topicsList').classList.remove('hidden');
+                    updateBreadcrumb('హోమ్');
+                } else {
+                    // Coming from parts of speech
+                    currentView = 'partsOfSpeech';
+                    document.getElementById('cardsView').classList.add('hidden');
+                    document.getElementById('partsOfSpeechList').classList.remove('hidden');
+                    updateBreadcrumb('హోమ్ > వ్యాకరణం');
+                }
+            } else if (currentView === 'partsOfSpeech') {
+                currentView = 'topics';
+                document.getElementById('partsOfSpeechList').classList.add('hidden');
+                document.getElementById('topicsList').classList.remove('hidden');
+                updateBreadcrumb('హోమ్');
+            }
+        }
+
+        function displayCard() {
+            const card = currentCardSet[currentCardIndex];
+            const cardContent = document.getElementById('cardContent');
+            
+            if (card.letter) {
+                // Letter card
+                cardContent.innerHTML = `
+                    <div class="text-8xl font-bold text-blue-600 mb-4">${card.letter}</div>
+                    <div class="text-2xl text-gray-700 mb-2">ఉచ్చారణ: ${card.pronunciation}</div>
+                    <div class="text-lg text-gray-600">${card.meaning}</div>
+                `;
+            } else {
+                // Grammar card
+                cardContent.innerHTML = `
+                    <div class="text-6xl font-bold text-green-600 mb-4">${card.word}</div>
+                    <div class="text-2xl text-gray-700 mb-2">ఉచ్చారణ: ${card.pronunciation}</div>
+                    <div class="text-lg text-gray-600 mb-3">అర్థం: ${card.meaning}</div>
+                    <div class="text-md text-blue-600 bg-blue-50 p-3 rounded-lg">ఉదాహరణ: ${card.example}</div>
+                `;
+            }
+            
+            document.getElementById('cardCounter').textContent = `${currentCardIndex + 1} / ${currentCardSet.length}`;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentCardIndex === 0;
+            document.getElementById('nextBtn').disabled = currentCardIndex === currentCardSet.length - 1;
+            
+            if (currentCardIndex === 0) {
+                document.getElementById('prevBtn').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                document.getElementById('prevBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+            
+            if (currentCardIndex === currentCardSet.length - 1) {
+                document.getElementById('nextBtn').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                document.getElementById('nextBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // Card navigation
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                displayCard();
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            if (currentCardIndex < currentCardSet.length - 1) {
+                currentCardIndex++;
+                displayCard();
+            }
+        });
+
+        // Sound and voice test buttons
+        document.getElementById('soundBtn').addEventListener('click', function() {
+            const card = currentCardSet[currentCardIndex];
+            const text = card.letter || card.word;
+            
+            // Try to use Web Speech API for text-to-speech
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'te-IN'; // Telugu language code
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 flex items-center';
+                notification.innerHTML = `
+                    <svg class="w-5 h-5 mr-2 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M6.343 6.343A8 8 0 004.222 12a8.001 8.001 0 002.121 5.657"></path>
+                    </svg>
+                    "${text}" ధ్వని ప్లే అవుతోంది...
+                `;
+                document.body.appendChild(notification);
+                
+                utterance.onend = () => {
+                    notification.remove();
+                };
+                
+                utterance.onerror = () => {
+                    notification.textContent = 'ధ్వని ప్లే చేయలేకపోయింది';
+                    setTimeout(() => notification.remove(), 2000);
+                };
+                
+                speechSynthesis.speak(utterance);
+                
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        notification.remove();
+                    }
+                }, 5000);
+            } else {
+                // Fallback notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                notification.textContent = `"${text}" ధ్వని ప్లే అవుతోంది...`;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            }
+        });
+
+        document.getElementById('voiceTestBtn').addEventListener('click', function() {
+            const card = currentCardSet[currentCardIndex];
+            const expectedText = card.letter || card.word;
+            
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                
+                recognition.lang = 'te-IN';
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 flex items-center';
+                notification.innerHTML = `
+                    <div class="w-3 h-3 bg-red-500 rounded-full mr-2 animate-pulse"></div>
+                    వాయిస్ టెస్ట్ ప్రారంభమైంది... "${expectedText}" అని చెప్పండి!
+                `;
+                document.body.appendChild(notification);
+                
+                recognition.onresult = function(event) {
+                    const spokenText = event.results[0][0].transcript.trim();
+                    
+                    // Simple comparison (in real app, you'd want more sophisticated matching)
+                    const isCorrect = spokenText.includes(expectedText) || 
+                                    expectedText.includes(spokenText) ||
+                                    spokenText.toLowerCase().includes(expectedText.toLowerCase());
+                    
+                    notification.className = `fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg z-50 text-white ${isCorrect ? 'bg-green-600' : 'bg-orange-500'}`;
+                    notification.innerHTML = isCorrect ? 
+                        `<svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        అద్భుతం! మీ ఉచ్చారణ సరైనది. మీరు చెప్పింది: "${spokenText}"` :
+                        `<svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        మళ్ళీ ప్రయత్నించండి. మీరు చెప్పింది: "${spokenText}"`;
+                    
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 4000);
+                };
+                
+                recognition.onerror = function(event) {
+                    notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    notification.textContent = 'వాయిస్ రికార్డింగ్‌లో సమస్య. మళ్ళీ ప్రయత్నించండి.';
+                    setTimeout(() => notification.remove(), 3000);
+                };
+                
+                recognition.onend = function() {
+                    // Recognition ended
+                };
+                
+                try {
+                    recognition.start();
+                } catch (error) {
+                    notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    notification.textContent = 'వాయిస్ రికార్డింగ్ సపోర్ట్ లేదు.';
+                    setTimeout(() => notification.remove(), 3000);
+                }
+                
+                // Auto-remove after 10 seconds if still listening
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        recognition.stop();
+                        notification.remove();
+                    }
+                }, 10000);
+                
+            } else {
+                // Fallback for browsers without speech recognition
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                notification.textContent = 'వాయిస్ టెస్ట్ ప్రారంభమైంది... మాట్లాడండి!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    notification.textContent = 'బాగుంది! మీ ఉచ్చారణ సరైనది.';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 2000);
+                }, 3000);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (currentView === 'cards') {
+                if (e.key === 'ArrowLeft' && currentCardIndex > 0) {
+                    currentCardIndex--;
+                    displayCard();
+                } else if (e.key === 'ArrowRight' && currentCardIndex < currentCardSet.length - 1) {
+                    currentCardIndex++;
+                    displayCard();
+                }
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ef95adc7e63f33',t:'MTc1Nzg0OTc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
