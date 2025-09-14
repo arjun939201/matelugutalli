@@ -1,314 +1,389 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="te">
 <head>
   <meta charset="UTF-8">
-  <title>Dictionary - Main Page</title>
+  <title>తెలుగు మాటోలి - Vocabulary Study</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts for Material Design look -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1976d2;
+      --accent: #ffb300;
+      --background: #f5f7fa;
+      --surface: #fff;
+      --card-radius: 15px;
+      --shadow: 0 2px 10px rgba(40,40,40,0.10);
+      --text-main: #262626;
+      --text-light: #555;
+      --nav-bg: #fff;
+      --nav-shadow: 0 2px 8px rgba(30,30,60,0.09);
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--background);
       margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 0;
     }
-    h1 { color: #333; margin-bottom: 20px; }
-
-    /* Search Section */
-    .search-box {
-      width: 90%;
-      max-width: 600px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    input[type="text"] {
-      width: 70%;
-      padding: 10px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #007bff;
+    header {
+      width: 100%;
+      background: var(--primary);
       color: #fff;
-      border: none;
-      border-radius: 5px;
-    }
-    button:hover { background: #0056b3; }
-.button-row {
-  display: flex;           /* Arrange children in a row */
-  justify-content: space-around; /* Evenly space buttons */
-  gap: 10px;               /* Optional spacing between buttons */
-}
-
-.read-btn {
-  padding: auto;      /* Adjust button size */
-  font-size: 16px;
-  cursor: pointer;
-}
-    
-    /* Results + Random Word */
-    .result-box, .random-box {
-      width: 90%;
-      max-width: 600px;
-      min-height: 120px;
-      margin-top: 15px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      background: #fff;
-      border-radius: 10px;
-      text-align: left;
-      box-sizing: border-box;
-    }
-    .box-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #444;
-    }
-    .result-entry {
-      margin-bottom: 8px;
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-    }
-    .category-label {
-      font-size: 13px;
-      font-weight: bold;
-      color: #555;
-      background: #f0f0f0;
-      padding: 2px 6px;
-      border-radius: 5px;
-      margin-left: 5px;
-    }
-
-    .nav-buttons {
-      margin-top: 10px;
+      padding: 20px 0 14px 0;
+      box-shadow: var(--nav-shadow);
+      border-bottom-left-radius: 35px;
+      border-bottom-right-radius: 35px;
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
     }
-    .nav-buttons button {
+    header .material-icons {
+      font-size: 2.4em;
+      margin-right: 12px;
+      opacity: 0.85;
+    }
+    header h1 {
+      font-size: 2.1em;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: 0 2px 8px #144b8b44;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 2vw;
+    }
+    .search-card {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border-radius: var(--card-radius);
+      margin: -30px auto 28px auto;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-card input[type="text"] {
       flex: 1;
-      margin: 0 5px;
-      background: #28a745;
+      padding: 12px 15px;
+      font-size: 1.09em;
+      border: none;
+      border-radius: 8px;
+      background: #f2f3f4;
     }
-    .nav-buttons button:hover { background: #1e7e34; }
-
-    /* Read Button */
-    .read-btn {
-      margin-top: 30px;
-      padding: 12px 20px;
-      font-size: 18px;
-      background: #6c63ff;
+    .search-card button {
+      background: var(--primary);
       color: #fff;
       border: none;
       border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 1.1em;
+      font-weight: 500;
       cursor: pointer;
+      box-shadow: 0 2px 6px #1976d220;
+      transition: background 0.2s;
     }
-    .read-btn:hover { background: #5147d8; }
-  .vocab-box {
-  width: 90%;
-  max-width: 600px;
-  min-height: 120px;
-  margin-top: 15px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 10px;
-  text-align: left;
-  box-sizing: border-box;
-  }
- 
-   .result-box, .random-box, .vocab-box {
-  word-break: break-all;
-  white-space: pre-line; /* preserves line breaks, but still wraps */
-  overflow-x: auto;    /* hides any possible overflow */
+    .search-card button:hover { background: #125cab; }
+
+    .section {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border-radius: var(--card-radius);
+      margin: 26px 0;
+      padding: 22px 24px;
+      animation: fade-in 0.5s;
     }
-    section h1 {
- font-size: 5px;
+    @keyframes fade-in { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+    .section h2 {
+      color: var(--primary);
+      font-size: 1.25em;
+      font-weight: 500;
+      margin-bottom: 13px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .section h2 .material-icons {
+      font-size: 1.15em;
+      vertical-align: middle;
+      color: var(--accent);
+    }
+    .vocab-list { list-style: none; padding: 0; margin: 0; }
+    .vocab-list li {
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e9ebf0;
+      padding-bottom: 5px;
+      gap: 10px;
+    }
+    .word-item {
+      font-size: 1.15em;
+      font-weight: 500;
+      color: var(--text-main);
+      min-width: 70px;
+    }
+    .info, .eng {
+      font-size: 1em;
+      color: var(--text-light);
+    }
+    .eng { font-style: italic; margin-left: 7px; }
+    .sound-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      font-size: 1.18em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ffb30033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s;
+    }
+    .sound-btn:hover { background: #ff8800; }
+    /* Floating Nav Bar */
+    .bottom-nav {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: var(--nav-bg);
+      height: 62px;
+      box-shadow: 0 -2px 8px #dadada80;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      z-index: 100;
+    }
+    .nav-action {
+      background: none;
+      border: none;
+      font-size: 1.07em;
+      color: var(--primary);
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: color 0.2s;
+    }
+    .nav-action .material-icons { font-size: 1.7em; }
+    .nav-action:hover { color: var(--accent); }
+    @media (max-width: 600px) {
+      .container { padding: 0 1vw; }
+      header h1 { font-size: 1.23em; }
+      .section { padding: 13px 5px; }
+      .search-card { padding: 8px 5px; }
+      .bottom-nav { height: 54px; }
     }
   </style>
 </head>
 <body>
-  <h1>📖 తెలుగు తెల్లడి </h1>
+  <header>
+    <span class="material-icons">auto_stories</span>
+    <h1>తెలుగు మాటోలి</h1>
+  </header>
+  <div class="container">
 
-  <!-- Search -->
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="ఏదైనా వెతకండి...">
-    <button onclick="searchWord()">వెతుకు</button>
-  </div>
+    <!-- Search Section -->
+    <div class="search-card">
+      <input type="text" id="searchInput" placeholder="వర్డ్/ఇంగ్లీష్/వివరణ కోసం వెతకండి...">
+      <button onclick="searchWord()"><span class="material-icons" style="vertical-align:middle;">search</span> వెతుకు</button>
+    </div>
 
-  <!-- Search Result -->
-  <div class="result-box">
-    <div class="box-title">🔎 వెతుకు పంటకాలు</div>
-    <div id="searchResult">ఇంకా వెతకలేదు.</div>
-  </div>
+    <!-- Search Result -->
+    <div class="section" id="searchSection" style="display:none;">
+      <h2><span class="material-icons">search</span> ఫలితాలు</h2>
+      <div id="searchResult">ఇంకా వెతకలేదు.</div>
+    </div>
 
-  <!-- Random Word -->
-  <div class="random-box">
-    <div class="box-title">🎲 మీకోసం</div>
-    <div id="randomWord">తెస్తున్నా...</div>
-    <div class="nav-buttons">
-      <button onclick="prevWord()">← వెనకది</button>
-      <button onclick="nextWord()">తర్వాతది→</button>
+    <!-- Pronouns -->
+    <div class="section">
+      <h2><span class="material-icons">person</span> Personal Pronouns</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">నేను</span><span class="info">I</span><span class="eng">nēnu</span><button class="sound-btn" onclick="playSound('నేను')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">మేము</span><span class="info">We</span><span class="eng">mēmu</span><button class="sound-btn" onclick="playSound('మేము')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">నువ్వు</span><span class="info">You (inf)</span><span class="eng">nuvvu</span><button class="sound-btn" onclick="playSound('నువ్వు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">మీరు</span><span class="info">You (pl/form)</span><span class="eng">meeru</span><button class="sound-btn" onclick="playSound('మీరు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">అతను</span><span class="info">He</span><span class="eng">atanu</span><button class="sound-btn" onclick="playSound('అతను')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">ఆమె</span><span class="info">She</span><span class="eng">āme</span><button class="sound-btn" onclick="playSound('ఆమె')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">అది</span><span class="info">It/That</span><span class="eng">adi</span><button class="sound-btn" onclick="playSound('అది')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">వారు</span><span class="info">They</span><span class="eng">vāru</span><button class="sound-btn" onclick="playSound('వారు')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
+    </div>
+    <!-- Demonstrative Pronouns -->
+    <div class="section">
+      <h2><span class="material-icons">visibility</span> Demonstratives</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">ఇది</span><span class="info">This</span><span class="eng">idi</span><button class="sound-btn" onclick="playSound('ఇది')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">అది</span><span class="info">That</span><span class="eng">adi</span><button class="sound-btn" onclick="playSound('అది')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">వీడు</span><span class="info">This (he)</span><span class="eng">veedu</span><button class="sound-btn" onclick="playSound('వీడు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">ఆవిడ</span><span class="info">That lady</span><span class="eng">āviḍa</span><button class="sound-btn" onclick="playSound('ఆవిడ')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
+    </div>
+    <!-- Interrogative Pronouns -->
+    <div class="section">
+      <h2><span class="material-icons">help</span> Interrogatives</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">ఎవరూ?</span><span class="info">Who?</span><span class="eng">evaru?</span><button class="sound-btn" onclick="playSound('ఎవరూ')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">ఏది?</span><span class="info">Which?</span><span class="eng">ēdi?</span><button class="sound-btn" onclick="playSound('ఏది')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">ఏం?</span><span class="info">What?</span><span class="eng">ēm?</span><button class="sound-btn" onclick="playSound('ఏం')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
+    </div>
+    <!-- Verbs -->
+    <div class="section">
+      <h2><span class="material-icons">bolt</span> Common Verbs</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">చేయు</span><span class="info">do/make</span><span class="eng">cheyyu</span><button class="sound-btn" onclick="playSound('చేయు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">వెళ్ళు</span><span class="info">go</span><span class="eng">veḷḷu</span><button class="sound-btn" onclick="playSound('వెళ్ళు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">రా</span><span class="info">come</span><span class="eng">rā</span><button class="sound-btn" onclick="playSound('రా')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">తిను</span><span class="info">eat</span><span class="eng">tinu</span><button class="sound-btn" onclick="playSound('తిను')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">చూడు</span><span class="info">see/look</span><span class="eng">chūḍu</span><button class="sound-btn" onclick="playSound('చూడు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">పలుకు</span><span class="info">speak</span><span class="eng">paluku</span><button class="sound-btn" onclick="playSound('పలుకు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">విను</span><span class="info">hear/listen</span><span class="eng">vinu</span><button class="sound-btn" onclick="playSound('విను')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
+    </div>
+    <!-- Postpositions -->
+    <div class="section">
+      <h2><span class="material-icons">link</span> Postpositions</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">తొ</span><span class="info">with</span><span class="eng">tho</span><button class="sound-btn" onclick="playSound('తొ')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">లో</span><span class="info">in</span><span class="eng">lō</span><button class="sound-btn" onclick="playSound('లో')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">కి</span><span class="info">to/for</span><span class="eng">ki</span><button class="sound-btn" onclick="playSound('కి')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">నుండి</span><span class="info">from</span><span class="eng">nundi</span><button class="sound-btn" onclick="playSound('నుండి')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">పై</span><span class="info">on/above</span><span class="eng">pai</span><button class="sound-btn" onclick="playSound('పై')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
+    </div>
+    <!-- Numbers -->
+    <div class="section">
+      <h2><span class="material-icons">looks_one</span> Numbers</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">ఒకటి</span><span class="info">one</span><span class="eng">okati</span><button class="sound-btn" onclick="playSound('ఒకటి')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">రెండు</span><span class="info">two</span><span class="eng">rendu</span><button class="sound-btn" onclick="playSound('రెండు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">మూడు</span><span class="info">three</span><span class="eng">mūḍu</span><button class="sound-btn" onclick="playSound('మూడు')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
+    </div>
+    <!-- Greetings -->
+    <div class="section">
+      <h2><span class="material-icons">emoji_people</span> Greetings</h2>
+      <ul class="vocab-list">
+        <li><span class="word-item">నమస్కారం</span><span class="info">Hello</span><span class="eng">namaskāram</span><button class="sound-btn" onclick="playSound('నమస్కారం')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">ధన్యవాదాలు</span><span class="info">Thank you</span><span class="eng">dhanyavādālu</span><button class="sound-btn" onclick="playSound('ధన్యవాదాలు')"><span class="material-icons">volume_up</span></button></li>
+        <li><span class="word-item">క్షమించండి</span><span class="info">Sorry/Excuse me</span><span class="eng">kṣaminchaṇḍi</span><button class="sound-btn" onclick="playSound('క్షమించండి')"><span class="material-icons">volume_up</span></button></li>
+      </ul>
     </div>
   </div>
 
-    <!-- Vocabulary Section -->
-  <div class="vocab-box">
-    <div class="box-title">🗂️ మాటోలి (vocabulary)</div>
-    <div id="vocabContent">తెస్తున్న...</div>
-    <div class="nav-buttons">
-      <button onclick="prevVocab()">← వెనకది</button>
-      <button onclick="nextVocab()">తర్వాతది→</button>
-    </div>
-  </div>
-  
-  <div class="button-row">
-  <button class="read-btn" onclick="window.location.href='read.html'">చదువు</button>
-  <button class="read-btn" onclick="window.location.href='games.html'">ఆటలు</button>
-  <button class="read-btn" onclick="window.location.href='neologism.html'">కొత్తమాటకట్లు</button>
-</div>
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <button class="nav-action" onclick="window.location.href='read.html'">
+      <span class="material-icons">menu_book</span> చదువు
+    </button>
+    <button class="nav-action" onclick="window.location.href='games.html'">
+      <span class="material-icons">sports_esports</span> ఆటలు
+    </button>
+    <button class="nav-action" onclick="window.location.href='neologism.html'">
+      <span class="material-icons">new_releases</span> కొత్తమాట
+    </button>
+    <button class="nav-action" onclick="window.location.reload()">
+      <span class="material-icons">refresh</span> Refresh
+    </button>
+  </nav>
 
   <script>
-  let dictionary = [];
-  let currentIndex = 0;
-
-  // For Vocabulary (grouped by category field)
-  let vocabCategories = {};
-  let vocabKeys = [];
-  let vocabIndex = 0;
-
-  // Load dictionary
-  async function loadDictionary() {
-    try {
-      let res = await fetch("dictionary.txt");
-      dictionary = await res.json();
-
-      prepareVocabCategories();
-
-      // Show first displays
-      showRandomWord();
-      showVocab();
-    } catch (err) {
-      console.error("Error loading dictionary:", err);
-    }
-  }
-
-  // 🔎 Search
-  function searchWord() {
-    let query = document.getElementById("searchInput").value.toLowerCase();
-    let resultBox = document.getElementById("searchResult");
-
-    if (!query) {
-      resultBox.innerHTML = "ఏదైనా వ్రాయండి...";
-      return;
-    }
-
-    let results = dictionary.filter(
-      entry =>
-        entry.word.toLowerCase().includes(query) ||
-        entry.equivalent.toLowerCase().includes(query) ||
-        entry.meaning.toLowerCase().includes(query) ||
-        (entry.category && entry.category.toLowerCase().includes(query))
-    );
-
-    if (results.length > 0) {
-      resultBox.innerHTML = results
-        .map(
-          e => `
-          <div class="result-entry">
-            <b>${e.word}</b> (${e.grammar})
-            <br>💡 ${e.equivalent}
-            <br>📖 ${e.meaning}
-            <br><span class="category-label">${e.category || e.grammar}</span>
-          </div>`
-        )
-        .join("");
-    } else {
-      resultBox.innerHTML = "❌ ఈ పదం దొరకలేదు.";
-    }
-  }
-
-  // 🎲 Random Word
-  function showRandomWord() {
-    if (dictionary.length === 0) {
-      document.getElementById("randomWord").innerText = "No words available.";
-      return;
-    }
-    let e = dictionary[currentIndex];
-    document.getElementById("randomWord").innerHTML = `
-      <b>${e.word}</b> (${e.grammar})
-      <br>💡 ${e.equivalent}
-      <br>📖 ${e.meaning}
-      <br><span class="category-label">${e.category || e.grammar}</span>
-    `;
-  }
-
-  function nextWord() {
-    if (dictionary.length > 0) {
-      currentIndex = (currentIndex + 1) % dictionary.length;
-      showRandomWord();
-    }
-  }
-
-  function prevWord() {
-    if (dictionary.length > 0) {
-      currentIndex = (currentIndex - 1 + dictionary.length) % dictionary.length;
-      showRandomWord();
-    }
-  }
-
-  // 🗂️ Vocabulary
-  function prepareVocabCategories() {
-    vocabCategories = {};
-    dictionary.forEach(entry => {
-      let cat = entry.category || entry.grammar; // fallback
-      if (!vocabCategories[cat]) {
-        vocabCategories[cat] = [];
+    // Sound using speech synthesis for Telugu
+    function playSound(text) {
+      if ('speechSynthesis' in window) {
+        var msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'te-IN';
+        msg.rate = 0.93;
+        window.speechSynthesis.speak(msg);
+      } else {
+        alert("Speech not supported in this browser.");
       }
-      vocabCategories[cat].push(entry);
-    });
-    vocabKeys = Object.keys(vocabCategories);
-  }
-
-  function showVocab() {
-    if (vocabKeys.length === 0) {
-      document.getElementById("vocabContent").innerText = "ఏమిలేవు🙃";
-      return;
     }
-    let category = vocabKeys[vocabIndex];
-    let words = vocabCategories[category];
-    document.getElementById("vocabContent").innerHTML = `
-      <b>${category}</b> (${words.length} పదాలు)
-      <ul>
-        ${words
-          .map(
-            e =>
-              `<li><b>${e.word}</b> – ${e.equivalent} <br><small>${e.meaning}</small></li>`
-          )
-          .join("")}
-      </ul>
-    `;
-  }
 
-  function nextVocab() {
-    if (vocabKeys.length > 0) {
-      vocabIndex = (vocabIndex + 1) % vocabKeys.length;
-      showVocab();
+    // Search Functionality
+    function searchWord() {
+      let query = document.getElementById("searchInput").value.trim().toLowerCase();
+      let resultBox = document.getElementById("searchResult");
+      let section = document.getElementById("searchSection");
+      section.style.display = "block";
+      if (!query) {
+        resultBox.innerHTML = "<span style='color:#b00;'>ఏదైనా వ్రాయండి...</span>";
+        return;
+      }
+      // Simple search: scan all vocab lists
+      let data = [
+        // Pronouns
+        {word:"నేను", equivalent:"I", meaning:"nēnu"},
+        {word:"మేము", equivalent:"We", meaning:"mēmu"},
+        {word:"నువ్వు", equivalent:"You (inf)", meaning:"nuvvu"},
+        {word:"మీరు", equivalent:"You (pl/form)", meaning:"meeru"},
+        {word:"అతను", equivalent:"He", meaning:"atanu"},
+        {word:"ఆమె", equivalent:"She", meaning:"āme"},
+        {word:"అది", equivalent:"It/That", meaning:"adi"},
+        {word:"వారు", equivalent:"They", meaning:"vāru"},
+        // Demonstratives
+        {word:"ఇది", equivalent:"This", meaning:"idi"},
+        {word:"అది", equivalent:"That", meaning:"adi"},
+        {word:"వీడు", equivalent:"This (he)", meaning:"veedu"},
+        {word:"ఆవిడ", equivalent:"That lady", meaning:"āviḍa"},
+        // Interrogatives
+        {word:"ఎవరూ?", equivalent:"Who?", meaning:"evaru?"},
+        {word:"ఏది?", equivalent:"Which?", meaning:"ēdi?"},
+        {word:"ఏం?", equivalent:"What?", meaning:"ēm?"},
+        // Verbs
+        {word:"చేయు", equivalent:"do/make", meaning:"cheyyu"},
+        {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu"},
+        {word:"రా", equivalent:"come", meaning:"rā"},
+        {word:"తిను", equivalent:"eat", meaning:"tinu"},
+        {word:"చూడు", equivalent:"see/look", meaning:"chūḍu"},
+        {word:"పలుకు", equivalent:"speak", meaning:"paluku"},
+        {word:"విను", equivalent:"hear/listen", meaning:"vinu"},
+        // Postpositions
+        {word:"తొ", equivalent:"with", meaning:"tho"},
+        {word:"లో", equivalent:"in", meaning:"lō"},
+        {word:"కి", equivalent:"to/for", meaning:"ki"},
+        {word:"నుండి", equivalent:"from", meaning:"nundi"},
+        {word:"పై", equivalent:"on/above", meaning:"pai"},
+        // Numbers
+        {word:"ఒకటి", equivalent:"one", meaning:"okati"},
+        {word:"రెండు", equivalent:"two", meaning:"rendu"},
+        {word:"మూడు", equivalent:"three", meaning:"mūḍu"},
+        // Greetings
+        {word:"నమస్కారం", equivalent:"Hello", meaning:"namaskāram"},
+        {word:"ధన్యవాదాలు", equivalent:"Thank you", meaning:"dhanyavādālu"},
+        {word:"క్షమించండి", equivalent:"Sorry/Excuse me", meaning:"kṣaminchaṇḍi"}
+      ];
+      let results = data.filter(
+        e => e.word.toLowerCase().includes(query) ||
+             e.equivalent.toLowerCase().includes(query) ||
+             e.meaning.toLowerCase().includes(query)
+      );
+      if (results.length > 0) {
+        resultBox.innerHTML = results.map(e =>
+          `<div style="margin-bottom:12px;padding:5px 0;">
+            <span class="word-item" style="margin-right:10px;">${e.word}</span>
+            <span class="info">${e.equivalent}</span>
+            <span class="eng">${e.meaning}</span>
+            <button class="sound-btn" style="margin-left:17px;" onclick="playSound('${e.word}')"><span class="material-icons">volume_up</span></button>
+          </div>`
+        ).join("");
+      } else {
+        resultBox.innerHTML = "<span style='color:#b00;'>❌ ఈ పదం దొరకలేదు.</span>";
+      }
     }
-  }
-
-  function prevVocab() {
-    if (vocabKeys.length > 0) {
-      vocabIndex = (vocabIndex - 1 + vocabKeys.length) % vocabKeys.length;
-      showVocab();
-    }
-  }
-
-  // Load on startup
-  loadDictionary();
-</script>
+  </script>
 </body>
 </html>
