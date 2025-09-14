@@ -290,140 +290,54 @@
 
         const grammarData = {
             pronouns: [
-                // First person singular
                 { word: 'నేను', pronunciation: 'nenu', meaning: 'I (nominative)', example: 'నేను బాగున్నాను - I am fine' },
                 { word: 'నా', pronunciation: 'naa', meaning: 'my/mine (possessive)', example: 'నా కళ్ళు - my eyes' },
                 { word: 'నాకు', pronunciation: 'naaku', meaning: 'to me (dative)', example: 'నాకు వద్దు - I don\'t want' },
                 { word: 'నన్ను', pronunciation: 'nannu', meaning: 'me (accusative)', example: 'నన్ను పిలవద్దు - don\'t call me' },
                 { word: 'నాతో', pronunciation: 'naatho', meaning: 'with me', example: 'నాతో రా - come with me' },
-                
-                // Second person singular
                 { word: 'నువ్వు', pronunciation: 'nuvu', meaning: 'you (nominative)', example: 'నువ్వు వచ్చావా - did you come?' },
                 { word: 'నీ', pronunciation: 'nee', meaning: 'your/yours (possessive)', example: 'నీ పేరు ఏంటి - what is your name?' },
                 { word: 'నీకు', pronunciation: 'neeku', meaning: 'to you (dative)', example: 'నీకు తెలుసా - do you know?' },
                 { word: 'నిన్ను', pronunciation: 'ninnu', meaning: 'you (accusative)', example: 'నిన్ను చూశాను - I saw you' },
                 { word: 'నీతో', pronunciation: 'neetho', meaning: 'with you', example: 'నీతో వస్తాను - I\'ll come with you' },
-                
-                // Third person singular masculine
                 { word: 'అతడు', pronunciation: 'athadu', meaning: 'he (nominative)', example: 'అతడు ఉన్నాడు - he is there' },
-                { word: 'అతడి', pronunciation: 'athadi', meaning: 'his (possessive)', example: 'అతడి పేరేంటి - what is his name?' },
-                { word: 'అతడికి', pronunciation: 'athadiki', meaning: 'to him (dative)', example: 'అతడికి ఇవ్వు - give him' },
-                { word: 'అతడిని', pronunciation: 'athadini', meaning: 'him (accusative)', example: 'అతడిని చూసారు - they saw him' },
-                { word: 'అతడితో', pronunciation: 'athaditho', meaning: 'with him', example: 'అతడితో వెళ్ళింది - she went with him' },
-                
-                // Third person singular feminine
                 { word: 'ఆమె', pronunciation: 'aame', meaning: 'she (nominative)', example: 'ఆమె ఉంది - she is there' },
-                { word: 'ఆమె', pronunciation: 'aame', meaning: 'her (possessive)', example: 'ఆమె కొడుకు - her son' },
-                { word: 'ఆమెకు', pronunciation: 'aameku', meaning: 'to her (dative)', example: 'ఆమెకు ఇవ్వు - give her' },
-                { word: 'ఆమెను', pronunciation: 'aamenu', meaning: 'her (accusative)', example: 'ఆమెను పిలువు - call her' },
-                { word: 'ఆమెతో', pronunciation: 'aametho', meaning: 'with her', example: 'ఆమెతో పో - go with her' },
-                
-                // First person plural (exclusive)
                 { word: 'మేము', pronunciation: 'memu', meaning: 'we (exclusive)', example: 'మేము వెళ్తాము - we will go' },
-                { word: 'మా', pronunciation: 'maa', meaning: 'our (exclusive)', example: 'మా ఇల్లు - our house' },
-                { word: 'మాకు', pronunciation: 'maaku', meaning: 'to us (exclusive)', example: 'మాకు తెలుసు - we know' },
-                
-                // First person plural (inclusive)
                 { word: 'మనం', pronunciation: 'manam', meaning: 'we (inclusive)', example: 'మనం కలిసి చేద్దాం - let\'s do together' },
-                { word: 'మన', pronunciation: 'mana', meaning: 'our (inclusive)', example: 'మన దేశం - our country' },
-                
-                // Second person plural
                 { word: 'మీరు', pronunciation: 'meeru', meaning: 'you (plural/formal)', example: 'మీరు ఎలా ఉన్నారు - how are you?' },
-                { word: 'మీ', pronunciation: 'mee', meaning: 'your (plural/formal)', example: 'మీ పేరు - your name' },
-                { word: 'మీకు', pronunciation: 'meeku', meaning: 'to you (plural)', example: 'మీకు నచ్చిందా - did you like it?' },
-                
-                // Third person plural
-                { word: 'వారు', pronunciation: 'vaaru', meaning: 'they (people)', example: 'వారు వచ్చారు - they came' },
-                { word: 'వాళ్ళు', pronunciation: 'vaallu', meaning: 'they (informal)', example: 'వాళ్ళు ఎక్కడ - where are they?' },
-                { word: 'అవి', pronunciation: 'avi', meaning: 'they (things)', example: 'అవి అక్కడ ఉన్నాయి - they are there' }
+                { word: 'వారు', pronunciation: 'vaaru', meaning: 'they (people)', example: 'వారు వచ్చారు - they came' }
             ],
             verbs: [
-                // Basic daily activities
                 { word: 'తిను', pronunciation: 'thinu', meaning: 'to eat', example: 'నేను అన్నం తింటాను' },
                 { word: 'తాగు', pronunciation: 'thaagu', meaning: 'to drink', example: 'నీరు తాగు' },
                 { word: 'పడుకో', pronunciation: 'paduko', meaning: 'to sleep', example: 'రాత్రి పడుకో' },
                 { word: 'లే', pronunciation: 'le', meaning: 'to wake up', example: 'ఉదయాన్నే లేచాను' },
-                
-                // Entertainment and activities
                 { word: 'ఆడు', pronunciation: 'aadu', meaning: 'to play', example: 'పిల్లలు ఆడుకుంటున్నారు' },
                 { word: 'పాడు', pronunciation: 'paadu', meaning: 'to sing', example: 'మంచి పాట పాడు' },
                 { word: 'చూడు', pronunciation: 'choodu', meaning: 'to see/watch', example: 'సినిమా చూడాలి' },
                 { word: 'వెతుకు', pronunciation: 'vethuku', meaning: 'to search', example: 'పుస్తకం వెతుకు' },
                 { word: 'చేయి', pronunciation: 'cheyi', meaning: 'to do', example: 'పని చేయాలి' },
-                
-                // Movement verbs
                 { word: 'నడువు', pronunciation: 'naduvu', meaning: 'to walk', example: 'నెమ్మదిగా నడువు' },
                 { word: 'పరిగెత్తు', pronunciation: 'parigetthu', meaning: 'to run', example: 'త్వరగా పరిగెత్తు' },
                 { word: 'కూర్చో', pronunciation: 'koorcho', meaning: 'to sit', example: 'ఇక్కడ కూర్చో' },
                 { word: 'నిలబడు', pronunciation: 'nilabadu', meaning: 'to stand', example: 'అక్కడ నిలబడు' },
-                
-                // Communication verbs
                 { word: 'అను', pronunciation: 'anu', meaning: 'to say', example: 'ఏం అన్నావు?' },
                 { word: 'చెప్పు', pronunciation: 'cheppu', meaning: 'to tell', example: 'నిజం చెప్పు' },
                 { word: 'విను', pronunciation: 'vinu', meaning: 'to listen', example: 'మాట విను' },
                 { word: 'అనుకో', pronunciation: 'anuko', meaning: 'to think', example: 'బాగా అనుకో' },
                 { word: 'అడుగు', pronunciation: 'adugu', meaning: 'to ask', example: 'ప్రశ్న అడుగు' },
                 { word: 'పిలువు', pronunciation: 'piluvu', meaning: 'to call', example: 'అతడిని పిలువు' },
-                
-                // Learning verbs
                 { word: 'చదువు', pronunciation: 'chadhuvu', meaning: 'to read', example: 'పుస్తకం చదువు' },
                 { word: 'రాయి', pronunciation: 'raayi', meaning: 'to write', example: 'లేఖ రాయి' },
                 { word: 'నేర్చుకో', pronunciation: 'nerchuko', meaning: 'to learn', example: 'తెలుగు నేర్చుకో' },
                 { word: 'తెలుసుకో', pronunciation: 'telusuko', meaning: 'to know/find out', example: 'విషయం తెలుసుకో' },
-                { word: 'గుర్తుపెట్టుకో', pronunciation: 'gurthupettuko', meaning: 'to remember', example: 'పేరు గుర్తుపెట్టుకో' },
-                
-                // Movement and direction
                 { word: 'పో', pronunciation: 'po', meaning: 'to go', example: 'ఇంటికి పో' },
                 { word: 'రా', pronunciation: 'raa', meaning: 'to come', example: 'ఇక్కడకు రా' },
                 { word: 'ఆగు', pronunciation: 'aagu', meaning: 'to stop', example: 'అక్కడ ఆగు' },
                 { word: 'ఉండు', pronunciation: 'undu', meaning: 'to stay/be', example: 'ఇక్కడ ఉండు' },
                 { word: 'కలువు', pronunciation: 'kaluvu', meaning: 'to meet', example: 'రేపు కలుద్దాం' },
-                
-                // Giving and taking
                 { word: 'ఇవ్వు', pronunciation: 'ivvu', meaning: 'to give', example: 'పుస్తకం ఇవ్వు' },
-                { word: 'తీస్కో', pronunciation: 'theesko', meaning: 'to take', example: 'దీన్ని తీస్కో' },
-                { word: 'వదులు', pronunciation: 'vadhulu', meaning: 'to leave/let go', example: 'చేయి వదులు' },
-                { word: 'పట్టుకో', pronunciation: 'pattuko', meaning: 'to hold', example: 'గట్టిగా పట్టుకో' },
-                
-                // Sharing and sending
-                { word: 'పంచు', pronunciation: 'panchu', meaning: 'to share', example: 'అందరితో పంచుకో' },
-                { word: 'పంపు', pronunciation: 'pampu', meaning: 'to send', example: 'లేఖ పంపు' },
-                { word: 'పెట్టుకో', pronunciation: 'pettuko', meaning: 'to keep', example: 'జాగ్రత్తగా పెట్టుకో' },
-                
-                // Physical actions
-                { word: 'కొట్టు', pronunciation: 'kottu', meaning: 'to beat/hit', example: 'బంతిని కొట్టు' },
-                { word: 'లాగు', pronunciation: 'laagu', meaning: 'to pull', example: 'తాడు లాగు' },
-                { word: 'త్రోయు', pronunciation: 'throyu', meaning: 'to push', example: 'తలుపు త్రోయి' },
-                { word: 'అతికించు', pronunciation: 'athikinchu', meaning: 'to attach/stick', example: 'స్టిక్కర్ అతికించు' },
-                { word: 'విడగొట్టు', pronunciation: 'vidagottu', meaning: 'to separate/divide', example: 'రెండు భాగాలుగా విడగొట్టు' },
-                
-                // Advanced movement
-                { word: 'నడుపు', pronunciation: 'nadupu', meaning: 'to drive', example: 'కారు నడుపు' },
-                { word: 'ఎగురు', pronunciation: 'eguru', meaning: 'to fly', example: 'పక్షి ఎగురుతోంది' },
-                { word: 'గెంతు', pronunciation: 'genthu', meaning: 'to jump', example: 'ఎత్తుగా గెంతు' },
-                { word: 'పాకు', pronunciation: 'paaku', meaning: 'to crawl', example: 'పిల్లవాడు పాకుతున్నాడు' },
-                { word: 'ఎక్కు', pronunciation: 'ekku', meaning: 'to climb/get on', example: 'చెట్టు ఎక్కు' },
-                { word: 'దిగు', pronunciation: 'dhigu', meaning: 'to get down', example: 'బస్సు నుండి దిగు' },
-                
-                // Show and hide
-                { word: 'దాచు', pronunciation: 'daachu', meaning: 'to hide', example: 'వస్తువు దాచు' },
-                { word: 'చూపించు', pronunciation: 'chupinchu', meaning: 'to show', example: 'దారి చూపించు' },
-                { word: 'తెరువు', pronunciation: 'teruvu', meaning: 'to open', example: 'తలుపు తెరువు' },
-                { word: 'మూయి', pronunciation: 'mooyi', meaning: 'to close', example: 'కిటికీ మూయి' },
-                { word: 'పెట్టు', pronunciation: 'pettu', meaning: 'to put/place', example: 'టేబుల్ మీద పెట్టు' },
-                { word: 'తీసేయి', pronunciation: 'teeseyi', meaning: 'to remove', example: 'దుస్తులు తీసేయి' },
-                
-                // Bring and take away
-                { word: 'తీసుకురా', pronunciation: 'teesukura', meaning: 'to bring', example: 'పుస్తకం తీసుకురా' },
-                { word: 'తీసుకెళ్లు', pronunciation: 'teesukellu', meaning: 'to take away', example: 'దీన్ని తీసుకెళ్లు' },
-                { word: 'ఎత్తు', pronunciation: 'etthu', meaning: 'to lift up', example: 'బరువు ఎత్తు' },
-                { word: 'దించు', pronunciation: 'dinchu', meaning: 'to bring down', example: 'కిందకు దించు' },
-                
-                // Turn and light
-                { word: 'తిప్పు', pronunciation: 'thippu', meaning: 'to turn over', example: 'పేజీ తిప్పు' },
-                { word: 'తిరుగు', pronunciation: 'thirugu', meaning: 'to turn around', example: 'వెనక్కి తిరుగు' },
-                { word: 'వెలిగించు', pronunciation: 'veliginchu', meaning: 'to light/turn on', example: 'దీపం వెలిగించు' },
-                { word: 'ఆర్పు', pronunciation: 'aarpu', meaning: 'to turn off/extinguish', example: 'లైట్ ఆర్పు' }
+                { word: 'తీస్కో', pronunciation: 'theesko', meaning: 'to take', example: 'దీన్ని తీస్కో' }
             ],
             postpositions: [
                 { word: 'కు', pronunciation: 'ku', meaning: 'to/for', example: 'ఇంటికు వెళ్ళు' },
@@ -456,74 +370,43 @@
         };
 
         const wordsData = [
-            // Basic greetings and responses
             { word: 'నమస్కారం', pronunciation: 'namaskaram', meaning: 'hello/greetings', example: 'అందరికీ నమస్కారం' },
             { word: 'ధన్యవాదాలు', pronunciation: 'dhanyavadalu', meaning: 'thank you', example: 'మీకు ధన్యవాదాలు' },
             { word: 'క్షమించండి', pronunciation: 'kshaminchandhi', meaning: 'sorry/excuse me', example: 'దయచేసి క్షమించండి' },
-            
-            // Basic yes/no and existence
             { word: 'అవును', pronunciation: 'avunu', meaning: 'yes', example: 'అవును, నేను వస్తాను' },
             { word: 'కాదు', pronunciation: 'kaadhu', meaning: 'no', example: 'కాదు, అది నాది కాదు' },
             { word: 'ఉంది', pronunciation: 'undhi', meaning: 'is there/exists', example: 'అక్కడ పుస్తకం ఉంది' },
             { word: 'లేదు', pronunciation: 'ledhu', meaning: 'isn\'t there/doesn\'t exist', example: 'ఇక్కడ ఎవరూ లేదు' },
-            
-            // Connecting words
             { word: 'సరే', pronunciation: 'sare', meaning: 'ok/alright', example: 'సరే, నేను వస్తాను' },
             { word: 'కానీ', pronunciation: 'kaani', meaning: 'but', example: 'నేను రాలేను కానీ మీరు వెళ్ళండి' },
             { word: 'ఎందుకంటే', pronunciation: 'endhukante', meaning: 'because', example: 'నేను రాలేను ఎందుకంటే పని ఉంది' },
             { word: 'కాబట్టి', pronunciation: 'kaabatti', meaning: 'so/therefore', example: 'వర్షం వస్తోంది కాబట్టి ఇంట్లో ఉండండి' },
             { word: 'అప్పుడు', pronunciation: 'appudu', meaning: 'then', example: 'ముందు తిను అప్పుడు వెళ్ళు' },
-            
-            // Quantity and frequency
             { word: 'చాలు', pronunciation: 'chaalu', meaning: 'enough', example: 'ఇంత చాలు' },
             { word: 'మరల', pronunciation: 'marala', meaning: 'again', example: 'మరల చెప్పు' },
             { word: 'వెంటనే', pronunciation: 'ventane', meaning: 'immediately', example: 'వెంటనే రా' },
             { word: 'తేడా', pronunciation: 'teda', meaning: 'difference', example: 'రెండింటిలో తేడా ఏంటి?' },
             { word: 'ఎప్పుడూ', pronunciation: 'eppuduu', meaning: 'always', example: 'నేను ఎప్పుడూ ఇక్కడే ఉంటాను' },
-            
-            // Time expressions
             { word: 'ఇప్పటికీ', pronunciation: 'ippatiki', meaning: 'still', example: 'అతను ఇప్పటికీ రాలేదు' },
             { word: 'ఇంకా', pronunciation: 'inkaa', meaning: 'yet/more', example: 'ఇంకా సమయం ఉంది' },
-            { word: 'ఇంకా లేదు', pronunciation: 'inkaa ledhu', meaning: 'not yet', example: 'అతను ఇంకా రాలేదు' },
-            { word: 'నుండి', pronunciation: 'nundi', meaning: 'since/from', example: 'ఉదయం నుండి వర్షం' },
-            
-            // Prepositions
-            { word: 'కు', pronunciation: 'ku', meaning: 'to', example: 'ఇంటికు వెళ్ళు' },
             { word: 'కోసం', pronunciation: 'kosam', meaning: 'for', example: 'మీ కోసం వేచి ఉన్నాను' },
             { word: 'నుంచి', pronunciation: 'nunchi', meaning: 'from', example: 'ఇంటి నుంచి వచ్చాను' },
-            { word: 'తో', pronunciation: 'tho', meaning: 'with', example: 'నాతో రా' },
-            { word: 'లో', pronunciation: 'lo', meaning: 'in', example: 'ఇంట్లో ఉన్నాను' },
             { word: 'పైన', pronunciation: 'paina', meaning: 'on/above', example: 'టేబుల్ పైన పుస్తకం ఉంది' },
             { word: 'పక్కన', pronunciation: 'pakkana', meaning: 'beside/next to', example: 'నా పక్కన కూర్చో' },
-            
-            // Want/need expressions
             { word: 'కావాలి', pronunciation: 'kaavaali', meaning: 'want/need', example: 'నాకు నీరు కావాలి' },
             { word: 'వద్దు', pronunciation: 'vaddhu', meaning: 'don\'t want', example: 'నాకు వద్దు' },
             { word: 'అవసరం', pronunciation: 'avasaram', meaning: 'need/necessity', example: 'దీని అవసరం లేదు' },
-            { word: 'వాడుకం', pronunciation: 'vaadukam', meaning: 'use', example: 'దీని వాడుకం ఏంటి?' },
-            
-            // Size and quantity comparisons
             { word: 'ఎక్కువ', pronunciation: 'ekkuva', meaning: 'more', example: 'ఇంకా ఎక్కువ కావాలి' },
             { word: 'తక్కువ', pronunciation: 'thakkuva', meaning: 'less', example: 'కొంచెం తక్కువ ఇవ్వు' },
-            { word: 'పెద్ద', pronunciation: 'peddha', meaning: 'big', example: 'పెద్ద ఇల్లు' },
-            { word: 'చిన్న', pronunciation: 'chinna', meaning: 'small', example: 'చిన్న పిల్లవాడు' },
-            { word: 'పొడువు', pronunciation: 'poduvu', meaning: 'long', example: 'పొడవైన రోడ్డు' },
-            { word: 'పొట్టి', pronunciation: 'potti', meaning: 'short', example: 'పొట్టి కథ' },
-            
-            // Fullness and quantity
             { word: 'నిండు', pronunciation: 'nindu', meaning: 'full', example: 'గ్లాసు నిండా నీరు' },
             { word: 'వట్టి', pronunciation: 'vatti', meaning: 'empty', example: 'వట్టి గ్లాసు' },
             { word: 'సగం', pronunciation: 'sagam', meaning: 'half', example: 'సగం నీరు ఇవ్వు' },
-            { word: 'చాలా', pronunciation: 'chaala', meaning: 'very/much', example: 'చాలా బాగుంది' },
-            
-            // Time sequence
             { word: 'తరువాత', pronunciation: 'tharuvaatha', meaning: 'after', example: 'తిన్న తరువాత వెళ్తాను' },
             { word: 'ముందు', pronunciation: 'mundhu', meaning: 'before', example: 'వెళ్ళే ముందు చెప్పు' },
             { word: 'ఇప్పుడు', pronunciation: 'ippudu', meaning: 'now', example: 'ఇప్పుడు రా' }
         ];
 
         const numbersData = [
-            // Basic numbers 1-10
             { word: 'ఒకటి', pronunciation: 'okati', meaning: '1', example: 'ఒకటి పుస్తకం' },
             { word: 'రెండు', pronunciation: 'rendu', meaning: '2', example: 'రెండు కళ్ళు' },
             { word: 'మూడు', pronunciation: 'moodu', meaning: '3', example: 'మూడు రోజులు' },
@@ -534,51 +417,24 @@
             { word: 'ఎనిమిది', pronunciation: 'enimidhi', meaning: '8', example: 'ఎనిమిది గంటలు' },
             { word: 'తొమ్మిది', pronunciation: 'thommidhi', meaning: '9', example: 'తొమ్మిది నెలలు' },
             { word: 'పది', pronunciation: 'padhi', meaning: '10', example: 'పది వేళ్ళు' },
-            
-            // 11-20
             { word: 'పదకొండు', pronunciation: 'padhakondu', meaning: '11', example: 'పదకొండు మంది' },
             { word: 'పన్నెండు', pronunciation: 'pannendu', meaning: '12', example: 'పన్నెండు నెలలు' },
-            { word: 'పదమూడు', pronunciation: 'padhamoodu', meaning: '13', example: 'పదమూడు రోజులు' },
-            { word: 'పద్నాలుగు', pronunciation: 'padhnaalugu', meaning: '14', example: 'పద్నాలుగు రోజులు' },
-            { word: 'పదైదు', pronunciation: 'padhaidhu', meaning: '15', example: 'పదైదు నిమిషాలు' },
-            { word: 'పదారు', pronunciation: 'padhaaru', meaning: '16', example: 'పదారు గంటలు' },
-            { word: 'పదేడు', pronunciation: 'padhEdu', meaning: '17', example: 'పదేడు సంవత్సరాలు' },
-            { word: 'పద్దెనిమిది', pronunciation: 'paddhenimidhi', meaning: '18', example: 'పద్దెనిమిది ఏళ్ళు' },
-            { word: 'పంతొమ్మిది', pronunciation: 'panthommidhi', meaning: '19', example: 'పంతొమ్మిది మంది' },
             { word: 'ఇరవై', pronunciation: 'iravai', meaning: '20', example: 'ఇరవై రూపాయలు' },
-            
-            // Tens
             { word: 'ముప్పై', pronunciation: 'muppai', meaning: '30', example: 'ముప్పై రోజులు' },
             { word: 'నలభై', pronunciation: 'nalabai', meaning: '40', example: 'నలభై డిగ్రీలు' },
             { word: 'యాభై', pronunciation: 'yaabai', meaning: '50', example: 'యాభై రూపాయలు' },
-            { word: 'అరవై', pronunciation: 'aravai', meaning: '60', example: 'అరవై నిమిషాలు' },
-            { word: 'డెబ్బై', pronunciation: 'debbai', meaning: '70', example: 'డెబ్బై ఏళ్ళు' },
-            { word: 'ఎనభై', pronunciation: 'enabai', meaning: '80', example: 'ఎనభై కిలోలు' },
-            { word: 'తొమ్మై', pronunciation: 'thommai', meaning: '90', example: 'తొమ్మై శాతం' },
-            
-            // Hundreds and thousands
-            { word: 'వంద/నూరు', pronunciation: 'vandha/nooru', meaning: '100', example: 'వంద రూపాయలు' },
-            { word: 'నూట ఒకటి', pronunciation: 'noota okati', meaning: '101', example: 'నూట ఒకటి పేజీలు' },
-            { word: 'రెండు వందలు', pronunciation: 'rendu vandhalu', meaning: '200', example: 'రెండు వందల మంది' },
+            { word: 'వంద', pronunciation: 'vandha', meaning: '100', example: 'వంద రూపాయలు' },
             { word: 'వెయ్యి', pronunciation: 'veyyi', meaning: '1000', example: 'వెయ్యి రూపాయలు' },
-            { word: 'రెండు వేలు', pronunciation: 'rendu vElu', meaning: '2000', example: 'రెండు వేల మంది' },
-            { word: 'పది వేలు', pronunciation: 'padhi vElu', meaning: '10,000', example: 'పది వేల రూపాయలు' },
-            
-            // Lakhs and crores
-            { word: 'లక్ష/వేనూరు', pronunciation: 'laksha/vEnooru', meaning: '1,00,000 (1 lakh)', example: 'ఒక లక్ష రూపాయలు' },
-            { word: 'పది లక్షలు', pronunciation: 'padhi lakshalu', meaning: '10,00,000 (10 lakhs)', example: 'పది లక్షల జనాభా' },
-            { word: 'కోటి', pronunciation: 'koti', meaning: '1,00,00,000 (1 crore)', example: 'ఒక కోటి రూపాయలు' }
+            { word: 'లక్ష', pronunciation: 'laksha', meaning: '1,00,000', example: 'ఒక లక్ష రూపాయలు' },
+            { word: 'కోటి', pronunciation: 'koti', meaning: '1,00,00,000', example: 'ఒక కోటి రూపాయలు' }
         ];
 
         const conversationsData = [
-            // Basic introductions
             { word: 'మీ పేరు ఏమిటి?', pronunciation: 'mee paeru aemiti?', meaning: 'What is your name?', example: 'నా పేరు రాము' },
             { word: 'మీరు ఎలా ఉన్నారు?', pronunciation: 'meeru aela unnaaru?', meaning: 'How are you?', example: 'నేను బాగున్నాను' },
             { word: 'మీరు ఎక్కడ నుండి వచ్చారు?', pronunciation: 'meeru ekkada nundi vachaaru?', meaning: 'Where are you from?', example: 'నేను హైదరాబాద్ నుండి వచ్చాను' },
             { word: 'ఇది ఎంత?', pronunciation: 'idhi entha?', meaning: 'How much is this?', example: 'ఇది పది రూపాయలు' },
             { word: 'సమయం ఎంత అయింది?', pronunciation: 'samayam entha ayindhi?', meaning: 'What time is it?', example: 'ఇప్పుడు మూడు గంటలు' },
-            
-            // "I am going" patterns - వెళ్ళు (vellu) form
             { word: 'నేను వెళ్తున్నాను', pronunciation: 'nenu velthunnaanu', meaning: 'I am going', example: 'నేను ఇంటికి వెళ్తున్నాను' },
             { word: 'నేను వెళ్ళట్లేదు', pronunciation: 'nenu vellatlEdhu', meaning: 'I am not going', example: 'నేను ఈ రోజు వెళ్ళట్లేదు' },
             { word: 'నేను వెళ్ళాలి', pronunciation: 'nenu vellaali', meaning: 'I have to go', example: 'నేను ఇప్పుడే వెళ్ళాలి' },
@@ -586,29 +442,9 @@
             { word: 'నేను వెళ్ళలేదు', pronunciation: 'nenu vellalEdhu', meaning: 'I didn\'t go', example: 'నేను అక్కడ వెళ్ళలేదు' },
             { word: 'నేను వెళ్తాను', pronunciation: 'nenu velthaanu', meaning: 'I will go', example: 'నేను రేపు వెళ్తాను' },
             { word: 'నేను వెళ్ళను', pronunciation: 'nenu vellanu', meaning: 'I will not go', example: 'నేను అక్కడ వెళ్ళను' },
-            { word: 'నేను వెళ్లగలను', pronunciation: 'nenu vellagalanu', meaning: 'I can go', example: 'నేను మీతో వెళ్లగలను' },
-            { word: 'నేను వెళ్ళలేను', pronunciation: 'nenu vellalEnu', meaning: 'I can\'t go', example: 'నేను ఈ రోజు వెళ్ళలేను' },
-            
-            // "I am going" patterns - పో (po) form (alternative)
-            { word: 'నేను పోతున్నాను', pronunciation: 'nenu pOthunnaanu', meaning: 'I am going', example: 'నేను బయటకు పోతున్నాను' },
-            { word: 'నేను పోవట్లేదు', pronunciation: 'nenu pOvatlEdhu', meaning: 'I am not going', example: 'నేను ఎక్కడా పోవట్లేదు' },
-            { word: 'నేను పోవాలి', pronunciation: 'nenu pOvaali', meaning: 'I have to go', example: 'నేను ఇప్పుడే పోవాలి' },
-            { word: 'నేను పోయాను', pronunciation: 'nenu pOyaanu', meaning: 'I did go', example: 'నేను అక్కడ పోయాను' },
-            { word: 'నేను పోలేదు', pronunciation: 'nenu pOlEdhu', meaning: 'I didn\'t go', example: 'నేను నిన్న పోలేదు' },
-            { word: 'నేను పోతాను', pronunciation: 'nenu pOthaanu', meaning: 'I will go', example: 'నేను రేపు పోతాను' },
-            { word: 'నేను పోను', pronunciation: 'nenu pOnu', meaning: 'I will not go', example: 'నేను అక్కడ పోను' },
-            { word: 'నేను పోగలను', pronunciation: 'nenu pOgalanu', meaning: 'I can go', example: 'నేను మీతో పోగలను' },
-            { word: 'నేను పోలేను', pronunciation: 'nenu pOlEnu', meaning: 'I can\'t go', example: 'నేను ఈ రోజు పోలేను' },
-            
-            // "I am coming" patterns - వచ్చు (vacchu) form
             { word: 'నేను వస్తున్నాను', pronunciation: 'nenu vasthunnaanu', meaning: 'I am coming', example: 'నేను ఇప్పుడే వస్తున్నాను' },
             { word: 'నేను వచ్చాను', pronunciation: 'nenu vacchaanu', meaning: 'I did come', example: 'నేను ఇప్పుడే వచ్చాను' },
             { word: 'నేను వస్తాను', pronunciation: 'nenu vasthaanu', meaning: 'I will come', example: 'నేను రేపు వస్తాను' },
-            
-            // "I am coming" patterns - రా (raa) form (alternative)
-            { word: 'నేను రాబోతున్నాను', pronunciation: 'nenu raabOthunnaanu', meaning: 'I am coming', example: 'నేను అక్కడకు రాబోతున్నాను' },
-            { word: 'నేను రాట్లేదు', pronunciation: 'nenu raatlEdhu', meaning: 'I am not coming', example: 'నేను ఈ రోజు రాట్లేదు' },
-            { word: 'నేను రావాలి', pronunciation: 'nenu raavaali', meaning: 'I have to come', example: 'నేను అక్కడకు రావాలి' },
             { word: 'నేను రాలేదు', pronunciation: 'nenu raalEdhu', meaning: 'I didn\'t come', example: 'నేను నిన్న రాలేదు' },
             { word: 'నేను రాను', pronunciation: 'nenu raanu', meaning: 'I will not come', example: 'నేను అక్కడకు రాను' },
             { word: 'నేను రాగలను', pronunciation: 'nenu raagalanu', meaning: 'I can come', example: 'నేను మీ దగ్గరకు రాగలను' },
@@ -651,28 +487,12 @@
                 exercise: 'ఇంగ్లీష్‌లోకి అనువదించండి: నేను తెలుగు నేర్చుకుంటున్నాను'
             },
             { 
-                word: 'ఉచ్చారణ అభ్యాసం', 
-                pronunciation: 'uchchaarana abhyaasam', 
+                word: 'పలకడం అభ్యాసం', 
+                pronunciation: 'palakaDam abhyaasam', 
                 meaning: 'Pronunciation practice', 
-                example: 'సరైన ఉచ్చారణతో చెప్పండి',
+                example: 'సరైన పలకడంతో చెప్పండి',
                 type: 'pronunciation',
-                exercise: 'సరైన ఉచ్చారణతో చెప్పండి: నమస్కారం'
-            },
-            {
-                word: 'సంఖ్యలు వ్రాయండి',
-                pronunciation: 'sankhyalu vraayandhi',
-                meaning: 'Write numbers',
-                example: 'తెలుగులో సంఖ్యలు వ్రాయండి',
-                type: 'number-writing',
-                exercise: 'ఈ సంఖ్యను తెలుగులో వ్రాయండి: 25'
-            },
-            {
-                word: 'వ్యాకరణ అభ్యాసం',
-                pronunciation: 'vyaakarana abhyaasam',
-                meaning: 'Grammar practice',
-                example: 'సర్వనామాలు గుర్తించండి',
-                type: 'grammar',
-                exercise: 'ఈ వాక్యంలో సర్వనామం గుర్తించండి: నేను పుస్తకం చదువుతున్నాను'
+                exercise: 'సరైన పలకడంతో చెప్పండి: నమస్కారం'
             }
         ];
 
@@ -693,7 +513,6 @@
             }
         });
 
-        // Search input functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase().trim();
             if (query.length > 0) {
@@ -758,7 +577,6 @@
         function openSearchResult(type, category, encodedResult) {
             const result = JSON.parse(decodeURIComponent(encodedResult));
             
-            // Find the appropriate dataset and index
             let dataset, title, breadcrumb;
             
             if (type === 'letters') {
@@ -795,7 +613,6 @@
                 breadcrumb = `హోమ్ > వ్యాకరణం > ${title}`;
             }
             
-            // Find the index of the result in the dataset
             const index = dataset.findIndex(item => 
                 (item.letter && item.letter === result.letter) ||
                 (item.word && item.word === result.word)
@@ -812,7 +629,6 @@
             updateBreadcrumb(breadcrumb);
             displayCard();
             
-            // Clear search
             document.getElementById('searchInput').value = '';
             searchExpanded = false;
             const searchInput = document.getElementById('searchInput');
@@ -909,7 +725,6 @@
         
         function navigateToBreadcrumb(index) {
             if (index === 'home' || index === '0') {
-                // Go to home
                 currentView = 'topics';
                 navigationHistory = ['topics'];
                 document.getElementById('cardsView').classList.add('hidden');
@@ -917,7 +732,6 @@
                 document.getElementById('topicsList').classList.remove('hidden');
                 updateBreadcrumb('హోమ్');
             } else if (index === '1') {
-                // Go to grammar if that's the second level
                 if (breadcrumbHistory[1] === 'వ్యాకరణం') {
                     currentView = 'partsOfSpeech';
                     navigationHistory = ['topics', 'partsOfSpeech'];
@@ -1033,10 +847,8 @@
         }
 
         function goBack() {
-            // Remove current page from history
             navigationHistory.pop();
             
-            // Get previous page
             const previousPage = navigationHistory[navigationHistory.length - 1];
             
             if (previousPage === 'topics') {
@@ -1053,7 +865,6 @@
                 updateBreadcrumb('హోమ్ > వ్యాకరణం');
             }
             
-            // Hide voice status when going back
             hideVoiceStatus();
         }
 
@@ -1062,20 +873,17 @@
             const cardContent = document.getElementById('cardContent');
             
             if (card.letter) {
-                // Letter card
                 cardContent.innerHTML = `
                     <div class="text-8xl font-bold text-blue-600 mb-4">${card.letter}</div>
-                    <div class="text-2xl text-gray-700 mb-2">ఉచ్చారణ: ${card.pronunciation}</div>
+                    <div class="text-2xl text-gray-700 mb-2">పలకడం: ${card.pronunciation}</div>
                     <div class="text-lg text-gray-600">${card.meaning}</div>
                 `;
             } else if (card.type && currentCardSet === practiceData) {
-                // Practice exercise card
                 displayPracticeCard(card);
             } else {
-                // Regular word/grammar card
                 cardContent.innerHTML = `
                     <div class="text-6xl font-bold text-green-600 mb-4">${card.word}</div>
-                    <div class="text-2xl text-gray-700 mb-2">ఉచ్చారణ: ${card.pronunciation}</div>
+                    <div class="text-2xl text-gray-700 mb-2">పలకడం: ${card.pronunciation}</div>
                     <div class="text-lg text-gray-600 mb-3">అర్థం: ${card.meaning}</div>
                     <div class="text-md text-blue-600 bg-blue-50 p-3 rounded-lg">ఉదాహరణ: ${card.example}</div>
                 `;
@@ -1083,7 +891,6 @@
             
             document.getElementById('cardCounter').textContent = `${currentCardIndex + 1} / ${currentCardSet.length}`;
             
-            // Update navigation buttons
             document.getElementById('prevBtn').disabled = currentCardIndex === 0;
             document.getElementById('nextBtn').disabled = currentCardIndex === currentCardSet.length - 1;
             
@@ -1099,7 +906,6 @@
                 document.getElementById('nextBtn').classList.remove('opacity-50', 'cursor-not-allowed');
             }
             
-            // Hide voice status when changing cards
             hideVoiceStatus();
         }
         
@@ -1156,36 +962,6 @@
                     `;
                     break;
                     
-                case 'number-writing':
-                    exerciseHTML = `
-                        <div class="text-4xl font-bold text-red-600 mb-4">🔢 ${card.word}</div>
-                        <div class="text-lg text-gray-700 mb-4">${card.exercise}</div>
-                        <input 
-                            type="text" 
-                            class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg font-telugu focus:border-red-500 focus:outline-none" 
-                            placeholder="తెలుగులో వ్రాయండి..."
-                        >
-                        <button class="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
-                            సమర్పించు
-                        </button>
-                    `;
-                    break;
-                    
-                case 'grammar':
-                    exerciseHTML = `
-                        <div class="text-4xl font-bold text-green-600 mb-4">📚 ${card.word}</div>
-                        <div class="text-lg text-gray-700 mb-4">${card.exercise}</div>
-                        <input 
-                            type="text" 
-                            class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg font-telugu focus:border-green-500 focus:outline-none" 
-                            placeholder="సర్వనామం వ్రాయండి..."
-                        >
-                        <button class="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                            సమర్పించు
-                        </button>
-                    `;
-                    break;
-                    
                 default:
                     exerciseHTML = `
                         <div class="text-4xl font-bold text-indigo-600 mb-4">🎯 ${card.word}</div>
@@ -1198,13 +974,11 @@
         }
         
         function selectOption(button, selected, correct) {
-            // Remove previous selections
             document.querySelectorAll('.option-btn').forEach(btn => {
                 btn.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'border-green-500', 'border-red-500');
                 btn.classList.add('border-gray-300');
             });
             
-            // Show result
             if (selected === correct) {
                 button.classList.remove('border-gray-300');
                 button.classList.add('bg-green-500', 'text-white', 'border-green-500');
@@ -1214,7 +988,6 @@
                 button.classList.add('bg-red-500', 'text-white', 'border-red-500');
                 showVoiceStatus('తప్పు. మళ్ళీ ప్రయత్నించండి.', 'wrong');
                 
-                // Show correct answer after 2 seconds
                 setTimeout(() => {
                     document.querySelectorAll('.option-btn').forEach(btn => {
                         if (btn.textContent.trim() === correct) {
@@ -1272,17 +1045,13 @@
             const card = currentCardSet[currentCardIndex];
             const text = card.letter || card.word;
             
-            // Show immediate feedback
             showVoiceStatus(`"${text}" ధ్వని ప్లే అవుతోంది...`, 'waiting');
             
-            // Try to use Web Speech API for text-to-speech
             if ('speechSynthesis' in window) {
-                // Stop any ongoing speech
                 speechSynthesis.cancel();
                 
                 const utterance = new SpeechSynthesisUtterance(text);
                 
-                // Try different language settings for better Telugu support
                 const voices = speechSynthesis.getVoices();
                 const teluguVoice = voices.find(voice => 
                     voice.lang.includes('te') || 
@@ -1314,7 +1083,6 @@
                     setTimeout(() => hideVoiceStatus(), 3000);
                 };
                 
-                // Ensure voices are loaded
                 if (voices.length === 0) {
                     speechSynthesis.addEventListener('voiceschanged', () => {
                         speechSynthesis.speak(utterance);
@@ -1324,7 +1092,6 @@
                 }
                 
             } else {
-                // Fallback for browsers without speech synthesis
                 showVoiceStatus(`"${text}" ధ్వని ప్లే అవుతోంది... (సిమ్యులేషన్)`, 'waiting');
                 setTimeout(() => {
                     showVoiceStatus(`"${text}" ధ్వని పూర్తయింది! ✅`, 'correct');
@@ -1337,13 +1104,11 @@
             const card = currentCardSet[currentCardIndex];
             const expectedText = card.letter || card.word;
             
-            // Check for speech recognition support
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                // Fallback for browsers without speech recognition
                 showVoiceStatus(`వాయిస్ టెస్ట్ ప్రారంభమైంది... "${expectedText}" అని చెప్పండి!`, 'waiting');
                 
                 setTimeout(() => {
-                    showVoiceStatus('అద్భుతం! మీ ఉచ్చారణ సరైనది! 🎉', 'correct');
+                    showVoiceStatus('అద్భుతం! మీ పలకడం సరైనది! 🎉', 'correct');
                     setTimeout(() => hideVoiceStatus(), 3000);
                 }, 3000);
                 return;
@@ -1352,12 +1117,10 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
             
-            // Configure recognition
             recognition.continuous = false;
             recognition.interimResults = false;
             recognition.maxAlternatives = 3;
             
-            // Try multiple language settings for better recognition
             const languages = ['te-IN', 'hi-IN', 'en-IN'];
             let currentLangIndex = 0;
             
@@ -1376,7 +1139,6 @@
                     let bestMatch = '';
                     let highestConfidence = 0;
                     
-                    // Check all alternatives
                     for (let i = 0; i < event.results[0].length; i++) {
                         const result = event.results[0][i];
                         if (result.confidence > highestConfidence) {
@@ -1387,20 +1149,18 @@
                     
                     console.log('Best match:', bestMatch, 'Confidence:', highestConfidence);
                     
-                    // More flexible matching
                     const spokenText = bestMatch.toLowerCase();
                     const expected = expectedText.toLowerCase();
                     
                     const isCorrect = spokenText.includes(expected) || 
                                     expected.includes(spokenText) ||
                                     spokenText === expected ||
-                                    // Check for phonetic similarity
                                     Math.abs(spokenText.length - expected.length) <= 2;
                     
                     if (isCorrect || highestConfidence > 0.7) {
-                        showVoiceStatus(`అద్భుతం! మీ ఉచ్చారణ సరైనది! 🎉\nమీరు చెప్పింది: "${bestMatch}"`, 'correct');
+                        showVoiceStatus(`అద్భుతం! మీ పలకడం సరైనది! 🎉\nమీరు చెప్పింది: "${bestMatch}"`, 'correct');
                     } else {
-                        showVoiceStatus(`మళ్ళీ ప్రయత్నించండి. మీరు చెప్పింది: "${bestMatch}"\nఆశించినది: "${expectedText}"`, 'wrong');
+                        showVoiceStatus(`మళ్ళీ చెప్పండి. తప్పు పలికారు.\nమీరు చెప్పింది: "${bestMatch}"\nసరైనది: "${expectedText}"`, 'wrong');
                     }
                     
                     setTimeout(() => hideVoiceStatus(), 5000);
@@ -1416,7 +1176,6 @@
                     } else if (event.error === 'not-allowed') {
                         showVoiceStatus('మైక్రోఫోన్ అనుమతి లేదు. బ్రౌజర్ సెట్టింగ్స్ చెక్ చేయండి.', 'wrong');
                     } else {
-                        // Try next language if available
                         currentLangIndex++;
                         if (currentLangIndex < languages.length) {
                             setTimeout(() => startRecognition(), 1000);
@@ -1440,7 +1199,6 @@
                     setTimeout(() => hideVoiceStatus(), 3000);
                 }
                 
-                // Auto-stop after 8 seconds
                 setTimeout(() => {
                     try {
                         recognition.stop();
@@ -1466,5 +1224,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97efc0a1018b7fdf',t:'MTc1Nzg1MTUyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97efd043e612848f',t:'MTc1Nzg1MjE2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
