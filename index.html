@@ -12,10 +12,13 @@
       --accent: #ffb300;
       --background: #f5f7fa;
       --surface: #fff;
-      --card-radius: 15px;
-      --shadow: 0 2px 10px rgba(40,40,40,0.10);
-      --text-main: #262626;
-      --text-light: #555;
+      --card-radius: 18px;
+      --shadow: 0 2px 12px rgba(40,40,40,0.13);
+      --text-main: #222;
+      --text-light: #717171;
+      --section-gap: 20px;
+      --header-height: 88px;
+      --table-border: #e2e8f0;
     }
     * { box-sizing: border-box; }
     body {
@@ -23,33 +26,36 @@
       background: var(--background);
       margin: 0;
       padding: 0;
+      color: var(--text-main);
     }
     header {
       width: 100%;
-      background: var(--primary);
+      background: linear-gradient(90deg, #1976d2 80%, #144b8b 100%);
       color: #fff;
-      padding: 20px 0 14px 0;
-      box-shadow: 0 2px 8px rgba(30,30,60,0.09);
-      border-bottom-left-radius: 35px;
-      border-bottom-right-radius: 35px;
+      padding: 24px 0 18px 0;
+      box-shadow: 0 2px 10px rgba(30,30,60,0.11);
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-height: var(--header-height);
     }
     header .material-icons {
-      font-size: 2.4em;
-      margin-right: 12px;
+      font-size: 2.7em;
+      margin-right: 18px;
       opacity: 0.85;
     }
     header h1 {
-      font-size: 2.1em;
+      font-size: 2.4em;
       font-weight: 700;
       margin: 0;
-      text-shadow: 0 2px 8px #144b8b44;
-      letter-spacing: 1px;
+      text-shadow: 0 2px 10px #144b8b44;
+      letter-spacing: 1.5px;
+      line-height: 1.1;
     }
     .container {
-      max-width: 700px;
+      max-width: 850px;
       margin: 0 auto;
       padding: 0 2vw;
     }
@@ -57,89 +63,117 @@
       background: var(--surface);
       box-shadow: var(--shadow);
       border-radius: var(--card-radius);
-      margin: -30px auto 28px auto;
-      padding: 18px 22px;
+      margin: -35px auto var(--section-gap) auto;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      position: relative;
+      z-index: 3;
     }
     .search-card input[type="text"] {
       flex: 1;
-      padding: 12px 15px;
-      font-size: 1.09em;
-      border: none;
-      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 1.1em;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
       background: #f2f3f4;
+      outline: none;
+      transition: border 0.18s;
+    }
+    .search-card input[type="text"]:focus {
+      border: 1.5px solid var(--primary);
+      background: #eaf3ff;
     }
     .search-card button {
       background: var(--primary);
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 12px 18px;
-      font-size: 1.1em;
+      border-radius: 10px;
+      padding: 14px 22px;
+      font-size: 1.14em;
       font-weight: 500;
       cursor: pointer;
-      box-shadow: 0 2px 6px #1976d220;
-      transition: background 0.2s;
+      box-shadow: 0 2px 7px #1976d220;
+      transition: background 0.23s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .search-card button:hover { background: #125cab; }
-
+    .search-hint {
+      font-size: 0.98em;
+      color: #888;
+      margin-top: 4px;
+    }
     .accordion {
-      margin: 18px 0;
+      margin: var(--section-gap) 0;
     }
     .accordion-section {
       background: var(--surface);
       box-shadow: var(--shadow);
       border-radius: var(--card-radius);
-      margin: 10px 0;
+      margin: 16px 0;
       overflow: hidden;
       transition: box-shadow 0.2s;
+      border: 1px solid var(--table-border);
     }
     .accordion-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 16px 22px;
+      gap: 12px;
+      padding: 18px 28px;
       cursor: pointer;
-      font-size: 1.15em;
-      font-weight: 500;
+      font-size: 1.19em;
+      font-weight: 600;
       color: var(--primary);
-      background: #eef1f5;
-      border-bottom: 1px solid #e9ebf0;
+      background: #eef1f7;
+      border-bottom: 1px solid #e2e8f0;
       transition: background 0.2s;
+      user-select: none;
     }
     .accordion-header .material-icons { color: var(--accent); }
     .accordion-header.active { background: #dbeafc; }
     .accordion-content {
-      padding: 18px 22px;
+      padding: 0 0 22px 0;
       display: none;
       animation: fade-in 0.5s;
     }
     .accordion-content.active {
       display: block;
     }
-    .vocab-list { list-style: none; padding: 0; margin: 0; }
-    .vocab-list li {
-      margin: 14px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #e9ebf0;
-      padding-bottom: 5px;
-      gap: 10px;
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
     }
-    .word-item {
-      font-size: 1.15em;
+    .vocab-table th, .vocab-table td {
+      padding: 11px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--table-border);
+    }
+    .vocab-table th {
+      background: #f6f7fa;
       font-weight: 500;
-      color: var(--text-main);
-      min-width: 70px;
+      color: #1976d2;
+      font-size: 1.07em;
+      letter-spacing: 0.5px;
     }
-    .info, .eng {
+    .vocab-table td.word-col {
+      font-size: 1.17em;
+      font-weight: 600;
+      color: var(--text-main);
+      min-width: 80px;
+    }
+    .vocab-table td.eng-col {
       font-size: 1em;
       color: var(--text-light);
+      font-style: italic;
     }
-    .eng { font-style: italic; margin-left: 7px; }
+    .vocab-table td.info-col {
+      color: var(--text-light);
+      font-size: 1em;
+    }
     .sound-btn {
       background: var(--accent);
       color: #fff;
@@ -157,11 +191,17 @@
     }
     .sound-btn:hover { background: #ff8800; }
     @keyframes fade-in { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
-    @media (max-width: 600px) {
+    /* Responsive */
+    @media (max-width: 700px) {
       .container { padding: 0 1vw; }
-      header h1 { font-size: 1.23em; }
-      .accordion-content { padding: 9px 5px; }
-      .search-card { padding: 8px 5px; }
+      header h1 { font-size: 1.3em; }
+      .accordion-header, .vocab-table th, .vocab-table td { padding: 10px 6px; }
+      .search-card { padding: 12px 5px; }
+    }
+    @media (max-width: 500px) {
+      header .material-icons { font-size: 1.5em; }
+      header h1 { font-size: 1.05em; }
+      .search-card button, .search-card input[type="text"] { font-size: 0.95em; }
     }
   </style>
 </head>
@@ -176,6 +216,7 @@
       <input type="text" id="searchInput" placeholder="వర్డ్/ఇంగ్లీష్/వివరణ కోసం వెతకండి...">
       <button onclick="searchWord()"><span class="material-icons" style="vertical-align:middle;">search</span> వెతుకు</button>
     </div>
+    <div class="search-hint">ఉదాహరణ: "go", "నువ్వు", "stand", "inside", "ఎక్కడ?"</div>
     <!-- Search Result -->
     <div class="accordion-section" id="searchSection" style="display:none;">
       <div class="accordion-header active">
@@ -191,17 +232,24 @@
           <span class="material-icons">person</span> Personal Pronouns
         </div>
         <div class="accordion-content">
-          <ul class="vocab-list">
-            <li><span class="word-item">నేను</span><span class="info">I</span><span class="eng">nēnu</span><button class="sound-btn" onclick="playSound('నేను')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">మేము</span><span class="info">We (exclusive)</span><span class="eng">mēmu</span><button class="sound-btn" onclick="playSound('మేము')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">మనము</span><span class="info">We (inclusive)</span><span class="eng">manamu</span><button class="sound-btn" onclick="playSound('మనము')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">నువ్వు</span><span class="info">You (informal)</span><span class="eng">nuvvu</span><button class="sound-btn" onclick="playSound('నువ్వు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">మీరు</span><span class="info">You (formal/plural)</span><span class="eng">meeru</span><button class="sound-btn" onclick="playSound('మీరు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">అతను</span><span class="info">He</span><span class="eng">atanu</span><button class="sound-btn" onclick="playSound('అతను')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఆమె</span><span class="info">She</span><span class="eng">āme</span><button class="sound-btn" onclick="playSound('ఆమె')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">అవి</span><span class="info">They (non-human)</span><span class="eng">avi</span><button class="sound-btn" onclick="playSound('అవి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">వారు</span><span class="info">They (human)</span><span class="eng">vāru</span><button class="sound-btn" onclick="playSound('వారు')"><span class="material-icons">volume_up</span></button></li>
-          </ul>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">నేను</td><td class="info-col">I</td><td class="eng-col">nēnu</td><td><button class="sound-btn" onclick="playSound('నేను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మేము</td><td class="info-col">We (exclusive)</td><td class="eng-col">mēmu</td><td><button class="sound-btn" onclick="playSound('మేము')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మనము</td><td class="info-col">We (inclusive)</td><td class="eng-col">manamu</td><td><button class="sound-btn" onclick="playSound('మనము')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">నువ్వు</td><td class="info-col">You (informal)</td><td class="eng-col">nuvvu</td><td><button class="sound-btn" onclick="playSound('నువ్వు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మీరు</td><td class="info-col">You (formal/plural)</td><td class="eng-col">meeru</td><td><button class="sound-btn" onclick="playSound('మీరు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">అతను</td><td class="info-col">He</td><td class="eng-col">atanu</td><td><button class="sound-btn" onclick="playSound('అతను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఆమె</td><td class="info-col">She</td><td class="eng-col">āme</td><td><button class="sound-btn" onclick="playSound('ఆమె')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">వారు</td><td class="info-col">They (human)</td><td class="eng-col">vāru</td><td><button class="sound-btn" onclick="playSound('వారు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">అవి</td><td class="info-col">They (non-human)</td><td class="eng-col">avi</td><td><button class="sound-btn" onclick="playSound('అవి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">తాను</td><td class="info-col">Oneself (Reflexive)</td><td class="eng-col">tānu</td><td><button class="sound-btn" onclick="playSound('తాను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మీది</td><td class="info-col">Yours</td><td class="eng-col">mīdi</td><td><button class="sound-btn" onclick="playSound('మీది')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- Demonstratives -->
@@ -210,16 +258,23 @@
           <span class="material-icons">visibility</span> Demonstratives
         </div>
         <div class="accordion-content">
-          <ul class="vocab-list">
-            <li><span class="word-item">ఇది</span><span class="info">This</span><span class="eng">idi</span><button class="sound-btn" onclick="playSound('ఇది')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఇవి</span><span class="info">These</span><span class="eng">ivi</span><button class="sound-btn" onclick="playSound('ఇవి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">అది</span><span class="info">That</span><span class="eng">adi</span><button class="sound-btn" onclick="playSound('అది')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">అవి</span><span class="info">Those</span><span class="eng">avi</span><button class="sound-btn" onclick="playSound('అవి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">వీడు</span><span class="info">This (he)</span><span class="eng">veedu</span><button class="sound-btn" onclick="playSound('వీడు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఆమె</span><span class="info">That (she)</span><span class="eng">āme</span><button class="sound-btn" onclick="playSound('ఆమె')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఇక్కడ</span><span class="info">Here</span><span class="eng">ikkada</span><button class="sound-btn" onclick="playSound('ఇక్కడ')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">అక్కడ</span><span class="info">There</span><span class="eng">akkada</span><button class="sound-btn" onclick="playSound('అక్కడ')"><span class="material-icons">volume_up</span></button></li>
-          </ul>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">ఇది</td><td class="info-col">This</td><td class="eng-col">idi</td><td><button class="sound-btn" onclick="playSound('ఇది')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఇవి</td><td class="info-col">These</td><td class="eng-col">ivi</td><td><button class="sound-btn" onclick="playSound('ఇవి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">అది</td><td class="info-col">That</td><td class="eng-col">adi</td><td><button class="sound-btn" onclick="playSound('అది')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">అవి</td><td class="info-col">Those</td><td class="eng-col">avi</td><td><button class="sound-btn" onclick="playSound('అవి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">వీడు</td><td class="info-col">This (he)</td><td class="eng-col">veedu</td><td><button class="sound-btn" onclick="playSound('వీడు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఆమె</td><td class="info-col">That (she)</td><td class="eng-col">āme</td><td><button class="sound-btn" onclick="playSound('ఆమె')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఇక్కడ</td><td class="info-col">Here</td><td class="eng-col">ikkada</td><td><button class="sound-btn" onclick="playSound('ఇక్కడ')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">అక్కడ</td><td class="info-col">There</td><td class="eng-col">akkada</td><td><button class="sound-btn" onclick="playSound('అక్కడ')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎక్కడైనా</td><td class="info-col">Anywhere</td><td class="eng-col">ekkadaina</td><td><button class="sound-btn" onclick="playSound('ఎక్కడైనా')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ప్రతి</td><td class="info-col">Every</td><td class="eng-col">prati</td><td><button class="sound-btn" onclick="playSound('ప్రతి')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- Interrogatives -->
@@ -228,16 +283,23 @@
           <span class="material-icons">help</span> Interrogatives
         </div>
         <div class="accordion-content">
-          <ul class="vocab-list">
-            <li><span class="word-item">ఎవరూ?</span><span class="info">Who?</span><span class="eng">evaru?</span><button class="sound-btn" onclick="playSound('ఎవరూ?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఏది?</span><span class="info">Which?</span><span class="eng">ēdi?</span><button class="sound-btn" onclick="playSound('ఏది?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఏం?</span><span class="info">What?</span><span class="eng">ēm?</span><button class="sound-btn" onclick="playSound('ఏం?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఎక్కడ?</span><span class="info">Where?</span><span class="eng">ekkada?</span><button class="sound-btn" onclick="playSound('ఎక్కడ?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఎప్పుడు?</span><span class="info">When?</span><span class="eng">eppudu?</span><button class="sound-btn" onclick="playSound('ఎప్పుడు?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఎలా?</span><span class="info">How?</span><span class="eng">elā?</span><button class="sound-btn" onclick="playSound('ఎలా?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఎందుకు?</span><span class="info">Why?</span><span class="eng">enduku?</span><button class="sound-btn" onclick="playSound('ఎందుకు?')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఎన్ని?</span><span class="info">How many?</span><span class="eng">enni?</span><button class="sound-btn" onclick="playSound('ఎన్ని?')"><span class="material-icons">volume_up</span></button></li>
-          </ul>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">ఎవరూ?</td><td class="info-col">Who?</td><td class="eng-col">evaru?</td><td><button class="sound-btn" onclick="playSound('ఎవరూ?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఏది?</td><td class="info-col">Which?</td><td class="eng-col">ēdi?</td><td><button class="sound-btn" onclick="playSound('ఏది?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఏం?</td><td class="info-col">What?</td><td class="eng-col">ēm?</td><td><button class="sound-btn" onclick="playSound('ఏం?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎక్కడ?</td><td class="info-col">Where?</td><td class="eng-col">ekkada?</td><td><button class="sound-btn" onclick="playSound('ఎక్కడ?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎప్పుడు?</td><td class="info-col">When?</td><td class="eng-col">eppudu?</td><td><button class="sound-btn" onclick="playSound('ఎప్పుడు?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎలా?</td><td class="info-col">How?</td><td class="eng-col">elā?</td><td><button class="sound-btn" onclick="playSound('ఎలా?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎందుకు?</td><td class="info-col">Why?</td><td class="eng-col">enduku?</td><td><button class="sound-btn" onclick="playSound('ఎందుకు?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎన్ని?</td><td class="info-col">How many?</td><td class="eng-col">enni?</td><td><button class="sound-btn" onclick="playSound('ఎన్ని?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎలా ఉంది?</td><td class="info-col">How is it?</td><td class="eng-col">elā undi?</td><td><button class="sound-btn" onclick="playSound('ఎలా ఉంది?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎవరికి?</td><td class="info-col">To whom?</td><td class="eng-col">evariki?</td><td><button class="sound-btn" onclick="playSound('ఎవరికి?')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- Common Verbs -->
@@ -246,21 +308,29 @@
           <span class="material-icons">bolt</span> Common Verbs
         </div>
         <div class="accordion-content">
-          <ul class="vocab-list">
-            <li><span class="word-item">చేయు</span><span class="info">do/make</span><span class="eng">cheyyu</span><button class="sound-btn" onclick="playSound('చేయు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">వెళ్ళు</span><span class="info">go</span><span class="eng">veḷḷu</span><button class="sound-btn" onclick="playSound('వెళ్ళు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">రా</span><span class="info">come</span><span class="eng">rā</span><button class="sound-btn" onclick="playSound('రా')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">తిను</span><span class="info">eat</span><span class="eng">tinu</span><button class="sound-btn" onclick="playSound('తిను')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">చూడు</span><span class="info">see/look</span><span class="eng">chūḍu</span><button class="sound-btn" onclick="playSound('చూడు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">పలుకు</span><span class="info">speak</span><span class="eng">paluku</span><button class="sound-btn" onclick="playSound('పలుకు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">విను</span><span class="info">hear/listen</span><span class="eng">vinu</span><button class="sound-btn" onclick="playSound('విను')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">కూర్చో</span><span class="info">sit</span><span class="eng">koorcho</span><button class="sound-btn" onclick="playSound('కూర్చో')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">నిలువు</span><span class="info">stand</span><span class="eng">niluvu</span><button class="sound-btn" onclick="playSound('నిలువు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">తాగు</span><span class="info">drink</span><span class="eng">tāgu</span><button class="sound-btn" onclick="playSound('తాగు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">వెయ్యి</span><span class="info">put/place</span><span class="eng">veyyi</span><button class="sound-btn" onclick="playSound('వెయ్యి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">తీసుకో</span><span class="info">take</span><span class="eng">teesuko</span><button class="sound-btn" onclick="playSound('తీసుకో')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">పని చేయు</span><span class="info">work</span><span class="eng">pani cheyyu</span><button class="sound-btn" onclick="playSound('పని చేయు')"><span class="material-icons">volume_up</span></button></li>
-          </ul>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">చేయు</td><td class="info-col">do/make</td><td class="eng-col">cheyyu</td><td><button class="sound-btn" onclick="playSound('చేయు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">వెళ్ళు</td><td class="info-col">go</td><td class="eng-col">veḷḷu</td><td><button class="sound-btn" onclick="playSound('వెళ్ళు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">రా</td><td class="info-col">come</td><td class="eng-col">rā</td><td><button class="sound-btn" onclick="playSound('రా')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">తిను</td><td class="info-col">eat</td><td class="eng-col">tinu</td><td><button class="sound-btn" onclick="playSound('తిను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">చూడు</td><td class="info-col">see/look</td><td class="eng-col">chūḍu</td><td><button class="sound-btn" onclick="playSound('చూడు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">పలుకు</td><td class="info-col">speak</td><td class="eng-col">paluku</td><td><button class="sound-btn" onclick="playSound('పలుకు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">విను</td><td class="info-col">hear/listen</td><td class="eng-col">vinu</td><td><button class="sound-btn" onclick="playSound('విను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">కూర్చో</td><td class="info-col">sit</td><td class="eng-col">koorcho</td><td><button class="sound-btn" onclick="playSound('కూర్చో')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">నిలువు</td><td class="info-col">stand</td><td class="eng-col">niluvu</td><td><button class="sound-btn" onclick="playSound('నిలువు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">తాగు</td><td class="info-col">drink</td><td class="eng-col">tāgu</td><td><button class="sound-btn" onclick="playSound('తాగు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">వెయ్యి</td><td class="info-col">put/place</td><td class="eng-col">veyyi</td><td><button class="sound-btn" onclick="playSound('వెయ్యి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">తీసుకో</td><td class="info-col">take</td><td class="eng-col">teesuko</td><td><button class="sound-btn" onclick="playSound('తీసుకో')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">పని చేయు</td><td class="info-col">work</td><td class="eng-col">pani cheyyu</td><td><button class="sound-btn" onclick="playSound('పని చేయు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఆడించు</td><td class="info-col">play (make play)</td><td class="eng-col">ādinchu</td><td><button class="sound-btn" onclick="playSound('ఆడించు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">పోను</td><td class="info-col">lose</td><td class="eng-col">ponu</td><td><button class="sound-btn" onclick="playSound('పోను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">గెలుచు</td><td class="info-col">win</td><td class="eng-col">geluchu</td><td><button class="sound-btn" onclick="playSound('గెలుచు')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- Postpositions -->
@@ -269,16 +339,23 @@
           <span class="material-icons">link</span> Postpositions
         </div>
         <div class="accordion-content">
-          <ul class="vocab-list">
-            <li><span class="word-item">తొ</span><span class="info">with</span><span class="eng">tho</span><button class="sound-btn" onclick="playSound('తొ')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">లో</span><span class="info">in</span><span class="eng">lō</span><button class="sound-btn" onclick="playSound('లో')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">కి</span><span class="info">to/for</span><span class="eng">ki</span><button class="sound-btn" onclick="playSound('కి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">నుండి</span><span class="info">from</span><span class="eng">nundi</span><button class="sound-btn" onclick="playSound('నుండి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">పై</span><span class="info">on/above</span><span class="eng">pai</span><button class="sound-btn" onclick="playSound('పై')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">కింద</span><span class="info">below/under</span><span class="eng">kinda</span><button class="sound-btn" onclick="playSound('కింద')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">లొపల</span><span class="info">inside</span><span class="eng">lopala</span><button class="sound-btn" onclick="playSound('లొపల')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">బయట</span><span class="info">outside</span><span class="eng">bayata</span><button class="sound-btn" onclick="playSound('బయట')"><span class="material-icons">volume_up</span></button></li>
-          </ul>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">తొ</td><td class="info-col">with</td><td class="eng-col">tho</td><td><button class="sound-btn" onclick="playSound('తొ')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">లో</td><td class="info-col">in</td><td class="eng-col">lō</td><td><button class="sound-btn" onclick="playSound('లో')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">కి</td><td class="info-col">to/for</td><td class="eng-col">ki</td><td><button class="sound-btn" onclick="playSound('కి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">నుండి</td><td class="info-col">from</td><td class="eng-col">nundi</td><td><button class="sound-btn" onclick="playSound('నుండి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">పై</td><td class="info-col">on/above</td><td class="eng-col">pai</td><td><button class="sound-btn" onclick="playSound('పై')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">కింద</td><td class="info-col">below/under</td><td class="eng-col">kinda</td><td><button class="sound-btn" onclick="playSound('కింద')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">లొపల</td><td class="info-col">inside</td><td class="eng-col">lopala</td><td><button class="sound-btn" onclick="playSound('లొపల')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">బయట</td><td class="info-col">outside</td><td class="eng-col">bayata</td><td><button class="sound-btn" onclick="playSound('బయట')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">దగ్గర</td><td class="info-col">near</td><td class="eng-col">daggara</td><td><button class="sound-btn" onclick="playSound('దగ్గర')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ముందు</td><td class="info-col">before/front</td><td class="eng-col">mundu</td><td><button class="sound-btn" onclick="playSound('ముందు')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- Numbers -->
@@ -287,18 +364,47 @@
           <span class="material-icons">looks_one</span> Numbers
         </div>
         <div class="accordion-content">
-          <ul class="vocab-list">
-            <li><span class="word-item">ఒకటి</span><span class="info">one</span><span class="eng">okati</span><button class="sound-btn" onclick="playSound('ఒకటి')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">రెండు</span><span class="info">two</span><span class="eng">rendu</span><button class="sound-btn" onclick="playSound('రెండు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">మూడు</span><span class="info">three</span><span class="eng">mūḍu</span><button class="sound-btn" onclick="playSound('మూడు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">నాలుగు</span><span class="info">four</span><span class="eng">nālugu</span><button class="sound-btn" onclick="playSound('నాలుగు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఐదు</span><span class="info">five</span><span class="eng">aidu</span><button class="sound-btn" onclick="playSound('ఐదు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఆరు</span><span class="info">six</span><span class="eng">āru</span><button class="sound-btn" onclick="playSound('ఆరు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఏడు</span><span class="info">seven</span><span class="eng">ēḍu</span><button class="sound-btn" onclick="playSound('ఏడు')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">ఎనిమిది</span><span class="info">eight</span><span class="eng">enimidi</span><button class="sound-btn" onclick="playSound('ఎనిమిది')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">తొమ్మిది</span><span class="info">nine</span><span class="eng">tommidi</span><button class="sound-btn" onclick="playSound('తొమ్మిది')"><span class="material-icons">volume_up</span></button></li>
-            <li><span class="word-item">పది</span><span class="info">ten</span><span class="eng">padi</span><button class="sound-btn" onclick="playSound('పది')"><span class="material-icons">volume_up</span></button></li>
-          </ul>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">ఒకటి</td><td class="info-col">one</td><td class="eng-col">okati</td><td><button class="sound-btn" onclick="playSound('ఒకటి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">రెండు</td><td class="info-col">two</td><td class="eng-col">rendu</td><td><button class="sound-btn" onclick="playSound('రెండు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మూడు</td><td class="info-col">three</td><td class="eng-col">mūḍu</td><td><button class="sound-btn" onclick="playSound('మూడు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">నాలుగు</td><td class="info-col">four</td><td class="eng-col">nālugu</td><td><button class="sound-btn" onclick="playSound('నాలుగు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఐదు</td><td class="info-col">five</td><td class="eng-col">aidu</td><td><button class="sound-btn" onclick="playSound('ఐదు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఆరు</td><td class="info-col">six</td><td class="eng-col">āru</td><td><button class="sound-btn" onclick="playSound('ఆరు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఏడు</td><td class="info-col">seven</td><td class="eng-col">ēḍu</td><td><button class="sound-btn" onclick="playSound('ఏడు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఎనిమిది</td><td class="info-col">eight</td><td class="eng-col">enimidi</td><td><button class="sound-btn" onclick="playSound('ఎనిమిది')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">తొమ్మిది</td><td class="info-col">nine</td><td class="eng-col">tommidi</td><td><button class="sound-btn" onclick="playSound('తొమ్మిది')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">పది</td><td class="info-col">ten</td><td class="eng-col">padi</td><td><button class="sound-btn" onclick="playSound('పది')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">పదకొండు</td><td class="info-col">eleven</td><td class="eng-col">padakondu</td><td><button class="sound-btn" onclick="playSound('పదకొండు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ఇరవై</td><td class="info-col">twenty</td><td class="eng-col">iravai</td><td><button class="sound-btn" onclick="playSound('ఇరవై')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Useful Phrases -->
+      <div class="accordion-section">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="material-icons">chat</span> Useful Phrases
+        </div>
+        <div class="accordion-content">
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word-col">హలో</td><td class="info-col">Hello</td><td class="eng-col">halō</td><td><button class="sound-btn" onclick="playSound('హలో')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">ధన్యవాదాలు</td><td class="info-col">Thank you</td><td class="eng-col">dhanyavādālu</td><td><button class="sound-btn" onclick="playSound('ధన్యవాదాలు')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">దయచేసి</td><td class="info-col">Please</td><td class="eng-col">dayachēsi</td><td><button class="sound-btn" onclick="playSound('దయచేసి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">క్షమించండి</td><td class="info-col">Excuse me / Sorry</td><td class="eng-col">kṣamin̄caṇḍi</td><td><button class="sound-btn" onclick="playSound('క్షమించండి')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మీ పేరు ఏమిటి?</td><td class="info-col">What is your name?</td><td class="eng-col">mī pēru ēmiṭi?</td><td><button class="sound-btn" onclick="playSound('మీ పేరు ఏమిటి?')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">నేను బాగున్నాను</td><td class="info-col">I am fine</td><td class="eng-col">nēnu bāgunnānu</td><td><button class="sound-btn" onclick="playSound('నేను బాగున్నాను')"><span class="material-icons">volume_up</span></button></td></tr>
+              <tr><td class="word-col">మీరు ఎలా ఉన్నారు?</td><td class="info-col">How are you?</td><td class="eng-col">meeru elā unnāru?</td><td><button class="sound-btn" onclick="playSound('మీరు ఎలా ఉన్నారు?')"><span class="material-icons">volume_up</span></button></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -334,6 +440,92 @@
       }
     }
 
+    // Expanded vocab data for search
+    const vocabData = [
+      // Pronouns
+      {word:"నేను", equivalent:"I", meaning:"nēnu"},
+      {word:"మేము", equivalent:"We (exclusive)", meaning:"mēmu"},
+      {word:"మనము", equivalent:"We (inclusive)", meaning:"manamu"},
+      {word:"నువ్వు", equivalent:"You (informal)", meaning:"nuvvu"},
+      {word:"మీరు", equivalent:"You (formal/plural)", meaning:"meeru"},
+      {word:"అతను", equivalent:"He", meaning:"atanu"},
+      {word:"ఆమె", equivalent:"She", meaning:"āme"},
+      {word:"వారు", equivalent:"They (human)", meaning:"vāru"},
+      {word:"అవి", equivalent:"They (non-human)", meaning:"avi"},
+      {word:"తాను", equivalent:"Oneself (Reflexive)", meaning:"tānu"},
+      {word:"మీది", equivalent:"Yours", meaning:"mīdi"},
+      // Demonstratives
+      {word:"ఇది", equivalent:"This", meaning:"idi"},
+      {word:"ఇవి", equivalent:"These", meaning:"ivi"},
+      {word:"అది", equivalent:"That", meaning:"adi"},
+      {word:"అవి", equivalent:"Those", meaning:"avi"},
+      {word:"వీడు", equivalent:"This (he)", meaning:"veedu"},
+      {word:"ఇక్కడ", equivalent:"Here", meaning:"ikkada"},
+      {word:"అక్కడ", equivalent:"There", meaning:"akkada"},
+      {word:"ఎక్కడైనా", equivalent:"Anywhere", meaning:"ekkadaina"},
+      {word:"ప్రతి", equivalent:"Every", meaning:"prati"},
+      // Interrogatives
+      {word:"ఎవరూ?", equivalent:"Who?", meaning:"evaru?"},
+      {word:"ఏది?", equivalent:"Which?", meaning:"ēdi?"},
+      {word:"ఏం?", equivalent:"What?", meaning:"ēm?"},
+      {word:"ఎక్కడ?", equivalent:"Where?", meaning:"ekkada?"},
+      {word:"ఎప్పుడు?", equivalent:"When?", meaning:"eppudu?"},
+      {word:"ఎలా?", equivalent:"How?", meaning:"elā?"},
+      {word:"ఎందుకు?", equivalent:"Why?", meaning:"enduku?"},
+      {word:"ఎన్ని?", equivalent:"How many?", meaning:"enni?"},
+      {word:"ఎలా ఉంది?", equivalent:"How is it?", meaning:"elā undi?"},
+      {word:"ఎవరికి?", equivalent:"To whom?", meaning:"evariki?"},
+      // Verbs
+      {word:"చేయు", equivalent:"do/make", meaning:"cheyyu"},
+      {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu"},
+      {word:"రా", equivalent:"come", meaning:"rā"},
+      {word:"తిను", equivalent:"eat", meaning:"tinu"},
+      {word:"చూడు", equivalent:"see/look", meaning:"chūḍu"},
+      {word:"పలుకు", equivalent:"speak", meaning:"paluku"},
+      {word:"విను", equivalent:"hear/listen", meaning:"vinu"},
+      {word:"కూర్చో", equivalent:"sit", meaning:"koorcho"},
+      {word:"నిలువు", equivalent:"stand", meaning:"niluvu"},
+      {word:"తాగు", equivalent:"drink", meaning:"tāgu"},
+      {word:"వెయ్యి", equivalent:"put/place", meaning:"veyyi"},
+      {word:"తీసుకో", equivalent:"take", meaning:"teesuko"},
+      {word:"పని చేయు", equivalent:"work", meaning:"pani cheyyu"},
+      {word:"ఆడించు", equivalent:"play (make play)", meaning:"ādinchu"},
+      {word:"పోను", equivalent:"lose", meaning:"ponu"},
+      {word:"గెలుచు", equivalent:"win", meaning:"geluchu"},
+      // Postpositions
+      {word:"తొ", equivalent:"with", meaning:"tho"},
+      {word:"లో", equivalent:"in", meaning:"lō"},
+      {word:"కి", equivalent:"to/for", meaning:"ki"},
+      {word:"నుండి", equivalent:"from", meaning:"nundi"},
+      {word:"పై", equivalent:"on/above", meaning:"pai"},
+      {word:"కింద", equivalent:"below/under", meaning:"kinda"},
+      {word:"లొపల", equivalent:"inside", meaning:"lopala"},
+      {word:"బయట", equivalent:"outside", meaning:"bayata"},
+      {word:"దగ్గర", equivalent:"near", meaning:"daggara"},
+      {word:"ముందు", equivalent:"before/front", meaning:"mundu"},
+      // Numbers
+      {word:"ఒకటి", equivalent:"one", meaning:"okati"},
+      {word:"రెండు", equivalent:"two", meaning:"rendu"},
+      {word:"మూడు", equivalent:"three", meaning:"mūḍu"},
+      {word:"నాలుగు", equivalent:"four", meaning:"nālugu"},
+      {word:"ఐదు", equivalent:"five", meaning:"aidu"},
+      {word:"ఆరు", equivalent:"six", meaning:"āru"},
+      {word:"ఏడు", equivalent:"seven", meaning:"ēḍu"},
+      {word:"ఎనిమిది", equivalent:"eight", meaning:"enimidi"},
+      {word:"తొమ్మిది", equivalent:"nine", meaning:"tommidi"},
+      {word:"పది", equivalent:"ten", meaning:"padi"},
+      {word:"పదకొండు", equivalent:"eleven", meaning:"padakondu"},
+      {word:"ఇరవై", equivalent:"twenty", meaning:"iravai"},
+      // Phrases
+      {word:"హలో", equivalent:"Hello", meaning:"halō"},
+      {word:"ధన్యవాదాలు", equivalent:"Thank you", meaning:"dhanyavādālu"},
+      {word:"దయచేసి", equivalent:"Please", meaning:"dayachēsi"},
+      {word:"క్షమించండి", equivalent:"Excuse me / Sorry", meaning:"kṣamin̄caṇḍi"},
+      {word:"మీ పేరు ఏమిటి?", equivalent:"What is your name?", meaning:"mī pēru ēmiṭi?"},
+      {word:"నేను బాగున్నాను", equivalent:"I am fine", meaning:"nēnu bāgunnānu"},
+      {word:"మీరు ఎలా ఉన్నారు?", equivalent:"How are you?", meaning:"meeru elā unnāru?"},
+    ];
+
     // Search Functionality
     function searchWord() {
       let query = document.getElementById("searchInput").value.trim().toLowerCase();
@@ -344,85 +536,27 @@
         resultBox.innerHTML = "<span style='color:#b00;'>ఏదైనా వ్రాయండి...</span>";
         return;
       }
-      // Expanded data set
-      let data = [
-        // Personal Pronouns
-        {word:"నేను", equivalent:"I", meaning:"nēnu"},
-        {word:"మేము", equivalent:"We (exclusive)", meaning:"mēmu"},
-        {word:"మనము", equivalent:"We (inclusive)", meaning:"manamu"},
-        {word:"నువ్వు", equivalent:"You (informal)", meaning:"nuvvu"},
-        {word:"మీరు", equivalent:"You (formal/plural)", meaning:"meeru"},
-        {word:"అతను", equivalent:"He", meaning:"atanu"},
-        {word:"ఆమె", equivalent:"She", meaning:"āme"},
-        {word:"అవి", equivalent:"They (non-human)", meaning:"avi"},
-        {word:"వారు", equivalent:"They (human)", meaning:"vāru"},
-        // Demonstratives
-        {word:"ఇది", equivalent:"This", meaning:"idi"},
-        {word:"ఇవి", equivalent:"These", meaning:"ivi"},
-        {word:"అది", equivalent:"That", meaning:"adi"},
-        {word:"అవి", equivalent:"Those", meaning:"avi"},
-        {word:"వీడు", equivalent:"This (he)", meaning:"veedu"},
-        {word:"ఆమె", equivalent:"That (she)", meaning:"āme"},
-        {word:"ఇక్కడ", equivalent:"Here", meaning:"ikkada"},
-        {word:"అక్కడ", equivalent:"There", meaning:"akkada"},
-        // Interrogatives
-        {word:"ఎవరూ?", equivalent:"Who?", meaning:"evaru?"},
-        {word:"ఏది?", equivalent:"Which?", meaning:"ēdi?"},
-        {word:"ఏం?", equivalent:"What?", meaning:"ēm?"},
-        {word:"ఎక్కడ?", equivalent:"Where?", meaning:"ekkada?"},
-        {word:"ఎప్పుడు?", equivalent:"When?", meaning:"eppudu?"},
-        {word:"ఎలా?", equivalent:"How?", meaning:"elā?"},
-        {word:"ఎందుకు?", equivalent:"Why?", meaning:"enduku?"},
-        {word:"ఎన్ని?", equivalent:"How many?", meaning:"enni?"},
-        // Verbs
-        {word:"చేయు", equivalent:"do/make", meaning:"cheyyu"},
-        {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu"},
-        {word:"రా", equivalent:"come", meaning:"rā"},
-        {word:"తిను", equivalent:"eat", meaning:"tinu"},
-        {word:"చూడు", equivalent:"see/look", meaning:"chūḍu"},
-        {word:"పలుకు", equivalent:"speak", meaning:"paluku"},
-        {word:"విను", equivalent:"hear/listen", meaning:"vinu"},
-        {word:"కూర్చో", equivalent:"sit", meaning:"koorcho"},
-        {word:"నిలువు", equivalent:"stand", meaning:"niluvu"},
-        {word:"తాగు", equivalent:"drink", meaning:"tāgu"},
-        {word:"వెయ్యి", equivalent:"put/place", meaning:"veyyi"},
-        {word:"తీసుకో", equivalent:"take", meaning:"teesuko"},
-        {word:"పని చేయు", equivalent:"work", meaning:"pani cheyyu"},
-        // Postpositions
-        {word:"తొ", equivalent:"with", meaning:"tho"},
-        {word:"లో", equivalent:"in", meaning:"lō"},
-        {word:"కి", equivalent:"to/for", meaning:"ki"},
-        {word:"నుండి", equivalent:"from", meaning:"nundi"},
-        {word:"పై", equivalent:"on/above", meaning:"pai"},
-        {word:"కింద", equivalent:"below/under", meaning:"kinda"},
-        {word:"లొపల", equivalent:"inside", meaning:"lopala"},
-        {word:"బయట", equivalent:"outside", meaning:"bayata"},
-        // Numbers
-        {word:"ఒకటి", equivalent:"one", meaning:"okati"},
-        {word:"రెండు", equivalent:"two", meaning:"rendu"},
-        {word:"మూడు", equivalent:"three", meaning:"mūḍu"},
-        {word:"నాలుగు", equivalent:"four", meaning:"nālugu"},
-        {word:"ఐదు", equivalent:"five", meaning:"aidu"},
-        {word:"ఆరు", equivalent:"six", meaning:"āru"},
-        {word:"ఏడు", equivalent:"seven", meaning:"ēḍu"},
-        {word:"ఎనిమిది", equivalent:"eight", meaning:"enimidi"},
-        {word:"తొమ్మిది", equivalent:"nine", meaning:"tommidi"},
-        {word:"పది", equivalent:"ten", meaning:"padi"}
-      ];
-      let results = data.filter(
+      let results = vocabData.filter(
         e => e.word.toLowerCase().includes(query) ||
              e.equivalent.toLowerCase().includes(query) ||
              e.meaning.toLowerCase().includes(query)
       );
       if (results.length > 0) {
-        resultBox.innerHTML = results.map(e =>
-          `<div style="margin-bottom:12px;padding:5px 0;">
-            <span class="word-item" style="margin-right:10px;">${e.word}</span>
-            <span class="info">${e.equivalent}</span>
-            <span class="eng">${e.meaning}</span>
-            <button class="sound-btn" style="margin-left:17px;" onclick="playSound('${e.word}')"><span class="material-icons">volume_up</span></button>
-          </div>`
-        ).join("");
+        resultBox.innerHTML = `<table class="vocab-table">
+          <thead>
+            <tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr>
+          </thead>
+          <tbody>
+            ${results.map(e =>
+              `<tr>
+                <td class="word-col">${e.word}</td>
+                <td class="info-col">${e.equivalent}</td>
+                <td class="eng-col">${e.meaning}</td>
+                <td><button class="sound-btn" onclick="playSound('${e.word}')"><span class="material-icons">volume_up</span></button></td>
+              </tr>`
+            ).join("")}
+          </tbody>
+        </table>`;
       } else {
         resultBox.innerHTML = "<span style='color:#b00;'>❌ ఈ పదం దొరకలేదు.</span>";
       }
