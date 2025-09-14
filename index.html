@@ -83,7 +83,7 @@ header h1{font-size:2.4em;font-weight:700;margin:0;text-shadow:0 2px 10px #144b8
   </div>
 
   <div class="accordion">
-    <!-- Cards will be rendered here dynamically -->
+    <!-- Accordion sections -->
     <div class="accordion-section">
       <div class="accordion-header" onclick="toggleAccordion(this)">
         <span class="material-icons">person</span> Personal Pronouns
@@ -144,7 +144,7 @@ function toggleAccordion(header) {
   content.classList.toggle('active');
 }
 
-// Sound function
+// Speech functions
 function playSound(text, lang='te-IN', rate=0.93){if('speechSynthesis'in window){var msg=new SpeechSynthesisUtterance();msg.text=text;msg.lang=lang;msg.rate=rate;window.speechSynthesis.speak(msg);}else{alert("Speech not supported.");}}
 function playTransliterationSound(text, langHint='en-US', rate=0.97){if('speechSynthesis'in window){var msg=new SpeechSynthesisUtterance();msg.text=text;msg.lang=langHint;msg.rate=rate;window.speechSynthesis.speak(msg);}else{alert("Speech not supported.");}}
 
@@ -166,7 +166,80 @@ function startVoiceTest(){
   recognition.onerror=function(e){document.getElementById('voiceResult').innerText='Error: '+e.error;}
 }
 
-// Example content data
-const personalPronouns=[{word:"నేను",equivalent:"I",meaning:"nēnu",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"neːnu"},{word:"మేము",equivalent:"We",meaning:"mēmu",example:"మేము బయటికి వెళ్ళాము.",pronunciation:"meːmu"}];
-const verbs=[{word:"చేయు",equivalent:"do",meaning:"cheyyu",example:"నువ్వు పని చేయు.",pronunciation:"tʃeɪyu"},{word:"వెళ్ళు",equivalent:"go",meaning:"veḷḷu",example:"వెళ్ళు ఇంటికి.",pronunciation:"veɭɭu"}];
-const nouns=[{word:"పుస్తకం",equivalent:"Book",meaning:"pustakam",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"pustakam"},{word:"పెద్దవాడు",equivalent:"Elder",meaning:"pedda vaadu",example:"
+// Vocabulary content
+const personalPronouns=[{word:"నేను",equivalent:"I",meaning:"nēnu",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"neːnu"},{word:"మేము",equivalent:"We",meaning:"mēmu",example:"మేము బయటికి వెళ్ళాము.",pronunciation:"meːmu"},{word:"నువ్వు",equivalent:"You (singular)",meaning:"nuvvu",example:"నువ్వు బాగా చదువుతున్నావు.",pronunciation:"nuvvu"},{word:"మీరూ",equivalent:"You (plural)",meaning:"meeru",example:"మీరూ మంచి పని చేస్తున్నారు.",pronunciation:"miːru"}];
+const verbs=[{word:"చేయు",equivalent:"do",meaning:"cheyyu",example:"నువ్వు పని చేయు.",pronunciation:"tʃeɪyu"},{word:"వెళ్ళు",equivalent:"go",meaning:"veḷḷu",example:"వెళ్ళు ఇంటికి.",pronunciation:"veɭɭu"},{word:"కలుపు",equivalent:"mix",meaning:"kalupu",example:"పలుకులను కలుపు.",pronunciation:"kəlupu"},{word:"చదువు",equivalent:"read",meaning:"chaduvu",example:"పుస్తకం చదువు.",pronunciation:"tʃaduvu"}];
+const nouns=[{word:"పుస్తకం",equivalent:"Book",meaning:"pustakam",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"pustakam"},{word:"పెద్దవాడు",equivalent:"Elder",meaning:"pedda vaadu",example:"పెద్దవాడు మాకు సాయం చేశాడు.",pronunciation:"pedda vaːdu"},{word:"పిల్ల",equivalent:"Child",meaning:"pilla",example:"పిల్ల గడప దగ్గర ఆడుతున్నారు.",pronunciation:"pilla"},{word:"గాడిద",equivalent:"Donkey",meaning:"gaadida",example:"గాడిద పొలంలో ఉంది.",pronunciation:"gaːdida"}];
+const adjectives=[{word:"పెద్ద",equivalent:"Big",meaning:"pedda",example:"పెద్ద ఇంటి దగ్గర ఉంది.",pronunciation:"pedda"},{word:"చిన్న",equivalent:"Small",meaning:"chinna",example:"చిన్న పిల్లలు ఆడుతున్నారు.",pronunciation:"tʃinna"},{word:"సుందర",equivalent:"Beautiful",meaning:"sundara",example:"ఆ పూలు చాలా సుందరంగా ఉన్నాయి.",pronunciation:"sundara"},{word:"వెడల్పు",equivalent:"Wide",meaning:"vedalpu",example:"వీధి వెడల్పుగా ఉంది.",pronunciation:"veɖalpu"}];
+const numbers=[{word:"ఒకటి",equivalent:"one",meaning:"okati",example:"ఒకటి పుస్తకం ఉంది.",pronunciation:"okaṭi"},{word:"రెండు",equivalent:"two",meaning:"rendu",example:"రెండు పెన్నులు.",pronunciation:"reṇḍu"},{word:"మూడు",equivalent:"three",meaning:"moodu",example:"మూడు సీరియల్స్.",pronunciation:"muːɖu"},{word:"నాలుగు",equivalent:"four",meaning:"naalugu",example:"నాలుగు పిల్లలు ఆడుతున్నారు.",pronunciation:"naːlugu"}];
+const phrases=[{word:"హలో",equivalent:"Hello",meaning:"halō",example:"హలో! మీరు ఎలా ఉన్నారు?",pronunciation:"haloː"},{word:"ధన్యవాదాలు",equivalent:"Thank you",meaning:"dhanyavādālu",example:"మీ సహాయానికి ధన్యవాదాలు.",pronunciation:"d̪ʰaɲɲavad̪aːlu"},{word:"క్షమించండి",equivalent:"Sorry",meaning:"kṣamin̄caṇḍi",example:"క్షమించండి, నేను ఆలస్యంగా వచ్చాను.",pronunciation:"kʂamin̄cɑɳɖi"},{word:"సరే",equivalent:"Okay",meaning:"sare",example:"సరే, నేను అప్పుడు వస్తాను.",pronunciation:"sare"}];
+
+const allVocabData=[...personalPronouns,...verbs,...nouns,...adjectives,...numbers,...phrases];
+
+// Render tables
+function renderVocabTable(targetId,data){
+  let rows=data.map((e,idx)=>`<tr>
+    <td class="word-col">${e.word}</td>
+    <td class="info-col">${e.equivalent}</td>
+    <td class="eng-col">${e.meaning}</td>
+    <td>
+      <button class="sound-btn" onclick="playSound('${e.word}')"><span class="material-icons">volume_up</span></button>
+      <button class="transliteration-btn" onclick="playTransliterationSound('${e.meaning}')">🔊</button>
+      <button class="transliteration-btn" onclick="openVoicePopup('${e.word}')">🎤 Voice</button>
+      <button class="dropdown-toggle" onclick="toggleDropdown(${idx}, '${targetId}')">▼</button>
+    </td>
+  </tr>
+  <tr class="dropdown-content" id="${targetId}-dropdown-${idx}">
+    <td colspan="4">
+      <span class="pronunciation"><b>Pronunciation:</b> ${e.pronunciation}</span><br>
+      <span class="example"><b>Example:</b> ${e.example}</span><br>
+      <span class="pronunciation"><b>Transliteration:</b> ${e.meaning}</span>
+    </td>
+  </tr>`).join('');
+  document.getElementById(targetId).innerHTML=`<table class="vocab-table">
+    <thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊 / ▼</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+// Initial render
+renderVocabTable("pronounsTable", personalPronouns);
+renderVocabTable("verbsTable", verbs);
+renderVocabTable("nounsTable", nouns);
+renderVocabTable("adjectivesTable", adjectives);
+renderVocabTable("numbersTable", numbers);
+renderVocabTable("phrasesTable", phrases);
+
+// Search function
+function searchWord(){
+  let query=document.getElementById("searchInput").value.trim().toLowerCase();
+  let resultBox=document.getElementById("searchResult");
+  let section=document.getElementById("searchSection");
+  section.style.display="block";
+  if(!query){
+    resultBox.innerHTML="<span style='color:#b00;'>ఏదైనా వ్రాయండి...</span>";
+    return;
+  }
+  let results=allVocabData.filter(e=>
+    e.word.toLowerCase().includes(query) ||
+    e.equivalent.toLowerCase().includes(query) ||
+    e.meaning.toLowerCase().includes(query)
+  );
+  if(results.length===0){
+    resultBox.innerHTML="<span style='color:#b00;'>ఫలితాలు లేవు!</span>";
+    return;
+  }
+  let rows=results.map((e,idx)=>`<tr>
+    <td class="word-col">${e.word}</td>
+    <td class="info-col">${e.equivalent}</td>
+    <td class="eng-col">${e.meaning}</td>
+    <td>
+      <button class="sound-btn" onclick="playSound('${e.word}')"><span class="material-icons">volume_up</span></button>
+      <button class="transliteration-btn" onclick="playTransliterationSound('${e.meaning}')">🔊</button>
+      <button class="transliteration-btn" onclick="openVoicePopup('${e.word}')">🎤 Voice</button>
+    </td>
+  </tr>`).join('');
+  resultBox.innerHTML=`<table class="vocab-table">
+    <thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+</script>
+</body>
+</html>
