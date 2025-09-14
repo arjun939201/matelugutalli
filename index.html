@@ -2,199 +2,274 @@
 <html lang="te">
 <head>
 <meta charset="UTF-8">
-<title>తెలుగు నేర్చుకో - Professional</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>తెలుగు మాటోలి - Vocabulary Master</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
 :root {
-  --primary:#1976d2; --accent:#ffb300; --background:#f5f7fa; --surface:#fff;
-  --card-radius:18px; --shadow:0 2px 12px rgba(0,0,0,0.13); --text-main:#222;
-  --text-light:#717171; --section-gap:20px;
+  --primary: #1976d2;
+  --accent: #ffb300;
+  --background: #f5f7fa;
+  --surface: #fff;
+  --card-radius: 18px;
+  --shadow: 0 2px 12px rgba(40,40,40,0.13);
+  --text-main: #222;
+  --text-light: #717171;
+  --section-gap: 20px;
+  --header-height: 88px;
+  --table-border: #e2e8f0;
 }
-body {margin:0; font-family:'Roboto',Arial,sans-serif; background:var(--background); color:var(--text-main);}
-header {background:var(--primary); color:#fff; padding:20px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.1);}
-header h1 {margin:0; font-size:2em;}
-.container {max-width:900px; margin:20px auto; padding:0 20px;}
-.menu {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-bottom:30px;}
-.menu button {background:var(--primary); color:#fff; border:none; padding:12px 22px; border-radius:10px; cursor:pointer; font-size:1em; transition:0.2s;}
-.menu button:hover {background:#125cab;}
-.card {background:var(--surface); border-radius:var(--card-radius); box-shadow:var(--shadow); margin:20px auto; padding:25px; max-width:500px; transition:0.3s;}
-.card h2 {font-size:1.8em; margin:15px 0;}
-.card p {font-size:1em; color:var(--text-light); margin:6px 0;}
-.card button {margin:4px 3px; padding:8px 14px; border-radius:8px; font-size:0.95em;}
-.nav-buttons {margin-top:15px;}
-.nav-buttons button {background:var(--accent); color:#fff;}
-.nav-buttons button:hover {background:#ff8800;}
-.search-card {background:var(--surface); box-shadow:var(--shadow); border-radius:var(--card-radius); padding:15px 20px; display:flex; gap:10px; margin-bottom:20px;}
-.search-card input {flex:1; padding:10px 14px; font-size:1em; border:1px solid #e2e8f0; border-radius:10px; outline:none;}
-.search-card input:focus {border:1.5px solid var(--primary); background:#eaf3ff;}
-.search-card button {background:var(--primary); color:#fff; border:none; padding:10px 16px; border-radius:10px; cursor:pointer; display:flex; align-items:center; gap:5px;}
-.search-card button:hover{background:#125cab;}
-.vocab-table {width:100%; border-collapse:collapse; margin-top:10px;}
-.vocab-table th, .vocab-table td {padding:10px 12px; text-align:left; border-bottom:1px solid #e2e8f0;}
-.vocab-table th {background:#f6f7fa; color:var(--primary);}
-.word-col {font-weight:600; font-size:1.1em;}
-.info-col {color:var(--text-light); font-style:italic;}
-.eng-col {color:var(--text-light);}
-.sound-btn {background:var(--accent); color:#fff; border:none; border-radius:50%; width:34px; height:34px; font-size:1em; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;}
-.sound-btn:hover {background:#ff8800;}
-.dropdown-content {background:#f6f7fa; padding:10px 15px; font-size:0.95em; color:#333; border-bottom:1px solid #e2e8f0; display:none;}
-.dropdown-content.active{display:table-row;}
-.dropdown-toggle {background:#eee; border:none; cursor:pointer; font-size:0.95em; color:var(--primary); border-radius:5px; padding:4px 7px;}
-.transliteration-btn {background:var(--accent); color:#fff; border:none; border-radius:8px; padding:4px 10px; font-size:0.9em; cursor:pointer; margin-left:6px;}
-.transliteration-btn:hover {background:#ff8800;}
-@media(max-width:600px){.card{padding:15px;} .menu button{padding:8px 14px; font-size:0.9em;}}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: var(--background);
+  margin: 0;
+  padding: 0;
+  color: var(--text-main);
+}
+header {
+  width: 100%;
+  background: linear-gradient(90deg, #1976d2 80%, #144b8b 100%);
+  color: #fff;
+  padding: 24px 0 18px 0;
+  box-shadow: 0 2px 10px rgba(30,30,60,0.11);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  padding: 0 2vw;
+}
+header h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 0;
+}
+header .material-icons { font-size: 2.5em; vertical-align: middle; margin-right: 12px; }
+#modeToggle {
+  cursor: pointer;
+  font-size: 1.8em;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2vw;
+}
+.search-card {
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-radius: var(--card-radius);
+  margin: -25px auto var(--section-gap) auto;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 3;
+}
+.search-card input[type="text"] {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 1.1em;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f2f3f4;
+  outline: none;
+  transition: border 0.18s;
+}
+.search-card input[type="text"]:focus {
+  border: 1.5px solid var(--primary);
+  background: #eaf3ff;
+}
+.search-card button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 22px;
+  font-size: 1.14em;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 7px #1976d220;
+  transition: background 0.23s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.search-card button:hover { background: #125cab; }
+.search-hint { font-size: 0.95em; color: #888; margin-top: 4px; }
+
+.accordion { margin: var(--section-gap) 0; }
+.accordion-section { margin: 16px 0; border-radius: var(--card-radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--table-border); background: var(--surface);}
+.accordion-header { padding: 18px 28px; cursor: pointer; font-size: 1.15em; font-weight: 600; display: flex; align-items: center; justify-content: space-between; background:#eef1f7; transition: background 0.2s; user-select: none;}
+.accordion-header.active { background: #dbeafc; }
+.accordion-content { padding: 0 0 22px 0; display: none; animation: fade-in 0.5s; }
+.accordion-content.active { display: block; }
+
+.vocab-card { background: #fff; padding: 16px; margin:12px 0; border-radius: 14px; box-shadow: var(--shadow); position: relative; transition: transform 0.18s; }
+.vocab-card:hover { transform: translateY(-2px); }
+.vocab-word { font-size: 1.25em; font-weight: 700; color: var(--primary);}
+.vocab-meaning { font-size: 1em; color: var(--text-light); margin-top: 4px;}
+.vocab-translit { font-style: italic; font-size:0.95em; color:#555; margin-top:2px;}
+.card-buttons { margin-top: 6px; display: flex; gap: 6px;}
+.sound-btn { background: var(--accent); color: #fff; border:none; border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 8px #ffb30033; transition:0.18s;}
+.sound-btn:hover { background:#ff8800; }
+.transliteration-btn { background: var(--primary); color:#fff; border:none; border-radius:8px; padding:4px 8px; font-size:0.9em; cursor:pointer; transition:0.18s;}
+.transliteration-btn:hover{background:#125cab;}
+.quiz-btn { background: var(--accent); color:#fff; border:none; border-radius:12px; padding:6px 12px; font-weight:600; cursor:pointer; transition:0.18s;}
+.quiz-btn:hover{background:#ff8800;}
+@keyframes fade-in { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+
+.popup { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.55); display:none; align-items:center; justify-content:center; z-index:9999;}
+.popup.active{display:flex;}
+.popup-content { background:#fff; padding:24px; border-radius:18px; max-width:400px; width:90%; text-align:center; box-shadow: var(--shadow);}
+.popup-content h2{margin-top:0;}
+.popup-content button{margin-top:14px;padding:8px 16px; border:none;border-radius:8px;background:var(--primary);color:#fff;font-weight:600; cursor:pointer;}
+.popup-content button:hover{background:#125cab;}
+
+.dark { background:#1e1e1e; color:#eee;}
+.dark .surface { background:#2b2b2b;}
+.dark .vocab-card { background:#2b2b2b; box-shadow: 0 2px 10px #00000055;}
+.dark .search-card { background:#2b2b2b; border:1px solid #444; }
+.dark .accordion-section { background:#2b2b2b; border:1px solid #444; }
+.dark .accordion-header { background:#3a3a3a; color:#fff; }
+.dark .accordion-header.active { background:#505050; }
+.dark .dropdown-content { background:#3a3a3a; color:#fff; }
+
+@media(max-width:700px){.container{padding:0 1vw;} header h1{font-size:1.4em;}}
+@media(max-width:500px){header h1{font-size:1.1em;} header .material-icons,#modeToggle{font-size:1.5em;} }
 </style>
 </head>
 <body>
-<header><h1>తెలుగు నేర్చుకో 🌸</h1></header>
+<header>
+  <div style="display:flex; align-items:center;"><span class="material-icons">auto_stories</span><h1>తెలుగు మాటోలి</h1></div>
+  <span class="material-icons" id="modeToggle" title="Toggle Dark/Light Mode">light_mode</span>
+</header>
 <div class="container">
-  <!-- Search -->
   <div class="search-card">
-    <input type="text" id="searchInput" placeholder="వర్డ్/ఇంగ్లీష్/వివరణ వెతకండి...">
-    <button onclick="searchWord()">🔍 వెతుకు</button>
+    <input type="text" id="searchInput" placeholder="వర్డ్/ఇంగ్లీష్/వివరణ కోసం వెతకండి...">
+    <button onclick="searchWord()"><span class="material-icons">search</span> వెతుకు</button>
   </div>
+  <div class="search-hint">ఉదాహరణ: "go", "నువ్వు", "stand", "inside", "ఎక్కడ?"</div>
 
-  <!-- Menu Topics -->
-  <div class="menu">
-    <button onclick="showTopic('pronouns')">Personal Pronouns</button>
-    <button onclick="showTopic('demonstratives')">Demonstratives</button>
-    <button onclick="showTopic('interrogatives')">Interrogatives</button>
-    <button onclick="showTopic('verbs')">Common Verbs</button>
-    <button onclick="showTopic('postpositions')">Postpositions</button>
-    <button onclick="showTopic('numbers')">Numbers</button>
-    <button onclick="showTopic('phrases')">Useful Phrases</button>
+  <div class="accordion" id="vocabAccordion"></div>
+</div>
+
+<div class="popup" id="voiceTestPopup">
+  <div class="popup-content">
+    <h2>Voice Test</h2>
+    <p id="voiceWordDisplay" style="font-weight:700;font-size:1.3em;"></p>
+    <p>Click microphone and say the word.</p>
+    <button onclick="startVoiceTest()">🎤 Start</button>
+    <p id="voiceTestResult"></p>
+    <button onclick="closeVoicePopup()">Close</button>
   </div>
-
-  <!-- Dynamic Cards -->
-  <div id="cardsContainer"></div>
 </div>
 
 <script>
-// Sample data
-const data = {
-  pronouns:[
+// DATA
+const vocabData = {
+  "Personal Pronouns":[
     {word:"నేను", equivalent:"I", meaning:"nēnu", example:"నేను పుస్తకం చదువుతున్నాను.", pronunciation:"neːnu"},
-    {word:"మేము", equivalent:"We (exclusive)", meaning:"mēmu", example:"మేము బయటకి వెళ్ళాము.", pronunciation:"meːmu"}
+    {word:"మేము", equivalent:"We (exclusive)", meaning:"mēmu", example:"మేము బయటికి వెళ్ళాము.", pronunciation:"meːmu"},
+    {word:"మనము", equivalent:"We (inclusive)", meaning:"manamu", example:"మనము కలిసి పని చేద్దాం.", pronunciation:"manamu"},
+    {word:"నువ్వు", equivalent:"You (informal)", meaning:"nuvvu", example:"నువ్వు బాగా ఆడావు.", pronunciation:"nuvvu"},
+    {word:"మీరు", equivalent:"You (formal/plural)", meaning:"meeru", example:"మీరు ఎలా ఉన్నారు?", pronunciation:"miːru"}
   ],
-  demonstratives:[
-    {word:"ఇది", equivalent:"This", meaning:"idi", example:"ఇది నా పుస్తకం.", pronunciation:"idi"},
-    {word:"అది", equivalent:"That", meaning:"adi", example:"అది పెద్ద భవనం.", pronunciation:"adi"}
-  ],
-  interrogatives:[
-    {word:"ఎవరూ?", equivalent:"Who?", meaning:"evaru?", example:"ఎవరూ వచ్చారు?", pronunciation:"evaru"},
-    {word:"ఎక్కడ?", equivalent:"Where?", meaning:"ekkada?", example:"ఎక్కడ ఉన్నారు?", pronunciation:"ekkada"}
-  ],
-  verbs:[
+  "Common Verbs":[
     {word:"చేయు", equivalent:"do/make", meaning:"cheyyu", example:"నువ్వు పని చేయు.", pronunciation:"tʃeɪyu"},
-    {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu", example:"వెళ్ళు ఇంటికి.", pronunciation:"veɭɭu"}
-  ],
-  postpositions:[
-    {word:"లో", equivalent:"in", meaning:"lō", example:"పుస్తకం బ్యాగులో ఉంది.", pronunciation:"loː"},
-    {word:"కి", equivalent:"to/for", meaning:"ki", example:"ఇది అతనికి.", pronunciation:"ki"}
-  ],
-  numbers:[
-    {word:"ఒకటి", equivalent:"one", meaning:"okati", example:"ఒకటి పుస్తకం ఉంది.", pronunciation:"okaṭi"},
-    {word:"రెండు", equivalent:"two", meaning:"rendu", example:"రెండు పెన్నులు.", pronunciation:"reṇḍu"}
-  ],
-  phrases:[
-    {word:"హలో", equivalent:"Hello", meaning:"halō", example:"హలో! మీరు ఎలా ఉన్నారు?", pronunciation:"haloː"},
-    {word:"ధన్యవాదాలు", equivalent:"Thank you", meaning:"dhanyavādālu", example:"మీ సహాయానికి ధన్యవాదాలు.", pronunciation:"d̪ʰaɲɲavad̪aːlu"}
+    {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu", example:"వెళ్ళు ఇంటికి.", pronunciation:"veɭɭu"},
+    {word:"రా", equivalent:"come", meaning:"rā", example:"ఇక్కడ రా.", pronunciation:"raː"},
+    {word:"తిను", equivalent:"eat", meaning:"tinu", example:"పండ్లు తిను.", pronunciation:"tinu"},
+    {word:"చూడు", equivalent:"see/look", meaning:"chūḍu", example:"చిత్రాన్ని చూడు.", pronunciation:"tʃuːɖu"}
   ]
-};
-
-let currentTopic=null;
-
-// Show topic table as cards
-function showTopic(topic){
-  currentTopic=topic;
-  const container=document.getElementById('cardsContainer');
-  let html='<table class="vocab-table"><thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊/▼</th></tr></thead><tbody>';
-  data[topic].forEach((e,idx)=>{
-    html+=`<tr>
-      <td class="word-col">${e.word}</td>
-      <td class="info-col">${e.equivalent}</td>
-      <td class="eng-col">${e.meaning}</td>
-      <td>
-        <button class="sound-btn" onclick="playSound('${e.word}')">🔊</button>
-        <button class="dropdown-toggle" onclick="toggleDropdown(${idx})">▼</button>
-      </td>
-    </tr>
-    <tr class="dropdown-content" id="dropdown-${idx}">
-      <td colspan="4">
-        <b>Pronunciation:</b> ${e.pronunciation}
-        <button class="transliteration-btn" onclick="playTransliteration('${e.meaning}')">🔊</button>
-        <br>
-        <b>Example:</b> ${e.example}
-        <button class="transliteration-btn" onclick="playSound('${e.example}')">🔊</button>
-        <br>
-        <b>Transliteration:</b> ${e.meaning}
-      </td>
-    </tr>`;
-  });
-  html+='</tbody></table>';
-  container.innerHTML=html;
 }
 
-// Dropdown toggle
-function toggleDropdown(idx){
-  document.querySelectorAll('.dropdown-content').forEach(d=>d.classList.remove('active'));
-  document.getElementById('dropdown-'+idx).classList.toggle('active');
-}
-
-// Play Telugu
-function playSound(text){
+// UTILITIES
+function playSound(text, lang='te-IN', rate=0.93){
   if('speechSynthesis' in window){
-    const msg=new SpeechSynthesisUtterance(text);
-    msg.lang='te-IN'; msg.rate=0.9; window.speechSynthesis.speak(msg);
-  }
+    var msg=new SpeechSynthesisUtterance(text);
+    msg.lang=lang; msg.rate=rate; window.speechSynthesis.speak(msg);
+  }else alert("Speech not supported in this browser.");
 }
+function playTransliterationSound(text){ playSound(text,'en-US',0.95); }
 
-// Play transliteration (English)
-function playTransliteration(text){
-  if('speechSynthesis' in window){
-    const msg=new SpeechSynthesisUtterance(text);
-    msg.lang='en-US'; msg.rate=0.95; window.speechSynthesis.speak(msg);
-  }
-}
-
-// Search function
-function searchWord(){
-  const query=document.getElementById('searchInput').value.trim().toLowerCase();
-  if(!query) return alert('ఏదైనా వ్రాయండి...');
-  let results=[];
-  for(const topic in data){
-    results.push(...data[topic].filter(e=>e.word.toLowerCase().includes(query) || e.equivalent.toLowerCase().includes(query) || e.meaning.toLowerCase().includes(query)));
-  }
-  if(results.length>0){
-    const container=document.getElementById('cardsContainer');
-    let html='<table class="vocab-table"><thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊/▼</th></tr></thead><tbody>';
-    results.forEach((e,idx)=>{
-      html+=`<tr>
-      <td class="word-col">${e.word}</td>
-      <td class="info-col">${e.equivalent}</td>
-      <td class="eng-col">${e.meaning}</td>
-      <td>
-        <button class="sound-btn" onclick="playSound('${e.word}')">🔊</button>
-        <button class="dropdown-toggle" onclick="toggleDropdown('s${idx}')">▼</button>
-      </td>
-      </tr>
-      <tr class="dropdown-content" id="dropdown-s${idx}">
-        <td colspan="4">
-          <b>Pronunciation:</b> ${e.pronunciation} <button class="transliteration-btn" onclick="playTransliteration('${e.meaning}')">🔊</button>
-          <br>
-          <b>Example:</b> ${e.example} <button class="transliteration-btn" onclick="playSound('${e.example}')">🔊</button>
-          <br>
-          <b>Transliteration:</b> ${e.meaning}
-        </td>
-      </tr>`;
+// ACCORDION & CARDS
+function renderAccordion(){
+  const container=document.getElementById('vocabAccordion');
+  container.innerHTML='';
+  Object.keys(vocabData).forEach(section=>{
+    const sec=document.createElement('div'); sec.className='accordion-section';
+    const header=document.createElement('div'); header.className='accordion-header'; header.innerHTML=`<span>${section}</span>`; 
+    header.onclick=()=>{header.classList.toggle('active');content.classList.toggle('active');};
+    const content=document.createElement('div'); content.className='accordion-content';
+    vocabData[section].forEach((item,idx)=>{
+      const card=document.createElement('div'); card.className='vocab-card';
+      card.innerHTML=`<div class="vocab-word">${item.word}</div>
+        <div class="vocab-meaning">${item.equivalent}</div>
+        <div class="vocab-translit">Transliteration: ${item.meaning}</div>
+        <div class="vocab-translit"><b>Example:</b> ${item.example}</div>
+        <div class="card-buttons">
+          <button class="sound-btn" onclick="playSound('${item.word}')"><span class="material-icons">volume_up</span></button>
+          <button class="transliteration-btn" onclick="playTransliterationSound('${item.meaning}')">Translit</button>
+          <button class="quiz-btn" onclick="openVoicePopup('${item.word}')">Voice Test</button>
+        </div>`;
+      content.appendChild(card);
     });
-    html+='</tbody></table>';
-    container.innerHTML=html;
-  }else{
-    document.getElementById('cardsContainer').innerHTML="<p style='color:#b00;'>❌ ఈ పదం దొరకలేదు.</p>";
+    sec.appendChild(header); sec.appendChild(content); container.appendChild(sec);
+  });
+}
+renderAccordion();
+
+// SEARCH
+function searchWord(){
+  const query=document.getElementById("searchInput").value.toLowerCase();
+  if(!query)return alert("ఏదైనా వ్రాయండి...");
+  let results=[];
+  Object.values(vocabData).forEach(arr=>{
+    results.push(...arr.filter(e=>e.word.toLowerCase().includes(query)||e.meaning.toLowerCase().includes(query)||e.equivalent.toLowerCase().includes(query)));
+  });
+  if(results.length>0){
+    const container=document.getElementById('vocabAccordion'); container.innerHTML='';
+    results.forEach((item,idx)=>{
+      const card=document.createElement('div'); card.className='vocab-card';
+      card.innerHTML=`<div class="vocab-word">${item.word}</div>
+        <div class="vocab-meaning">${item.equivalent}</div>
+        <div class="vocab-translit">Transliteration: ${item.meaning}</div>
+        <div class="vocab-translit"><b>Example:</b> ${item.example}</div>
+        <div class="card-buttons">
+          <button class="sound-btn" onclick="playSound('${item.word}')"><span class="material-icons">volume_up</span></button>
+          <button class="transliteration-btn" onclick="playTransliterationSound('${item.meaning}')">Translit</button>
+          <button class="quiz-btn" onclick="openVoicePopup('${item.word}')">Voice Test</button>
+        </div>`;
+      container.appendChild(card);
+    });
+  }else alert("❌ ఈ పదం దొరకలేదు.");
+}
+
+// VOICE TEST
+let currentVoiceWord='';
+function openVoicePopup(word){currentVoiceWord=word;document.getElementById('voiceWordDisplay').innerText=word;document.getElementById('voiceTestResult').innerText=''; document.getElementById('voiceTestPopup').classList.add('active');}
+function closeVoicePopup(){document.getElementById('voiceTestPopup').classList.remove('active');}
+function startVoiceTest(){
+  if(!('webkitSpeechRecognition' in window)) return alert('Voice recognition not supported!');
+  const recognition=new webkitSpeechRecognition();
+  recognition.lang='te-IN'; recognition.interimResults=false; recognition.maxAlternatives=1;
+  recognition.start();
+  recognition.onresult=function(event){
+    const spoken=event.results[0][0].transcript;
+    const score=(spoken.trim()===currentVoiceWord)?'✅ Correct!':'❌ Try Again. You said: '+spoken;
+    document.getElementById('voiceTestResult').innerText=score;
   }
+}
+
+// DARK/LIGHT MODE
+const body=document.body;
+document.getElementById('modeToggle').onclick=()=>{
+  body.classList.toggle('dark');
+  document.getElementById('modeToggle').innerText=body.classList.contains('dark')?'dark_mode':'light_mode';
 }
 </script>
 </body>
