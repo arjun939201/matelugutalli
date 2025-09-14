@@ -250,48 +250,122 @@ function renderVocabTable(targetId,data){
   document.getElementById(targetId).innerHTML=`<table class="vocab-table"><thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊 / ▼</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
-// DATA
-const personalPronouns=[{word:"నేను",equivalent:"I",meaning:"nēnu",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"neːnu"},{word:"మేము",equivalent:"We (exclusive)",meaning:"mēmu",example:"మేము బయటికి వెళ్ళాము.",pronunciation:"meːmu"},{word:"మనము",equivalent:"We (inclusive)",meaning:"manamu",example:"మనము కలిసి పని చేద్దాం.",pronunciation:"manamu"},{word:"నువ్వు",equivalent:"You (informal)",meaning:"nuvvu",example:"నువ్వు బాగా ఆడావు.",pronunciation:"nuvvu"},{word:"మీరు",equivalent:"You (formal/plural)",meaning:"meeru",example:"మీరు ఎలా ఉన్నారు?",pronunciation:"miːru"}];
-const demonstratives=[{word:"ఇది",equivalent:"This",meaning:"idi",example:"ఇది నా పుస్తకం.",pronunciation:"idi"},{word:"ఇవి",equivalent:"These",meaning:"ivi",example:"ఇవి నా పెన్నులు.",pronunciation:"ivi"}];
-const interrogatives=[{word:"ఎవరూ?",equivalent:"Who?",meaning:"evaru?",example:"ఎవరూ వచ్చారు?",pronunciation:"evaru"},{word:"ఏది?",equivalent:"Which?",meaning:"ēdi?",example:"ఏది సరైనది?",pronunciation:"eːdi"}];
-const verbs=[{word:"చేయు",equivalent:"do/make",meaning:"cheyyu",example:"నువ్వు పని చేయు.",pronunciation:"tʃeɪyu"},{word:"వెళ్ళు",equivalent:"go",meaning:"veḷḷu",example:"వెళ్ళు ఇంటికి.",pronunciation:"veɭɭu"}];
-const postpositions=[{word:"లో",equivalent:"in",meaning:"lō",example:"పుస్తకం బ్యాగులో ఉంది.",pronunciation:"loː"},{word:"కి",equivalent:"to/for",meaning:"ki",example:"ఇది అతనికి.",pronunciation:"ki"}];
-const numbers=[{word:"ఒకటి",equivalent:"one",meaning:"okati",example:"ఒకటి పుస్తకం ఉంది.",pronunciation:"okaṭi"},{word:"రెండు",equivalent:"two",meaning:"rendu",example:"రెండు పెన్నులు.",pronunciation:"reṇḍu"}];
-const phrases=[{word:"హలో",equivalent:"Hello",meaning:"halō",example:"హలో! మీరు ఎలా ఉన్నారు?",pronunciation:"haloː"},{word:"ధన్యవాదాలు",equivalent:"Thank you",meaning:"dhanyavādālu",example:"మీ సహాయానికి ధన్యవాదాలు.",pronunciation:"d̪ʰaɲɲavad̪aːlu"}];
+// --------------------- DATA ---------------------
+const personalPronouns=[ /* expanded content */ 
+  {word:"నేను",equivalent:"I",meaning:"nēnu",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"neːnu"},
+  {word:"మేము",equivalent:"We (exclusive)",meaning:"mēmu",example:"మేము బయటికి వెళ్ళాము.",pronunciation:"meːmu"},
+  {word:"మనము",equivalent:"We (inclusive)",meaning:"manamu",example:"మనము కలిసి పని చేద్దాం.",pronunciation:"manamu"},
+  {word:"నువ్వు",equivalent:"You (informal)",meaning:"nuvvu",example:"నువ్వు బాగా ఆడావు.",pronunciation:"nuvvu"},
+  {word:"మీరు",equivalent:"You (formal/plural)",meaning:"meeru",example:"మీరు ఎలా ఉన్నారు?",pronunciation:"miːru"},
+  {word:"అతడు",equivalent:"He",meaning:"atadu",example:"అతడు మంచి వాడు.",pronunciation:"atadu"},
+  {word:"ఆమె",equivalent:"She",meaning:"āme",example:"ఆమె పుస్తకం చదువుతుంది.",pronunciation:"aːme"},
+  {word:"వారు",equivalent:"They (human)",meaning:"vāru",example:"వారు మన ఊరివారు.",pronunciation:"vaːru"},
+  {word:"అవి",equivalent:"They (non-human)",meaning:"avi",example:"అవి చెట్లు.",pronunciation:"avi"}
+];
 
-// Render
-renderVocabTable("pronounsTable",personalPronouns);
-renderVocabTable("demonstrativesTable",demonstratives);
-renderVocabTable("interrogativesTable",interrogatives);
-renderVocabTable("verbsTable",verbs);
-renderVocabTable("postpositionsTable",postpositions);
-renderVocabTable("numbersTable",numbers);
-renderVocabTable("phrasesTable",phrases);
+const demonstratives=[
+  {word:"ఇది",equivalent:"This",meaning:"idi",example:"ఇది నా పుస్తకం.",pronunciation:"idi"},
+  {word:"ఇవి",equivalent:"These",meaning:"ivi",example:"ఇవి నా పెన్నులు.",pronunciation:"ivi"},
+  {word:"అది",equivalent:"That",meaning:"adi",example:"అది మంచి ఇల్లు.",pronunciation:"adi"},
+  {word:"అవి",equivalent:"Those",meaning:"avi",example:"అవి కొత్త బట్టలు.",pronunciation:"avi"},
+  {word:"ఇక్కడ",equivalent:"Here",meaning:"ikkada",example:"ఇక్కడ పుస్తకాలు ఉన్నాయి.",pronunciation:"ikkada"},
+  {word:"అక్కడ",equivalent:"There",meaning:"akkada",example:"అక్కడ మార్కెట్ ఉంది.",pronunciation:"akkada"}
+];
 
-const allVocabData=[...personalPronouns,...demonstratives,...interrogatives,...verbs,...postpositions,...numbers,...phrases];
+const interrogatives=[
+  {word:"ఎవరూ?",equivalent:"Who?",meaning:"evaru?",example:"ఎవరూ వచ్చారు?",pronunciation:"evaru"},
+  {word:"ఏది?",equivalent:"Which?",meaning:"ēdi?",example:"ఏది సరైనది?",pronunciation:"eːdi"},
+  {word:"ఎక్కడ?",equivalent:"Where?",meaning:"ekkada?",example:"నువ్వు ఎక్కడ ఉన్నావు?",pronunciation:"ekkada"},
+  {word:"ఎప్పుడు?",equivalent:"When?",meaning:"eppudu?",example:"పండుగ ఎప్పుడు?",pronunciation:"eppudu"},
+  {word:"ఎందుకు?",equivalent:"Why?",meaning:"enduku?",example:"నువ్వు ఎందుకు ఆలస్యమయ్యావు?",pronunciation:"enduku"},
+  {word:"ఎంత?",equivalent:"How much?",meaning:"enta?",example:"ఈ పుస్తకం ఎంత?",pronunciation:"enta"}
+];
 
+const verbs=[
+  {word:"చేయు",equivalent:"do/make",meaning:"cheyyu",example:"నువ్వు పని చేయు.",pronunciation:"cheyyu"},
+  {word:"వెళ్ళు",equivalent:"go",meaning:"veḷḷu",example:"వెళ్ళు ఇంటికి.",pronunciation:"veɭɭu"},
+  {word:"రా",equivalent:"come",meaning:"rā",example:"ఇక్కడ రా.",pronunciation:"raː"},
+  {word:"తిను",equivalent:"eat",meaning:"tinu",example:"పండ్లు తిను.",pronunciation:"tinu"},
+  {word:"కూర్చో",equivalent:"sit",meaning:"koorcho",example:"కుర్చీపై కూర్చో.",pronunciation:"kuːrcho"},
+  {word:"నిద్రపో",equivalent:"sleep",meaning:"nidrapō",example:"రాత్రి తొందరగా నిద్రపో.",pronunciation:"nidrapoː"},
+  {word:"వ్రాయు",equivalent:"write",meaning:"vrāyu",example:"పేరు వ్రాయు.",pronunciation:"vraːyu"},
+  {word:"చదువు",equivalent:"study/read",meaning:"chaduvu",example:"పుస్తకం చదువు.",pronunciation:"tʃaduvu"}
+];
+
+const postpositions=[
+  {word:"లో",equivalent:"in",meaning:"lō",example:"పుస్తకం బ్యాగులో ఉంది.",pronunciation:"loː"},
+  {word:"కి",equivalent:"to/for",meaning:"ki",example:"ఇది అతనికి.",pronunciation:"ki"},
+  {word:"మీద",equivalent:"on",meaning:"mīda",example:"పుస్తకం టేబుల్ మీద ఉంది.",pronunciation:"miːda"},
+  {word:"కింద",equivalent:"under",meaning:"kinda",example:"బంతి కింద ఉంది.",pronunciation:"kinda"},
+  {word:"వద్ద",equivalent:"near/at",meaning:"vadda",example:"పిల్లాడు తల్లిదండ్రుల వద్ద ఉన్నాడు.",pronunciation:"vadda"}
+];
+
+const numbers=[
+  {word:"ఒకటి",equivalent:"one",meaning:"okati",example:"ఒకటి పుస్తకం ఉంది.",pronunciation:"okaṭi"},
+  {word:"రెండు",equivalent:"two",meaning:"rendu",example:"రెండు పెన్నులు.",pronunciation:"reṇḍu"},
+  {word:"మూడు",equivalent:"three",meaning:"mūḍu",example:"మూడు ఆపిల్స్ ఉన్నాయి.",pronunciation:"muːɖu"},
+  {word:"నాలుగు",equivalent:"four",meaning:"nālugu",example:"నాలుగు బస్సులు వచ్చాయి.",pronunciation:"naːlugu"},
+  {word:"ఐదు",equivalent:"five",meaning:"aidu",example:"ఐదు పిల్లలు ఆడుతున్నారు.",pronunciation:"aidu"},
+  {word:"ఆరు",equivalent:"six",meaning:"āru",example:"ఆరు ఇళ్లు ఉన్నాయి.",pronunciation:"aːru"},
+  {word:"ఏడు",equivalent:"seven",meaning:"ēḍu",example:"ఏడు రోజుల వారం.",pronunciation:"eːɖu"},
+  {word:"ఎనిమిది",equivalent:"eight",meaning:"enimidi",example:"ఎనిమిది మామిడిపండ్లు.",pronunciation:"enimidi"},
+  {word:"తొమ్మిది",equivalent:"nine",meaning:"tommidi",example:"తొమ్మిది పుస్తకాలు ఉన్నాయి.",pronunciation:"tommidi"},
+  {word:"పది",equivalent:"ten",meaning:"padi",example:"పది గంటలకు స్కూల్ మొదలవుతుంది.",pronunciation:"padi"}
+];
+
+const phrases=[
+  {word:"నమస్తే",equivalent:"Hello",meaning:"namastē",example:"నమస్తే! మీరు ఎలా ఉన్నారు?",pronunciation:"namasteː"},
+  {word:"ధన్యవాదాలు",equivalent:"Thank you",meaning:"dhanyavādālu",example:"మీ సహాయం కు ధన్యవాదాలు.",pronunciation:"dʱanyavaːdaːlu"},
+  {word:"క్షమించండి",equivalent:"Sorry",meaning:"kṣamin̄caṇḍi",example:"క్షమించండి, నేను ఆలస్యమయ్యాను.",pronunciation:"kʂaminʧaɳɖi"},
+  {word:"దయచేసి",equivalent:"Please",meaning:"dayacēsi",example:"దయచేసి కూర్చోండి.",pronunciation:"dayacheːsi"},
+  {word:"శుభోదయం",equivalent:"Good morning",meaning:"śubhōdayaṁ",example:"శుభోదయం! మీ రోజు మంచిగా గడవాలి.",pronunciation:"ʃubhoːdayam"},
+  {word:"శుభరాత్రి",equivalent:"Good night",meaning:"śubharātri",example:"శుభరాత్రి! బాగా నిద్రపో.",pronunciation:"ʃubharaːtri"},
+  {word:"మీరు ఎలా ఉన్నారు?",equivalent:"How are you?",meaning:"meeru ēlā unnāru?",example:"మీరు ఎలా ఉన్నారు?",pronunciation:"miːru eːlaː unnaːru"},
+  {word:"నేను బాగున్నాను",equivalent:"I am fine",meaning:"nēnu bāgunnānu",example:"నేను బాగున్నాను, ధన్యవాదాలు.",pronunciation:"neːnu baːgunnanu"}
+];
+
+// ------------ SEARCH FUNCTION ----------------
 function searchWord(){
-  let query=document.getElementById("searchInput").value.trim().toLowerCase();
-  let resultBox=document.getElementById("searchResult");
-  let section=document.getElementById("searchSection");
-  section.style.display="block";
-  if(!query){ resultBox.innerHTML="<span style='color:#b00;'>ఏదైనా వ్రాయండి...</span>"; return; }
-  let results=allVocabData.filter(e=>e.word.toLowerCase().includes(query)||e.equivalent.toLowerCase().includes(query)||e.meaning.toLowerCase().includes(query));
-  if(results.length>0){
-    resultBox.innerHTML=`<table class="vocab-table"><thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊 / ▼</th></tr></thead><tbody>${
-      results.map((e,idx)=>`<tr><td class="word-col">${e.word}</td><td class="info-col">${e.equivalent}</td><td class="eng-col">${e.meaning}</td><td>
-      <button class="sound-btn" onclick="playSound('${e.word}')"><span class="material-icons">volume_up</span></button>
-      <button class="dropdown-toggle" onclick="toggleDropdown(${idx}, 'searchResult')">▼</button>
-      </td></tr>
-      <tr class="dropdown-content" id="searchResult-dropdown-${idx}">
-        <td colspan="4">
-          <span class="pronunciation"><b>Pronunciation:</b> ${e.pronunciation}</span><br>
-          <span class="example"><b>Example:</b> ${e.example}<button class="transliteration-btn" onclick="playSound('${e.example}')">🔊</button></span><br>
-          <span class="pronunciation"><b>Transliteration:</b> ${e.meaning}</span>
-        </td>
-      </tr>`).join("")}</tbody></table>`;
-  } else { resultBox.innerHTML="<span style='color:#b00;'>❌ ఈ పదం దొరకలేదు.</span>"; }
+  let query=document.getElementById('searchInput').value.trim().toLowerCase();
+  let searchSection=document.getElementById('searchSection');
+  let resultDiv=document.getElementById('searchResult');
+  if(!query){searchSection.style.display='none';return;}
+
+  let allData=[...personalPronouns,...demonstratives,...interrogatives,...verbs,...postpositions,...numbers,...phrases];
+  let filtered=allData.filter(item=>
+    item.word.toLowerCase().includes(query)||
+    item.meaning.toLowerCase().includes(query)||
+    item.equivalent.toLowerCase().includes(query)
+  );
+
+  if(filtered.length>0){
+    let html=filtered.map((e,idx)=>`
+      <div style="background:#fff; padding:10px 14px; margin:8px 0; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+        <div style="font-size:1.1em; font-weight:600; color:#1976d2;">${e.word}
+          <button class="sound-btn" onclick="playSound('${e.word}')" style="margin-left:6px;"><span class="material-icons">volume_up</span></button>
+        </div>
+        <div style="font-size:0.92em; color:#444;">${e.equivalent} — ${e.meaning}</div>
+        <div style="margin-top:6px; font-size:0.9em; color:#222;"><b>Example:</b> ${e.example}
+          <button class="transliteration-btn" onclick="playSound('${e.example}')">🔊</button>
+        </div>
+      </div>`).join("");
+    resultDiv.innerHTML=html;
+  } else {
+    resultDiv.innerHTML="<p style='color:#a00;'>ఏ ఫలితాలు లేవు.</p>";
+  }
+  searchSection.style.display='block';
 }
+
+// ------------ INIT ----------------
+window.onload=function(){
+  renderVocabTable("pronounsTable",personalPronouns);
+  renderVocabTable("demonstrativesTable",demonstratives);
+  renderVocabTable("interrogativesTable",interrogatives);
+  renderVocabTable("verbsTable",verbs);
+  renderVocabTable("postpositionsTable",postpositions);
+  renderVocabTable("numbersTable",numbers);
+  renderVocabTable("phrasesTable",phrases);
+};
 </script>
 </body>
 </html>
