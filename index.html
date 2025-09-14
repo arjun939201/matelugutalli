@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>తెలుగు మాటోలి - Vocabulary Master</title>
+<title>తెలుగు మాటోలి - Vocabulary Study</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
@@ -20,257 +20,153 @@
   --header-height: 88px;
   --table-border: #e2e8f0;
 }
-* { box-sizing: border-box; }
-body {
-  font-family: 'Roboto', Arial, sans-serif;
-  background: var(--background);
-  margin: 0;
-  padding: 0;
-  color: var(--text-main);
-}
-header {
-  width: 100%;
-  background: linear-gradient(90deg, #1976d2 80%, #144b8b 100%);
-  color: #fff;
-  padding: 24px 0 18px 0;
-  box-shadow: 0 2px 10px rgba(30,30,60,0.11);
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: var(--header-height);
-  padding: 0 2vw;
-}
-header h1 {
-  font-size: 2em;
-  font-weight: 700;
-  margin: 0;
-}
-header .material-icons { font-size: 2.5em; vertical-align: middle; margin-right: 12px; }
-#modeToggle {
-  cursor: pointer;
-  font-size: 1.8em;
-}
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 2vw;
-}
-.search-card {
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  border-radius: var(--card-radius);
-  margin: -25px auto var(--section-gap) auto;
-  padding: 20px 28px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  z-index: 3;
-}
-.search-card input[type="text"] {
-  flex: 1;
-  padding: 14px 18px;
-  font-size: 1.1em;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  background: #f2f3f4;
-  outline: none;
-  transition: border 0.18s;
-}
-.search-card input[type="text"]:focus {
-  border: 1.5px solid var(--primary);
-  background: #eaf3ff;
-}
-.search-card button {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 14px 22px;
-  font-size: 1.14em;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 7px #1976d220;
-  transition: background 0.23s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.search-card button:hover { background: #125cab; }
-.search-hint { font-size: 0.95em; color: #888; margin-top: 4px; }
-
-.accordion { margin: var(--section-gap) 0; }
-.accordion-section { margin: 16px 0; border-radius: var(--card-radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--table-border); background: var(--surface);}
-.accordion-header { padding: 18px 28px; cursor: pointer; font-size: 1.15em; font-weight: 600; display: flex; align-items: center; justify-content: space-between; background:#eef1f7; transition: background 0.2s; user-select: none;}
-.accordion-header.active { background: #dbeafc; }
-.accordion-content { padding: 0 0 22px 0; display: none; animation: fade-in 0.5s; }
-.accordion-content.active { display: block; }
-
-.vocab-card { background: #fff; padding: 16px; margin:12px 0; border-radius: 14px; box-shadow: var(--shadow); position: relative; transition: transform 0.18s; }
-.vocab-card:hover { transform: translateY(-2px); }
-.vocab-word { font-size: 1.25em; font-weight: 700; color: var(--primary);}
-.vocab-meaning { font-size: 1em; color: var(--text-light); margin-top: 4px;}
-.vocab-translit { font-style: italic; font-size:0.95em; color:#555; margin-top:2px;}
-.card-buttons { margin-top: 6px; display: flex; gap: 6px;}
-.sound-btn { background: var(--accent); color: #fff; border:none; border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 8px #ffb30033; transition:0.18s;}
-.sound-btn:hover { background:#ff8800; }
-.transliteration-btn { background: var(--primary); color:#fff; border:none; border-radius:8px; padding:4px 8px; font-size:0.9em; cursor:pointer; transition:0.18s;}
-.transliteration-btn:hover{background:#125cab;}
-.quiz-btn { background: var(--accent); color:#fff; border:none; border-radius:12px; padding:6px 12px; font-weight:600; cursor:pointer; transition:0.18s;}
-.quiz-btn:hover{background:#ff8800;}
-@keyframes fade-in { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
-
-.popup { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.55); display:none; align-items:center; justify-content:center; z-index:9999;}
-.popup.active{display:flex;}
-.popup-content { background:#fff; padding:24px; border-radius:18px; max-width:400px; width:90%; text-align:center; box-shadow: var(--shadow);}
-.popup-content h2{margin-top:0;}
-.popup-content button{margin-top:14px;padding:8px 16px; border:none;border-radius:8px;background:var(--primary);color:#fff;font-weight:600; cursor:pointer;}
-.popup-content button:hover{background:#125cab;}
-
-.dark { background:#1e1e1e; color:#eee;}
-.dark .surface { background:#2b2b2b;}
-.dark .vocab-card { background:#2b2b2b; box-shadow: 0 2px 10px #00000055;}
-.dark .search-card { background:#2b2b2b; border:1px solid #444; }
-.dark .accordion-section { background:#2b2b2b; border:1px solid #444; }
-.dark .accordion-header { background:#3a3a3a; color:#fff; }
-.dark .accordion-header.active { background:#505050; }
-.dark .dropdown-content { background:#3a3a3a; color:#fff; }
-
-@media(max-width:700px){.container{padding:0 1vw;} header h1{font-size:1.4em;}}
-@media(max-width:500px){header h1{font-size:1.1em;} header .material-icons,#modeToggle{font-size:1.5em;} }
+*{box-sizing:border-box;}
+body{font-family:'Roboto', Arial, sans-serif;background:var(--background);margin:0;padding:0;color:var(--text-main);}
+header{width:100%;background:linear-gradient(90deg,#1976d2 80%,#144b8b 100%);color:#fff;padding:24px 0 18px 0;box-shadow:0 2px 10px rgba(30,30,60,0.11);border-bottom-left-radius:40px;border-bottom-right-radius:40px;display:flex;align-items:center;justify-content:center;min-height:var(--header-height);}
+header .material-icons{font-size:3em;margin-right:18px;opacity:0.85;}
+header h1{font-size:2.4em;font-weight:700;margin:0;text-shadow:0 2px 10px #144b8b44;letter-spacing:1.5px;line-height:1.1;}
+.container{max-width:900px;margin:0 auto;padding:0 2vw;}
+.search-card{background:var(--surface);box-shadow:var(--shadow);border-radius:var(--card-radius);margin:-25px auto var(--section-gap) auto;padding:20px 28px;display:flex;align-items:center;gap:12px;position:relative;z-index:3;}
+.search-card input[type="text"]{flex:1;padding:14px 18px;font-size:1.1em;border:1px solid #e2e8f0;border-radius:10px;background:#f2f3f4;outline:none;transition:border 0.18s;}
+.search-card input[type="text"]:focus{border:1.5px solid var(--primary);background:#eaf3ff;}
+.search-card button{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:14px 22px;font-size:1.14em;font-weight:500;cursor:pointer;box-shadow:0 2px 7px #1976d220;transition:background 0.23s;display:flex;align-items:center;gap:6px;}
+.search-card button:hover{background:#125cab;}
+.search-hint{font-size:0.98em;color:#888;margin-top:4px;}
+.accordion{margin:var(--section-gap) 0;}
+.accordion-section{background:var(--surface);box-shadow:var(--shadow);border-radius:var(--card-radius);margin:16px 0;overflow:hidden;transition:box-shadow 0.2s;border:1px solid var(--table-border);}
+.accordion-header{display:flex;align-items:center;gap:12px;padding:18px 28px;cursor:pointer;font-size:1.19em;font-weight:600;color:var(--primary);background:#eef1f7;border-bottom:1px solid #e2e8f0;transition:background 0.2s;user-select:none;}
+.accordion-header .material-icons{color:var(--accent);}
+.accordion-header.active{background:#dbeafc;}
+.accordion-content{padding:0 0 22px 0;display:none;animation:fade-in 0.5s;}
+.accordion-content.active{display:block;}
+.vocab-table{width:100%;border-collapse:collapse;margin:0;}
+.vocab-table th,.vocab-table td{padding:11px 18px;text-align:left;border-bottom:1px solid var(--table-border);}
+.vocab-table th{background:#f6f7fa;font-weight:500;color:#1976d2;font-size:1.07em;letter-spacing:0.5px;}
+.vocab-table td.word-col{font-size:1.17em;font-weight:600;color:var(--text-main);min-width:80px;}
+.vocab-table td.info-col{font-size:1em;color:var(--text-light);font-style:italic;}
+.vocab-table td.eng-col{color:var(--text-light);font-size:1em;}
+.sound-btn{background:var(--accent);color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:1.18em;cursor:pointer;box-shadow:0 2px 8px #ffb30033;display:flex;align-items:center;justify-content:center;transition:background 0.18s;}
+.sound-btn:hover{background:#ff8800;}
+.dropdown-content{background:#f6f7fa;padding:10px 20px;font-size:0.98em;color:#333;border-bottom:1px solid #e2e8f0;display:none;animation:fade-in 0.3s;}
+.dropdown-content.active{display:table-row;}
+.dropdown-toggle{background:#eee;border:none;cursor:pointer;font-size:1em;color:var(--primary);}
+.pronunciation{font-style:italic;color:#1976d2;}
+.example{color:#222;}
+.transliteration-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:4px 10px;font-size:0.98em;cursor:pointer;margin-left:6px;transition:background 0.18s;vertical-align:middle;display:inline-flex;align-items:center;}
+.transliteration-btn:hover{background:#ff8800;}
+@keyframes fade-in{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+/* Voice Popup */
+#voicePopup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;z-index:999;}
+#voicePopup .popup-content{background:var(--surface);padding:30px;border-radius:20px;max-width:400px;width:90%;text-align:center;box-shadow:var(--shadow);}
+#voicePopup button.close-popup{margin-top:20px;background:#ff5252;color:#fff;border:none;padding:10px 18px;border-radius:10px;cursor:pointer;font-weight:600;transition:background 0.2s;}
+#voicePopup button.close-popup:hover{background:#d43f3f;}
+@media(max-width:700px){.container{padding:0 1vw;}.accordion-header,.vocab-table th,.vocab-table td{padding:10px 6px;}.search-card{padding:12px 5px;}}
+@media(max-width:500px){header .material-icons{font-size:1.5em;}header h1{font-size:1.05em;}.search-card button,.search-card input[type="text"]{font-size:0.95em;}}
 </style>
 </head>
 <body>
 <header>
-  <div style="display:flex; align-items:center;"><span class="material-icons">auto_stories</span><h1>తెలుగు మాటోలి</h1></div>
-  <span class="material-icons" id="modeToggle" title="Toggle Dark/Light Mode">light_mode</span>
+  <span class="material-icons">auto_stories</span>
+  <h1>తెలుగు మాటోలి</h1>
 </header>
 <div class="container">
   <div class="search-card">
     <input type="text" id="searchInput" placeholder="వర్డ్/ఇంగ్లీష్/వివరణ కోసం వెతకండి...">
-    <button onclick="searchWord()"><span class="material-icons">search</span> వెతుకు</button>
+    <button onclick="searchWord()"><span class="material-icons" style="vertical-align:middle;">search</span> వెతుకు</button>
   </div>
   <div class="search-hint">ఉదాహరణ: "go", "నువ్వు", "stand", "inside", "ఎక్కడ?"</div>
+  <div class="accordion-section" id="searchSection" style="display:none;">
+    <div class="accordion-header active">
+      <span class="material-icons">search</span> ఫలితాలు
+    </div>
+    <div class="accordion-content active" id="searchResult">ఇంకా వెతకలేదు.</div>
+  </div>
 
-  <div class="accordion" id="vocabAccordion"></div>
+  <div class="accordion">
+    <!-- Cards will be rendered here dynamically -->
+    <div class="accordion-section">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="material-icons">person</span> Personal Pronouns
+      </div>
+      <div class="accordion-content" id="pronounsTable"></div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="material-icons">bolt</span> Common Verbs
+      </div>
+      <div class="accordion-content" id="verbsTable"></div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="material-icons">people</span> Nouns
+      </div>
+      <div class="accordion-content" id="nounsTable"></div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="material-icons">palette</span> Adjectives
+      </div>
+      <div class="accordion-content" id="adjectivesTable"></div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="material-icons">looks_one</span> Numbers
+      </div>
+      <div class="accordion-content" id="numbersTable"></div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="material-icons">chat</span> Useful Phrases
+      </div>
+      <div class="accordion-content" id="phrasesTable"></div>
+    </div>
+  </div>
 </div>
 
-<div class="popup" id="voiceTestPopup">
+<!-- Voice Test Popup -->
+<div id="voicePopup">
   <div class="popup-content">
-    <h2>Voice Test</h2>
-    <p id="voiceWordDisplay" style="font-weight:700;font-size:1.3em;"></p>
-    <p>Click microphone and say the word.</p>
-    <button onclick="startVoiceTest()">🎤 Start</button>
-    <p id="voiceTestResult"></p>
-    <button onclick="closeVoicePopup()">Close</button>
+    <h3>Voice Test</h3>
+    <p id="voiceWord">Word: </p>
+    <button onclick="startVoiceTest()">Speak Now</button>
+    <button class="close-popup" onclick="closeVoicePopup()">Close</button>
+    <p id="voiceResult" style="margin-top:10px;font-weight:600;"></p>
   </div>
 </div>
 
 <script>
-// DATA
-const vocabData = {
-  "Personal Pronouns":[
-    {word:"నేను", equivalent:"I", meaning:"nēnu", example:"నేను పుస్తకం చదువుతున్నాను.", pronunciation:"neːnu"},
-    {word:"మేము", equivalent:"We (exclusive)", meaning:"mēmu", example:"మేము బయటికి వెళ్ళాము.", pronunciation:"meːmu"},
-    {word:"మనము", equivalent:"We (inclusive)", meaning:"manamu", example:"మనము కలిసి పని చేద్దాం.", pronunciation:"manamu"},
-    {word:"నువ్వు", equivalent:"You (informal)", meaning:"nuvvu", example:"నువ్వు బాగా ఆడావు.", pronunciation:"nuvvu"},
-    {word:"మీరు", equivalent:"You (formal/plural)", meaning:"meeru", example:"మీరు ఎలా ఉన్నారు?", pronunciation:"miːru"}
-  ],
-  "Common Verbs":[
-    {word:"చేయు", equivalent:"do/make", meaning:"cheyyu", example:"నువ్వు పని చేయు.", pronunciation:"tʃeɪyu"},
-    {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu", example:"వెళ్ళు ఇంటికి.", pronunciation:"veɭɭu"},
-    {word:"రా", equivalent:"come", meaning:"rā", example:"ఇక్కడ రా.", pronunciation:"raː"},
-    {word:"తిను", equivalent:"eat", meaning:"tinu", example:"పండ్లు తిను.", pronunciation:"tinu"},
-    {word:"చూడు", equivalent:"see/look", meaning:"chūḍu", example:"చిత్రాన్ని చూడు.", pronunciation:"tʃuːɖu"}
-  ]
+// Accordion toggle
+function toggleAccordion(header) {
+  document.querySelectorAll('.accordion-header').forEach(h => {if(h!==header) h.classList.remove('active');});
+  document.querySelectorAll('.accordion-content').forEach(c => {if(c.previousElementSibling!==header) c.classList.remove('active');});
+  header.classList.toggle('active');
+  let content = header.nextElementSibling;
+  content.classList.toggle('active');
 }
 
-// UTILITIES
-function playSound(text, lang='te-IN', rate=0.93){
-  if('speechSynthesis' in window){
-    var msg=new SpeechSynthesisUtterance(text);
-    msg.lang=lang; msg.rate=rate; window.speechSynthesis.speak(msg);
-  }else alert("Speech not supported in this browser.");
-}
-function playTransliterationSound(text){ playSound(text,'en-US',0.95); }
+// Sound function
+function playSound(text, lang='te-IN', rate=0.93){if('speechSynthesis'in window){var msg=new SpeechSynthesisUtterance();msg.text=text;msg.lang=lang;msg.rate=rate;window.speechSynthesis.speak(msg);}else{alert("Speech not supported.");}}
+function playTransliterationSound(text, langHint='en-US', rate=0.97){if('speechSynthesis'in window){var msg=new SpeechSynthesisUtterance();msg.text=text;msg.lang=langHint;msg.rate=rate;window.speechSynthesis.speak(msg);}else{alert("Speech not supported.");}}
 
-// ACCORDION & CARDS
-function renderAccordion(){
-  const container=document.getElementById('vocabAccordion');
-  container.innerHTML='';
-  Object.keys(vocabData).forEach(section=>{
-    const sec=document.createElement('div'); sec.className='accordion-section';
-    const header=document.createElement('div'); header.className='accordion-header'; header.innerHTML=`<span>${section}</span>`; 
-    header.onclick=()=>{header.classList.toggle('active');content.classList.toggle('active');};
-    const content=document.createElement('div'); content.className='accordion-content';
-    vocabData[section].forEach((item,idx)=>{
-      const card=document.createElement('div'); card.className='vocab-card';
-      card.innerHTML=`<div class="vocab-word">${item.word}</div>
-        <div class="vocab-meaning">${item.equivalent}</div>
-        <div class="vocab-translit">Transliteration: ${item.meaning}</div>
-        <div class="vocab-translit"><b>Example:</b> ${item.example}</div>
-        <div class="card-buttons">
-          <button class="sound-btn" onclick="playSound('${item.word}')"><span class="material-icons">volume_up</span></button>
-          <button class="transliteration-btn" onclick="playTransliterationSound('${item.meaning}')">Translit</button>
-          <button class="quiz-btn" onclick="openVoicePopup('${item.word}')">Voice Test</button>
-        </div>`;
-      content.appendChild(card);
-    });
-    sec.appendChild(header); sec.appendChild(content); container.appendChild(sec);
-  });
-}
-renderAccordion();
+// Dropdown toggle
+function toggleDropdown(idx,target){document.getElementById(`${target}-dropdown-${idx}`).classList.toggle('active');}
 
-// SEARCH
-function searchWord(){
-  const query=document.getElementById("searchInput").value.toLowerCase();
-  if(!query)return alert("ఏదైనా వ్రాయండి...");
-  let results=[];
-  Object.values(vocabData).forEach(arr=>{
-    results.push(...arr.filter(e=>e.word.toLowerCase().includes(query)||e.meaning.toLowerCase().includes(query)||e.equivalent.toLowerCase().includes(query)));
-  });
-  if(results.length>0){
-    const container=document.getElementById('vocabAccordion'); container.innerHTML='';
-    results.forEach((item,idx)=>{
-      const card=document.createElement('div'); card.className='vocab-card';
-      card.innerHTML=`<div class="vocab-word">${item.word}</div>
-        <div class="vocab-meaning">${item.equivalent}</div>
-        <div class="vocab-translit">Transliteration: ${item.meaning}</div>
-        <div class="vocab-translit"><b>Example:</b> ${item.example}</div>
-        <div class="card-buttons">
-          <button class="sound-btn" onclick="playSound('${item.word}')"><span class="material-icons">volume_up</span></button>
-          <button class="transliteration-btn" onclick="playTransliterationSound('${item.meaning}')">Translit</button>
-          <button class="quiz-btn" onclick="openVoicePopup('${item.word}')">Voice Test</button>
-        </div>`;
-      container.appendChild(card);
-    });
-  }else alert("❌ ఈ పదం దొరకలేదు.");
-}
-
-// VOICE TEST
-let currentVoiceWord='';
-function openVoicePopup(word){currentVoiceWord=word;document.getElementById('voiceWordDisplay').innerText=word;document.getElementById('voiceTestResult').innerText=''; document.getElementById('voiceTestPopup').classList.add('active');}
-function closeVoicePopup(){document.getElementById('voiceTestPopup').classList.remove('active');}
+// Voice popup
+let currentVoiceWord="";
+function openVoicePopup(word){currentVoiceWord=word;document.getElementById('voiceWord').innerText='Word: '+word;document.getElementById('voiceResult').innerText='';document.getElementById('voicePopup').style.display='flex';}
+function closeVoicePopup(){document.getElementById('voicePopup').style.display='none';}
 function startVoiceTest(){
-  if(!('webkitSpeechRecognition' in window)) return alert('Voice recognition not supported!');
-  const recognition=new webkitSpeechRecognition();
+  if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){alert('Voice recognition not supported.');return;}
+  let recognition= new (window.SpeechRecognition||window.webkitSpeechRecognition)();
   recognition.lang='te-IN'; recognition.interimResults=false; recognition.maxAlternatives=1;
   recognition.start();
   recognition.onresult=function(event){
-    const spoken=event.results[0][0].transcript;
-    const score=(spoken.trim()===currentVoiceWord)?'✅ Correct!':'❌ Try Again. You said: '+spoken;
-    document.getElementById('voiceTestResult').innerText=score;
-  }
+    let spoken=event.results[0][0].transcript.trim();
+    if(spoken===currentVoiceWord){document.getElementById('voiceResult').innerText='✅ Perfect!';}else{document.getElementById('voiceResult').innerText='❌ You said: '+spoken;}}
+  recognition.onerror=function(e){document.getElementById('voiceResult').innerText='Error: '+e.error;}
 }
 
-// DARK/LIGHT MODE
-const body=document.body;
-document.getElementById('modeToggle').onclick=()=>{
-  body.classList.toggle('dark');
-  document.getElementById('modeToggle').innerText=body.classList.contains('dark')?'dark_mode':'light_mode';
-}
-</script>
-</body>
-</html>
+// Example content data
+const personalPronouns=[{word:"నేను",equivalent:"I",meaning:"nēnu",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"neːnu"},{word:"మేము",equivalent:"We",meaning:"mēmu",example:"మేము బయటికి వెళ్ళాము.",pronunciation:"meːmu"}];
+const verbs=[{word:"చేయు",equivalent:"do",meaning:"cheyyu",example:"నువ్వు పని చేయు.",pronunciation:"tʃeɪyu"},{word:"వెళ్ళు",equivalent:"go",meaning:"veḷḷu",example:"వెళ్ళు ఇంటికి.",pronunciation:"veɭɭu"}];
+const nouns=[{word:"పుస్తకం",equivalent:"Book",meaning:"pustakam",example:"నేను పుస్తకం చదువుతున్నాను.",pronunciation:"pustakam"},{word:"పెద్దవాడు",equivalent:"Elder",meaning:"pedda vaadu",example:"
