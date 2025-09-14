@@ -1,180 +1,201 @@
 <!DOCTYPE html>
 <html lang="te">
 <head>
-  <meta charset="UTF-8">
-  <title>Learn Telugu App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
-    }
-    .page { display: none; padding: 40px; text-align: center; }
-    .active { display: block; }
-    h1 { color: #1976d2; }
-    button {
-      background: #1976d2; color: #fff; border: none;
-      padding: 12px 20px; border-radius: 8px;
-      cursor: pointer; margin: 10px;
-    }
-    button:hover { background: #125cab; }
-    ul { list-style: none; padding: 0; }
-    ul li { margin: 15px 0; }
-    ul li a {
-      text-decoration: none; font-size: 1.2em;
-      color: #1976d2; font-weight: bold;
-      cursor: pointer;
-    }
-    .card {
-      background: #fff; border-radius: 18px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      max-width: 450px; margin: 20px auto; padding: 30px;
-      transition: background 0.3s ease;
-    }
-    .card h2 { font-size: 2.5em; margin: 20px 0; }
-    #result, .result { margin-top: 15px; font-weight: bold; }
-  </style>
+<meta charset="UTF-8">
+<title>తెలుగు నేర్చుకో - Professional</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+:root {
+  --primary:#1976d2; --accent:#ffb300; --background:#f5f7fa; --surface:#fff;
+  --card-radius:18px; --shadow:0 2px 12px rgba(0,0,0,0.13); --text-main:#222;
+  --text-light:#717171; --section-gap:20px;
+}
+body {margin:0; font-family:'Roboto',Arial,sans-serif; background:var(--background); color:var(--text-main);}
+header {background:var(--primary); color:#fff; padding:20px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.1);}
+header h1 {margin:0; font-size:2em;}
+.container {max-width:900px; margin:20px auto; padding:0 20px;}
+.menu {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-bottom:30px;}
+.menu button {background:var(--primary); color:#fff; border:none; padding:12px 22px; border-radius:10px; cursor:pointer; font-size:1em; transition:0.2s;}
+.menu button:hover {background:#125cab;}
+.card {background:var(--surface); border-radius:var(--card-radius); box-shadow:var(--shadow); margin:20px auto; padding:25px; max-width:500px; transition:0.3s;}
+.card h2 {font-size:1.8em; margin:15px 0;}
+.card p {font-size:1em; color:var(--text-light); margin:6px 0;}
+.card button {margin:4px 3px; padding:8px 14px; border-radius:8px; font-size:0.95em;}
+.nav-buttons {margin-top:15px;}
+.nav-buttons button {background:var(--accent); color:#fff;}
+.nav-buttons button:hover {background:#ff8800;}
+.search-card {background:var(--surface); box-shadow:var(--shadow); border-radius:var(--card-radius); padding:15px 20px; display:flex; gap:10px; margin-bottom:20px;}
+.search-card input {flex:1; padding:10px 14px; font-size:1em; border:1px solid #e2e8f0; border-radius:10px; outline:none;}
+.search-card input:focus {border:1.5px solid var(--primary); background:#eaf3ff;}
+.search-card button {background:var(--primary); color:#fff; border:none; padding:10px 16px; border-radius:10px; cursor:pointer; display:flex; align-items:center; gap:5px;}
+.search-card button:hover{background:#125cab;}
+.vocab-table {width:100%; border-collapse:collapse; margin-top:10px;}
+.vocab-table th, .vocab-table td {padding:10px 12px; text-align:left; border-bottom:1px solid #e2e8f0;}
+.vocab-table th {background:#f6f7fa; color:var(--primary);}
+.word-col {font-weight:600; font-size:1.1em;}
+.info-col {color:var(--text-light); font-style:italic;}
+.eng-col {color:var(--text-light);}
+.sound-btn {background:var(--accent); color:#fff; border:none; border-radius:50%; width:34px; height:34px; font-size:1em; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;}
+.sound-btn:hover {background:#ff8800;}
+.dropdown-content {background:#f6f7fa; padding:10px 15px; font-size:0.95em; color:#333; border-bottom:1px solid #e2e8f0; display:none;}
+.dropdown-content.active{display:table-row;}
+.dropdown-toggle {background:#eee; border:none; cursor:pointer; font-size:0.95em; color:var(--primary); border-radius:5px; padding:4px 7px;}
+.transliteration-btn {background:var(--accent); color:#fff; border:none; border-radius:8px; padding:4px 10px; font-size:0.9em; cursor:pointer; margin-left:6px;}
+.transliteration-btn:hover {background:#ff8800;}
+@media(max-width:600px){.card{padding:15px;} .menu button{padding:8px 14px; font-size:0.9em;}}
+</style>
 </head>
 <body>
-
-<!-- Page 1: Welcome -->
-<div id="page1" class="page active">
-  <h1>🌸 Welcome to Learn Telugu 🌸</h1>
-  <p>Telugu is a beautiful Dravidian language spoken by millions.</p>
-  <h3>How to Learn:</h3>
-  <p>🔊 Listen and repeat letters.</p>
-  <p>📝 Practice daily with examples.</p>
-  <p>🎯 Test yourself with voice recognition.</p>
-  <button onclick="goToPage(2)">Start Learning →</button>
-</div>
-
-<!-- Page 2: Content -->
-<div id="page2" class="page">
-  <h1>📖 Content</h1>
-  <ul>
-    <li><a onclick="goToPage(3)">Letters</a></li>
-    <li><a onclick="goToPage(4)">Parts of Speech</a></li>
-    <li><a onclick="goToPage(5)">Greetings & Sentences</a></li>
-  </ul>
-  <button onclick="goToPage(1)">⬅ Back</button>
-</div>
-
-<!-- Page 3: Letters -->
-<div id="page3" class="page">
-  <h1>🔡 Telugu Letters</h1>
-  <div class="card" id="letterCard">
-    <h2 id="letter">అ</h2>
-    <button onclick="playSound('letter')">🔊 Play</button>
-    <button onclick="startRecognition('letter')">🎤 Speak</button>
-    <p class="result" id="letterResult"></p>
-    <div>
-      <button onclick="prevItem('letters')">⬅ Prev</button>
-      <button onclick="nextItem('letters')">Next ➡</button>
-    </div>
+<header><h1>తెలుగు నేర్చుకో 🌸</h1></header>
+<div class="container">
+  <!-- Search -->
+  <div class="search-card">
+    <input type="text" id="searchInput" placeholder="వర్డ్/ఇంగ్లీష్/వివరణ వెతకండి...">
+    <button onclick="searchWord()">🔍 వెతుకు</button>
   </div>
-  <button onclick="goToPage(2)">⬅ Back</button>
-</div>
 
-<!-- Page 4: Parts of Speech -->
-<div id="page4" class="page">
-  <h1>📘 Parts of Speech</h1>
-  <div class="card" id="posCard">
-    <h2 id="pos">నామవాచకం (Noun)</h2>
-    <button onclick="playSound('pos')">🔊 Play</button>
-    <button onclick="startRecognition('pos')">🎤 Speak</button>
-    <p class="result" id="posResult"></p>
-    <div>
-      <button onclick="prevItem('pos')">⬅ Prev</button>
-      <button onclick="nextItem('pos')">Next ➡</button>
-    </div>
+  <!-- Menu Topics -->
+  <div class="menu">
+    <button onclick="showTopic('pronouns')">Personal Pronouns</button>
+    <button onclick="showTopic('demonstratives')">Demonstratives</button>
+    <button onclick="showTopic('interrogatives')">Interrogatives</button>
+    <button onclick="showTopic('verbs')">Common Verbs</button>
+    <button onclick="showTopic('postpositions')">Postpositions</button>
+    <button onclick="showTopic('numbers')">Numbers</button>
+    <button onclick="showTopic('phrases')">Useful Phrases</button>
   </div>
-  <button onclick="goToPage(2)">⬅ Back</button>
-</div>
 
-<!-- Page 5: Greetings & Sentences -->
-<div id="page5" class="page">
-  <h1>🙏 Greetings & Sentences</h1>
-  <div class="card" id="greetCard">
-    <h2 id="greet">నమస్తే (Hello)</h2>
-    <button onclick="playSound('greet')">🔊 Play</button>
-    <button onclick="startRecognition('greet')">🎤 Speak</button>
-    <p class="result" id="greetResult"></p>
-    <div>
-      <button onclick="prevItem('greet')">⬅ Prev</button>
-      <button onclick="nextItem('greet')">Next ➡</button>
-    </div>
-  </div>
-  <button onclick="goToPage(2)">⬅ Back</button>
+  <!-- Dynamic Cards -->
+  <div id="cardsContainer"></div>
 </div>
 
 <script>
-  // Navigation
-  function goToPage(n) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page'+n).classList.add('active');
+// Sample data
+const data = {
+  pronouns:[
+    {word:"నేను", equivalent:"I", meaning:"nēnu", example:"నేను పుస్తకం చదువుతున్నాను.", pronunciation:"neːnu"},
+    {word:"మేము", equivalent:"We (exclusive)", meaning:"mēmu", example:"మేము బయటకి వెళ్ళాము.", pronunciation:"meːmu"}
+  ],
+  demonstratives:[
+    {word:"ఇది", equivalent:"This", meaning:"idi", example:"ఇది నా పుస్తకం.", pronunciation:"idi"},
+    {word:"అది", equivalent:"That", meaning:"adi", example:"అది పెద్ద భవనం.", pronunciation:"adi"}
+  ],
+  interrogatives:[
+    {word:"ఎవరూ?", equivalent:"Who?", meaning:"evaru?", example:"ఎవరూ వచ్చారు?", pronunciation:"evaru"},
+    {word:"ఎక్కడ?", equivalent:"Where?", meaning:"ekkada?", example:"ఎక్కడ ఉన్నారు?", pronunciation:"ekkada"}
+  ],
+  verbs:[
+    {word:"చేయు", equivalent:"do/make", meaning:"cheyyu", example:"నువ్వు పని చేయు.", pronunciation:"tʃeɪyu"},
+    {word:"వెళ్ళు", equivalent:"go", meaning:"veḷḷu", example:"వెళ్ళు ఇంటికి.", pronunciation:"veɭɭu"}
+  ],
+  postpositions:[
+    {word:"లో", equivalent:"in", meaning:"lō", example:"పుస్తకం బ్యాగులో ఉంది.", pronunciation:"loː"},
+    {word:"కి", equivalent:"to/for", meaning:"ki", example:"ఇది అతనికి.", pronunciation:"ki"}
+  ],
+  numbers:[
+    {word:"ఒకటి", equivalent:"one", meaning:"okati", example:"ఒకటి పుస్తకం ఉంది.", pronunciation:"okaṭi"},
+    {word:"రెండు", equivalent:"two", meaning:"rendu", example:"రెండు పెన్నులు.", pronunciation:"reṇḍu"}
+  ],
+  phrases:[
+    {word:"హలో", equivalent:"Hello", meaning:"halō", example:"హలో! మీరు ఎలా ఉన్నారు?", pronunciation:"haloː"},
+    {word:"ధన్యవాదాలు", equivalent:"Thank you", meaning:"dhanyavādālu", example:"మీ సహాయానికి ధన్యవాదాలు.", pronunciation:"d̪ʰaɲɲavad̪aːlu"}
+  ]
+};
+
+let currentTopic=null;
+
+// Show topic table as cards
+function showTopic(topic){
+  currentTopic=topic;
+  const container=document.getElementById('cardsContainer');
+  let html='<table class="vocab-table"><thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊/▼</th></tr></thead><tbody>';
+  data[topic].forEach((e,idx)=>{
+    html+=`<tr>
+      <td class="word-col">${e.word}</td>
+      <td class="info-col">${e.equivalent}</td>
+      <td class="eng-col">${e.meaning}</td>
+      <td>
+        <button class="sound-btn" onclick="playSound('${e.word}')">🔊</button>
+        <button class="dropdown-toggle" onclick="toggleDropdown(${idx})">▼</button>
+      </td>
+    </tr>
+    <tr class="dropdown-content" id="dropdown-${idx}">
+      <td colspan="4">
+        <b>Pronunciation:</b> ${e.pronunciation}
+        <button class="transliteration-btn" onclick="playTransliteration('${e.meaning}')">🔊</button>
+        <br>
+        <b>Example:</b> ${e.example}
+        <button class="transliteration-btn" onclick="playSound('${e.example}')">🔊</button>
+        <br>
+        <b>Transliteration:</b> ${e.meaning}
+      </td>
+    </tr>`;
+  });
+  html+='</tbody></table>';
+  container.innerHTML=html;
+}
+
+// Dropdown toggle
+function toggleDropdown(idx){
+  document.querySelectorAll('.dropdown-content').forEach(d=>d.classList.remove('active'));
+  document.getElementById('dropdown-'+idx).classList.toggle('active');
+}
+
+// Play Telugu
+function playSound(text){
+  if('speechSynthesis' in window){
+    const msg=new SpeechSynthesisUtterance(text);
+    msg.lang='te-IN'; msg.rate=0.9; window.speechSynthesis.speak(msg);
   }
+}
 
-  // Data arrays
-  const data = {
-    letters: ["అ","ఆ","ఇ","ఈ","ఉ","ఊ","ఋ","ఎ","ఏ","ఐ","ఒ","ఓ","ఔ","అం","అః"],
-    pos: ["నామవాచకం (Noun)","క్రియ (Verb)","విశేషణం (Adjective)","క్రియావిశేషణం (Adverb)","సర్వనామం (Pronoun)"],
-    greet: ["నమస్తే (Hello)","మీరు ఎలా ఉన్నారు? (How are you?)","ధన్యవాదాలు (Thank you)","శుభోదయం (Good morning)","శుభరాత్రి (Good night)"]
-  };
-
-  const indices = { letters: 0, pos: 0, greet: 0 };
-
-  function showItem(type) {
-    const idMap = { letters: "letter", pos: "pos", greet: "greet" };
-    const cardMap = { letters: "letterCard", pos: "posCard", greet: "greetCard" };
-    const resultMap = { letters: "letterResult", pos: "posResult", greet: "greetResult" };
-    document.getElementById(idMap[type]).innerText = data[type][indices[type]];
-    document.getElementById(cardMap[type]).style.background = "#fff";
-    document.getElementById(resultMap[type]).innerText = "";
+// Play transliteration (English)
+function playTransliteration(text){
+  if('speechSynthesis' in window){
+    const msg=new SpeechSynthesisUtterance(text);
+    msg.lang='en-US'; msg.rate=0.95; window.speechSynthesis.speak(msg);
   }
+}
 
-  function nextItem(type){ if(indices[type] < data[type].length-1){ indices[type]++; showItem(type); } }
-  function prevItem(type){ if(indices[type] > 0){ indices[type]--; showItem(type); } }
-
-  function playSound(type){
-    const idMap = { letters: "letter", pos: "pos", greet: "greet" };
-    let text = document.getElementById(idMap[type]).innerText;
-    let msg = new SpeechSynthesisUtterance(text);
-    msg.lang = "te-IN";
-    window.speechSynthesis.speak(msg);
+// Search function
+function searchWord(){
+  const query=document.getElementById('searchInput').value.trim().toLowerCase();
+  if(!query) return alert('ఏదైనా వ్రాయండి...');
+  let results=[];
+  for(const topic in data){
+    results.push(...data[topic].filter(e=>e.word.toLowerCase().includes(query) || e.equivalent.toLowerCase().includes(query) || e.meaning.toLowerCase().includes(query)));
   }
-
-  function startRecognition(type){
-    if(!('webkitSpeechRecognition' in window)){
-      alert("Speech recognition not supported in this browser.");
-      return;
-    }
-    const idMap = { letters: "letter", pos: "pos", greet: "greet" };
-    const resultMap = { letters: "letterResult", pos: "posResult", greet: "greetResult" };
-    const cardMap = { letters: "letterCard", pos: "posCard", greet: "greetCard" };
-
-    const recog = new webkitSpeechRecognition();
-    recog.lang = "te-IN";
-    recog.onresult = (e)=>{
-      const spoken = e.results[0][0].transcript.trim();
-      const expected = data[type][indices[type]].split(" ")[0]; // Telugu part only
-      if(spoken === expected){
-        document.getElementById(resultMap[type]).innerText = "✅ Correct!";
-        document.getElementById(cardMap[type]).style.background = "#c8f7c5";
-      } else {
-        document.getElementById(resultMap[type]).innerText = "❌ You said: " + spoken;
-        document.getElementById(cardMap[type]).style.background = "#f7c5c5";
-      }
-    };
-    recog.start();
+  if(results.length>0){
+    const container=document.getElementById('cardsContainer');
+    let html='<table class="vocab-table"><thead><tr><th>Telugu</th><th>English</th><th>Transliteration</th><th>🔊/▼</th></tr></thead><tbody>';
+    results.forEach((e,idx)=>{
+      html+=`<tr>
+      <td class="word-col">${e.word}</td>
+      <td class="info-col">${e.equivalent}</td>
+      <td class="eng-col">${e.meaning}</td>
+      <td>
+        <button class="sound-btn" onclick="playSound('${e.word}')">🔊</button>
+        <button class="dropdown-toggle" onclick="toggleDropdown('s${idx}')">▼</button>
+      </td>
+      </tr>
+      <tr class="dropdown-content" id="dropdown-s${idx}">
+        <td colspan="4">
+          <b>Pronunciation:</b> ${e.pronunciation} <button class="transliteration-btn" onclick="playTransliteration('${e.meaning}')">🔊</button>
+          <br>
+          <b>Example:</b> ${e.example} <button class="transliteration-btn" onclick="playSound('${e.example}')">🔊</button>
+          <br>
+          <b>Transliteration:</b> ${e.meaning}
+        </td>
+      </tr>`;
+    });
+    html+='</tbody></table>';
+    container.innerHTML=html;
+  }else{
+    document.getElementById('cardsContainer').innerHTML="<p style='color:#b00;'>❌ ఈ పదం దొరకలేదు.</p>";
   }
-
-  // Initialize
-  showItem('letters');
-  showItem('pos');
-  showItem('greet');
+}
 </script>
-
 </body>
 </html>
