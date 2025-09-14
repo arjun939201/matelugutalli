@@ -38,6 +38,15 @@
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
+        
+        .voice-waiting {
+            animation: voiceBlink 1s infinite;
+        }
+        
+        @keyframes voiceBlink {
+            0%, 50% { background-color: #f3f4f6; }
+            51%, 100% { background-color: #9ca3af; }
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -65,8 +74,8 @@
             </div>
             
             <!-- Breadcrumb -->
-            <div id="breadcrumb" class="text-sm opacity-90">
-                <span>హోమ్</span>
+            <div id="breadcrumb" class="text-sm opacity-90 flex items-center space-x-2">
+                <span class="cursor-pointer hover:underline" onclick="navigateToBreadcrumb('home')">హోమ్</span>
             </div>
         </div>
     </header>
@@ -220,6 +229,11 @@
                             </button>
                         </div>
                         
+                        <!-- Voice Test Status -->
+                        <div id="voiceStatus" class="hidden mb-6 p-4 rounded-lg text-center transition-all duration-300">
+                            <div id="voiceStatusText" class="font-medium"></div>
+                        </div>
+                        
                         <div class="flex justify-between">
                             <button id="prevBtn" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -247,6 +261,8 @@
         let currentCardIndex = 0;
         let currentCardSet = [];
         let searchExpanded = false;
+        let navigationHistory = ['topics'];
+        let breadcrumbHistory = ['హోమ్'];
 
         // Data
         const teluguLetters = [
@@ -561,13 +577,53 @@
 
         // Navigation functions
         function updateBreadcrumb(path) {
-            document.getElementById('breadcrumb').innerHTML = path;
+            const parts = path.split(' > ');
+            breadcrumbHistory = parts;
+            
+            let breadcrumbHTML = '';
+            parts.forEach((part, index) => {
+                if (index > 0) {
+                    breadcrumbHTML += ' <span class="text-gray-300">></span> ';
+                }
+                
+                const isLast = index === parts.length - 1;
+                if (isLast) {
+                    breadcrumbHTML += `<span class="text-white">${part}</span>`;
+                } else {
+                    breadcrumbHTML += `<span class="cursor-pointer hover:underline" onclick="navigateToBreadcrumb('${index}')">${part}</span>`;
+                }
+            });
+            
+            document.getElementById('breadcrumb').innerHTML = breadcrumbHTML;
+        }
+        
+        function navigateToBreadcrumb(index) {
+            if (index === 'home' || index === '0') {
+                // Go to home
+                currentView = 'topics';
+                navigationHistory = ['topics'];
+                document.getElementById('cardsView').classList.add('hidden');
+                document.getElementById('partsOfSpeechList').classList.add('hidden');
+                document.getElementById('topicsList').classList.remove('hidden');
+                updateBreadcrumb('హోమ్');
+            } else if (index === '1') {
+                // Go to grammar if that's the second level
+                if (breadcrumbHistory[1] === 'వ్యాకరణం') {
+                    currentView = 'partsOfSpeech';
+                    navigationHistory = ['topics', 'partsOfSpeech'];
+                    document.getElementById('cardsView').classList.add('hidden');
+                    document.getElementById('topicsList').classList.add('hidden');
+                    document.getElementById('partsOfSpeechList').classList.remove('hidden');
+                    updateBreadcrumb('హోమ్ > వ్యాకరణం');
+                }
+            }
         }
 
         function openLetters() {
             currentView = 'cards';
             currentCardSet = teluguLetters;
             currentCardIndex = 0;
+            navigationHistory.push('letters');
             
             document.getElementById('topicsList').classList.add('hidden');
             document.getElementById('cardsView').classList.remove('hidden');
@@ -579,6 +635,7 @@
 
         function openPartsOfSpeech() {
             currentView = 'partsOfSpeech';
+            navigationHistory.push('partsOfSpeech');
             
             document.getElementById('topicsList').classList.add('hidden');
             document.getElementById('partsOfSpeechList').classList.remove('hidden');
@@ -590,6 +647,7 @@
             currentView = 'cards';
             currentCardSet = wordsData;
             currentCardIndex = 0;
+            navigationHistory.push('words');
             
             document.getElementById('topicsList').classList.add('hidden');
             document.getElementById('cardsView').classList.remove('hidden');
@@ -603,6 +661,7 @@
             currentView = 'cards';
             currentCardSet = numbersData;
             currentCardIndex = 0;
+            navigationHistory.push('numbers');
             
             document.getElementById('topicsList').classList.add('hidden');
             document.getElementById('cardsView').classList.remove('hidden');
@@ -616,6 +675,7 @@
             currentView = 'cards';
             currentCardSet = conversationsData;
             currentCardIndex = 0;
+            navigationHistory.push('conversations');
             
             document.getElementById('topicsList').classList.add('hidden');
             document.getElementById('cardsView').classList.remove('hidden');
@@ -629,6 +689,7 @@
             currentView = 'cards';
             currentCardSet = practiceData;
             currentCardIndex = 0;
+            navigationHistory.push('practice');
             
             document.getElementById('topicsList').classList.add('hidden');
             document.getElementById('cardsView').classList.remove('hidden');
@@ -642,6 +703,7 @@
             currentView = 'cards';
             currentCardSet = grammarData[type];
             currentCardIndex = 0;
+            navigationHistory.push(type);
             
             const titles = {
                 pronouns: 'సర్వనామాలు',
@@ -661,26 +723,28 @@
         }
 
         function goBack() {
-            if (currentView === 'cards') {
-                if (document.getElementById('partsOfSpeechList').classList.contains('hidden')) {
-                    // Coming from letters
-                    currentView = 'topics';
-                    document.getElementById('cardsView').classList.add('hidden');
-                    document.getElementById('topicsList').classList.remove('hidden');
-                    updateBreadcrumb('హోమ్');
-                } else {
-                    // Coming from parts of speech
-                    currentView = 'partsOfSpeech';
-                    document.getElementById('cardsView').classList.add('hidden');
-                    document.getElementById('partsOfSpeechList').classList.remove('hidden');
-                    updateBreadcrumb('హోమ్ > వ్యాకరణం');
-                }
-            } else if (currentView === 'partsOfSpeech') {
+            // Remove current page from history
+            navigationHistory.pop();
+            
+            // Get previous page
+            const previousPage = navigationHistory[navigationHistory.length - 1];
+            
+            if (previousPage === 'topics') {
                 currentView = 'topics';
+                document.getElementById('cardsView').classList.add('hidden');
                 document.getElementById('partsOfSpeechList').classList.add('hidden');
                 document.getElementById('topicsList').classList.remove('hidden');
                 updateBreadcrumb('హోమ్');
+            } else if (previousPage === 'partsOfSpeech') {
+                currentView = 'partsOfSpeech';
+                document.getElementById('cardsView').classList.add('hidden');
+                document.getElementById('topicsList').classList.add('hidden');
+                document.getElementById('partsOfSpeechList').classList.remove('hidden');
+                updateBreadcrumb('హోమ్ > వ్యాకరణం');
             }
+            
+            // Hide voice status when going back
+            hideVoiceStatus();
         }
 
         function displayCard() {
@@ -721,6 +785,33 @@
             } else {
                 document.getElementById('nextBtn').classList.remove('opacity-50', 'cursor-not-allowed');
             }
+            
+            // Hide voice status when changing cards
+            hideVoiceStatus();
+        }
+        
+        function showVoiceStatus(message, type = 'waiting') {
+            const voiceStatus = document.getElementById('voiceStatus');
+            const voiceStatusText = document.getElementById('voiceStatusText');
+            
+            voiceStatus.classList.remove('hidden', 'bg-green-500', 'bg-red-500', 'voice-waiting');
+            voiceStatus.classList.add('text-white');
+            
+            if (type === 'waiting') {
+                voiceStatus.classList.add('voice-waiting');
+            } else if (type === 'correct') {
+                voiceStatus.classList.add('bg-green-500');
+            } else if (type === 'wrong') {
+                voiceStatus.classList.add('bg-red-500');
+            }
+            
+            voiceStatusText.textContent = message;
+        }
+        
+        function hideVoiceStatus() {
+            const voiceStatus = document.getElementById('voiceStatus');
+            voiceStatus.classList.add('hidden');
+            voiceStatus.classList.remove('bg-green-500', 'bg-red-500', 'voice-waiting');
         }
 
         // Card navigation
@@ -802,13 +893,7 @@
                 recognition.continuous = false;
                 recognition.interimResults = false;
                 
-                const notification = document.createElement('div');
-                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 flex items-center';
-                notification.innerHTML = `
-                    <div class="w-3 h-3 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-                    వాయిస్ టెస్ట్ ప్రారంభమైంది... "${expectedText}" అని చెప్పండి!
-                `;
-                document.body.appendChild(notification);
+                showVoiceStatus(`వాయిస్ టెస్ట్ ప్రారంభమైంది... "${expectedText}" అని చెప్పండి!`, 'waiting');
                 
                 recognition.onresult = function(event) {
                     const spokenText = event.results[0][0].transcript.trim();
@@ -818,26 +903,20 @@
                                     expectedText.includes(spokenText) ||
                                     spokenText.toLowerCase().includes(expectedText.toLowerCase());
                     
-                    notification.className = `fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg z-50 text-white ${isCorrect ? 'bg-green-600' : 'bg-orange-500'}`;
-                    notification.innerHTML = isCorrect ? 
-                        `<svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        అద్భుతం! మీ ఉచ్చారణ సరైనది. మీరు చెప్పింది: "${spokenText}"` :
-                        `<svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                        </svg>
-                        మళ్ళీ ప్రయత్నించండి. మీరు చెప్పింది: "${spokenText}"`;
+                    if (isCorrect) {
+                        showVoiceStatus(`అద్భుతం! మీ ఉచ్చారణ సరైనది. మీరు చెప్పింది: "${spokenText}"`, 'correct');
+                    } else {
+                        showVoiceStatus(`మళ్ళీ ప్రయత్నించండి. మీరు చెప్పింది: "${spokenText}"`, 'wrong');
+                    }
                     
                     setTimeout(() => {
-                        notification.remove();
+                        hideVoiceStatus();
                     }, 4000);
                 };
                 
                 recognition.onerror = function(event) {
-                    notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
-                    notification.textContent = 'వాయిస్ రికార్డింగ్‌లో సమస్య. మళ్ళీ ప్రయత్నించండి.';
-                    setTimeout(() => notification.remove(), 3000);
+                    showVoiceStatus('వాయిస్ రికార్డింగ్‌లో సమస్య. మళ్ళీ ప్రయత్నించండి.', 'wrong');
+                    setTimeout(() => hideVoiceStatus(), 3000);
                 };
                 
                 recognition.onend = function() {
@@ -847,31 +926,25 @@
                 try {
                     recognition.start();
                 } catch (error) {
-                    notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
-                    notification.textContent = 'వాయిస్ రికార్డింగ్ సపోర్ట్ లేదు.';
-                    setTimeout(() => notification.remove(), 3000);
+                    showVoiceStatus('వాయిస్ రికార్డింగ్ సపోర్ట్ లేదు.', 'wrong');
+                    setTimeout(() => hideVoiceStatus(), 3000);
                 }
                 
-                // Auto-remove after 10 seconds if still listening
+                // Auto-stop after 10 seconds if still listening
                 setTimeout(() => {
-                    if (document.body.contains(notification)) {
+                    try {
                         recognition.stop();
-                        notification.remove();
-                    }
+                    } catch (e) {}
                 }, 10000);
                 
             } else {
                 // Fallback for browsers without speech recognition
-                const notification = document.createElement('div');
-                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
-                notification.textContent = 'వాయిస్ టెస్ట్ ప్రారంభమైంది... మాట్లాడండి!';
-                document.body.appendChild(notification);
+                showVoiceStatus('వాయిస్ టెస్ట్ ప్రారంభమైంది... మాట్లాడండి!', 'waiting');
                 
                 setTimeout(() => {
-                    notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50';
-                    notification.textContent = 'బాగుంది! మీ ఉచ్చారణ సరైనది.';
+                    showVoiceStatus('బాగుంది! మీ ఉచ్చారణ సరైనది.', 'correct');
                     setTimeout(() => {
-                        notification.remove();
+                        hideVoiceStatus();
                     }, 2000);
                 }, 3000);
             }
@@ -890,5 +963,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ef95adc7e63f33',t:'MTc1Nzg0OTc2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97efa31a4731968e',t:'MTc1Nzg1MDMxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
