@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telugu Learn 🌸</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Sans Telugu', sans-serif;
+        }
+        .search-expanded { width: 320px; opacity: 1 !important; pointer-events: auto !important; transform: translateX(0);}
+        .search-collapsed { width: 0px; transform: translateX(20px);}
+        .card-enter { animation: slideIn 0.3s ease-out;}
+        @keyframes slideIn {from {opacity: 0; transform: translateX(20px);} to {opacity: 1; transform: translateX(0);}}
+        .gradient-bg {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
+        .voice-waiting {animation: voiceBlink 1s infinite;}
+        @keyframes voiceBlink {0%, 50% {background-color: #f3f4f6;} 51%, 100% {background-color: #9ca3af;}}
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white p-6 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-3xl font-bold">Telugu Learn 🌸</h1>
+                <div class="flex items-center relative">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search..." 
+                        class="search-collapsed transition-all duration-500 ease-in-out px-4 py-2 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 bg-white"
+                    >
+                    <button 
+                        id="searchBtn" 
+                        class="p-3 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all duration-300 hover:scale-110 backdrop-blur-sm shadow-lg"
+                    >
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Breadcrumb -->
+            <div id="breadcrumb" class="text-sm opacity-90 flex items-center space-x-2">
+                <span class="cursor-pointer hover:underline" onclick="navigateToBreadcrumb('home')">Home</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto p-6">
+        <!-- Topics List -->
+        <div id="topicsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-blue-500" onclick="openLetters()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">అ</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Letters</h3>
+                </div>
+                <p class="text-gray-600">Learn Telugu Alphabet</p>
+            </div>
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-green-500" onclick="openPartsOfSpeech()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">📝</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Grammar</h3>
+                </div>
+                <p class="text-gray-600">Types of words and grammar rules</p>
+            </div>
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-purple-500" onclick="openWords()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">📚</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Words</h3>
+                </div>
+                <p class="text-gray-600">Daily use words</p>
+            </div>
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-red-500" onclick="openNumbers()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">🔢</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Numbers</h3>
+                </div>
+                <p class="text-gray-600">Learn numbers in Telugu</p>
+            </div>
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-yellow-500" onclick="openConversations()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">💬</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Conversations</h3>
+                </div>
+                <p class="text-gray-600">Daily conversations and sentences</p>
+            </div>
+            <div class="topic-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 cursor-pointer border-l-4 border-indigo-500" onclick="openPractice()">
+                <div class="flex items-center mb-3">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Practice</h3>
+                </div>
+                <p class="text-gray-600">Exercises and quizzes</p>
+            </div>
+        </div>
+        <!-- Parts of Speech List -->
+        <div id="partsOfSpeechList" class="hidden">
+            <div class="flex items-center mb-6">
+                <button onclick="goBack()" class="mr-4 p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <h2 class="text-2xl font-bold text-gray-800">Grammar - Parts of Speech</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('pronouns')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Pronouns</h3>
+                    <p class="text-gray-600 text-sm">I, you, he, she...</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('verbs')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Verbs</h3>
+                    <p class="text-gray-600 text-sm">to come, to go, to eat, to see...</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('postpositions')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Postpositions</h3>
+                    <p class="text-gray-600 text-sm">to, with, in, from...</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('adjectives')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Adjectives</h3>
+                    <p class="text-gray-600 text-sm">good, bad, big, small...</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('nouns')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Nouns</h3>
+                    <p class="text-gray-600 text-sm">house, book, tree...</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer" onclick="openCards('adverbs')">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Adverbs</h3>
+                    <p class="text-gray-600 text-sm">quickly, slowly, well...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards View -->
+        <div id="cardsView" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <button onclick="goBack()" class="mr-4 p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <h2 id="cardsTitle" class="text-2xl font-bold text-gray-800"></h2>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span id="cardCounter" class="text-gray-600"></span>
+                </div>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-enter">
+                    <div class="text-center">
+                        <div id="cardContent" class="mb-6">
+                            <!-- Card content will be inserted here -->
+                        </div>
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <button id="soundBtn" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M6.343 6.343A8 8 0 004.222 12a8.001 8.001 0 002.121 5.657"/>
+                                </svg>
+                                Listen Sound
+                            </button>
+                            <button id="voiceTestBtn" class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                </svg>
+                                Voice Test
+                            </button>
+                        </div>
+                        <div id="voiceStatus" class="hidden mb-6 p-4 rounded-lg text-center transition-all duration-300">
+                            <div id="voiceStatusText" class="font-medium"></div>
+                        </div>
+                        <div class="flex justify-between">
+                            <button id="prevBtn" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                Previous
+                            </button>
+                            <button id="nextBtn" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center">
+                                Next
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module">
+        import { teluguLetters, grammarData, wordsData, numbersData, conversationsData, practiceData } from './data.js';
+
+        let currentView = 'topics';
+        let currentCardIndex = 0;
+        let currentCardSet = [];
+        let searchExpanded = false;
+        let navigationHistory = ['topics'];
+        let breadcrumbHistory = ['Home'];
+
+        // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            const searchInput = document.getElementById('searchInput');
+            searchExpanded = !searchExpanded;
+            if (searchExpanded) {
+                searchInput.classList.remove('search-collapsed');
+                searchInput.classList.add('search-expanded');
+                setTimeout(() => searchInput.focus(), 100);
+            } else {
+                searchInput.classList.add('search-collapsed');
+                searchInput.classList.remove('search-expanded');
+                searchInput.value = '';
+                clearSearchResults();
+            }
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            if (query.length > 0) {
+                performSearch(query);
+            } else {
+                clearSearchResults();
+            }
+        });
+
+        function performSearch(query) {
+            const allData = [
+                ...teluguLetters.map(item => ({...item, category: 'Letters', type: 'letters'})),
+                ...wordsData.map(item => ({...item, category: 'Words', type: 'words'})),
+                ...numbersData.map(item => ({...item, category: 'Numbers', type: 'numbers'})),
+                ...conversationsData.map(item => ({...item, category: 'Conversations', type: 'conversations'})),
+                ...practiceData.map(item => ({...item, category: 'Practice', type: 'practice'})),
+                ...Object.entries(grammarData).flatMap(([key, items]) => items.map(item => ({...item, category: 'Grammar', type: key})))
+            ];
+
+            const results = allData.filter(item => 
+                (item.letter && item.letter.includes(query)) ||
+                (item.word && item.word.toLowerCase().includes(query)) ||
+                (item.pronunciation && item.pronunciation.toLowerCase().includes(query)) ||
+                (item.meaning && item.meaning.toLowerCase().includes(query))
+            );
+
+            displaySearchResults(results);
+        }
+
+        function displaySearchResults(results) {
+            const topicsList = document.getElementById('topicsList');
+            if (results.length === 0) {
+                topicsList.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <div class="text-gray-500 text-lg">No results found</div>
+                        <button onclick="clearSearchResults()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                            Show All Topics
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            topicsList.innerHTML = results.map(result => `
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-4 cursor-pointer border-l-4 border-blue-500" 
+                     onclick="openSearchResult('${result.type}', '${result.category}', '${encodeURIComponent(JSON.stringify(result))}')">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-3">${result.letter || '📝'}</span>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">${result.letter || result.word}</h3>
+                            <p class="text-sm text-blue-600">${result.category}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">${result.meaning}</p>
+                </div>
+            `).join('');
+        }
+
+        window.openSearchResult = function(type, category, encodedResult) {
+            const result = JSON.parse(decodeURIComponent(encodedResult));
+            let dataset, title, breadcrumb;
+            if (type === 'letters') {
+                dataset = teluguLetters;
+                title = 'Telugu Letters';
+                breadcrumb = 'Home > Letters';
+            } else if (type === 'words') {
+                dataset = wordsData;
+                title = 'Daily Words';
+                breadcrumb = 'Home > Words';
+            } else if (type === 'numbers') {
+                dataset = numbersData;
+                title = 'Telugu Numbers';
+                breadcrumb = 'Home > Numbers';
+            } else if (type === 'conversations') {
+                dataset = conversationsData;
+                title = 'Daily Conversations';
+                breadcrumb = 'Home > Conversations';
+            } else if (type === 'practice') {
+                dataset = practiceData;
+                title = 'Practice Exercises';
+                breadcrumb = 'Home > Practice';
+            } else {
+                dataset = grammarData[type];
+                const titles = {
+                    pronouns: 'Pronouns',
+                    verbs: 'Verbs',
+                    postpositions: 'Postpositions',
+                    adjectives: 'Adjectives',
+                    nouns: 'Nouns',
+                    adverbs: 'Adverbs'
+                };
+                title = titles[type];
+                breadcrumb = `Home > Grammar > ${title}`;
+            }
+            const index = dataset.findIndex(item => 
+                (item.letter && item.letter === result.letter) ||
+                (item.word && item.word === result.word)
+            );
+            currentView = 'cards';
+            currentCardSet = dataset;
+            currentCardIndex = index >= 0 ? index : 0;
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = title;
+            updateBreadcrumb(breadcrumb);
+            displayCard();
+            document.getElementById('searchInput').value = '';
+            searchExpanded = false;
+            const searchInput = document.getElementById('searchInput');
+            searchInput.classList.add('search-collapsed');
+            searchInput.classList.remove('search-expanded');
+        }
+
+        window.clearSearchResults = function() {
+            location.reload();
+        }
+
+        function updateBreadcrumb(path) {
+            const parts = path.split(' > ');
+            breadcrumbHistory = parts;
+            let breadcrumbHTML = '';
+            parts.forEach((part, index) => {
+                if (index > 0) {
+                    breadcrumbHTML += ' <span class="text-gray-300">></span> ';
+                }
+                const isLast = index === parts.length - 1;
+                if (isLast) {
+                    breadcrumbHTML += `<span class="text-white">${part}</span>`;
+                } else {
+                    breadcrumbHTML += `<span class="cursor-pointer hover:underline" onclick="navigateToBreadcrumb('${index}')">${part}</span>`;
+                }
+            });
+            document.getElementById('breadcrumb').innerHTML = breadcrumbHTML;
+        }
+        
+        window.navigateToBreadcrumb = function(index) {
+            if (index === 'home' || index === '0') {
+                currentView = 'topics';
+                navigationHistory = ['topics'];
+                document.getElementById('cardsView').classList.add('hidden');
+                document.getElementById('partsOfSpeechList').classList.add('hidden');
+                document.getElementById('topicsList').classList.remove('hidden');
+                updateBreadcrumb('Home');
+            } else if (index === '1') {
+                if (breadcrumbHistory[1] === 'Grammar') {
+                    currentView = 'partsOfSpeech';
+                    navigationHistory = ['topics', 'partsOfSpeech'];
+                    document.getElementById('cardsView').classList.add('hidden');
+                    document.getElementById('topicsList').classList.add('hidden');
+                    document.getElementById('partsOfSpeechList').classList.remove('hidden');
+                    updateBreadcrumb('Home > Grammar');
+                }
+            }
+        }
+
+        window.openLetters = function() {
+            currentView = 'cards';
+            currentCardSet = teluguLetters;
+            currentCardIndex = 0;
+            navigationHistory.push('letters');
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'Telugu Letters';
+            updateBreadcrumb('Home > Letters');
+            displayCard();
+        }
+
+        window.openPartsOfSpeech = function() {
+            currentView = 'partsOfSpeech';
+            navigationHistory.push('partsOfSpeech');
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('partsOfSpeechList').classList.remove('hidden');
+            updateBreadcrumb('Home > Grammar');
+        }
+
+        window.openWords = function() {
+            currentView = 'cards';
+            currentCardSet = wordsData;
+            currentCardIndex = 0;
+            navigationHistory.push('words');
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'Daily Words';
+            updateBreadcrumb('Home > Words');
+            displayCard();
+        }
+
+        window.openNumbers = function() {
+            currentView = 'cards';
+            currentCardSet = numbersData;
+            currentCardIndex = 0;
+            navigationHistory.push('numbers');
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'Telugu Numbers';
+            updateBreadcrumb('Home > Numbers');
+            displayCard();
+        }
+
+        window.openConversations = function() {
+            currentView = 'cards';
+            currentCardSet = conversationsData;
+            currentCardIndex = 0;
+            navigationHistory.push('conversations');
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'Daily Conversations';
+            updateBreadcrumb('Home > Conversations');
+            displayCard();
+        }
+
+        window.openPractice = function() {
+            currentView = 'cards';
+            currentCardSet = practiceData;
+            currentCardIndex = 0;
+            navigationHistory.push('practice');
+            document.getElementById('topicsList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = 'Practice Exercises';
+            updateBreadcrumb('Home > Practice');
+            displayCard();
+        }
+
+        window.openCards = function(type) {
+            currentView = 'cards';
+            currentCardSet = grammarData[type];
+            currentCardIndex = 0;
+            navigationHistory.push(type);
+            const titles = {
+                pronouns: 'Pronouns',
+                verbs: 'Verbs',
+                postpositions: 'Postpositions',
+                adjectives: 'Adjectives',
+                nouns: 'Nouns',
+                adverbs: 'Adverbs'
+            };
+            document.getElementById('partsOfSpeechList').classList.add('hidden');
+            document.getElementById('cardsView').classList.remove('hidden');
+            document.getElementById('cardsTitle').textContent = titles[type];
+            updateBreadcrumb(`Home > Grammar > ${titles[type]}`);
+            displayCard();
+        }
+
+        window.goBack = function() {
+            navigationHistory.pop();
+            const previousPage = navigationHistory[navigationHistory.length - 1];
+            if (previousPage === 'topics') {
+                currentView = 'topics';
+                document.getElementById('cardsView').classList.add('hidden');
+                document.getElementById('partsOfSpeechList').classList.add('hidden');
+                document.getElementById('topicsList').classList.remove('hidden');
+                updateBreadcrumb('Home');
+            } else if (previousPage === 'partsOfSpeech') {
+                currentView = 'partsOfSpeech';
+                document.getElementById('cardsView').classList.add('hidden');
+                document.getElementById('topicsList').classList.add('hidden');
+                document.getElementById('partsOfSpeechList').classList.remove('hidden');
+                updateBreadcrumb('Home > Grammar');
+            }
+            hideVoiceStatus();
+        }
+
+        function displayCard() {
+            const card = currentCardSet[currentCardIndex];
+            const cardContent = document.getElementById('cardContent');
+            if (card.letter) {
+                cardContent.innerHTML = `
+                    <div class="text-8xl font-bold text-blue-600 mb-4">${card.letter}</div>
+                    <div class="text-2xl text-gray-700 mb-2">Pronunciation: ${card.pronunciation}</div>
+                    <div class="text-lg text-gray-600">${card.meaning}</div>
+                `;
+            } else if (card.type && currentCardSet === practiceData) {
+                displayPracticeCard(card);
+            } else {
+                cardContent.innerHTML = `
+                    <div class="text-6xl font-bold text-green-600 mb-4">${card.word}</div>
+                    <div class="text-2xl text-gray-700 mb-2">Pronunciation: ${card.pronunciation}</div>
+                    <div class="text-lg text-gray-600 mb-3">Meaning: ${card.meaning}</div>
+                    <div class="text-md text-blue-600 bg-blue-50 p-3 rounded-lg">Example: ${card.example}</div>
+                `;
+            }
+            document.getElementById('cardCounter').textContent = `${currentCardIndex + 1} / ${currentCardSet.length}`;
+            document.getElementById('prevBtn').disabled = currentCardIndex === 0;
+            document.getElementById('nextBtn').disabled = currentCardIndex === currentCardSet.length - 1;
+            if (currentCardIndex === 0) {
+                document.getElementById('prevBtn').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                document.getElementById('prevBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+            if (currentCardIndex === currentCardSet.length - 1) {
+                document.getElementById('nextBtn').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                document.getElementById('nextBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+            hideVoiceStatus();
+        }
+
+        function displayPracticeCard(card) {
+            const cardContent = document.getElementById('cardContent');
+            let exerciseHTML = '';
+            switch(card.type) {
+                case 'writing':
+                    exerciseHTML = `
+                        <div class="text-4xl font-bold text-purple-600 mb-4">✍️ ${card.word}</div>
+                        <div class="text-lg text-gray-700 mb-4">${card.exercise}</div>
+                        <textarea class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg resize-none focus:border-purple-500 focus:outline-none" rows="3" placeholder="Write here..."></textarea>
+                        <button class="mt-4 px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
+                            Submit
+                        </button>
+                    `;
+                    break;
+                case 'fill-blank':
+                    exerciseHTML = `
+                        <div class="text-4xl font-bold text-orange-600 mb-4">📝 ${card.word}</div>
+                        <div class="text-lg text-gray-700 mb-4">${card.exercise}</div>
+                        <div class="space-y-3">
+                            ${card.options.map((option, index) => `
+                                <button 
+                                    class="block w-full p-3 text-left border-2 border-gray-300 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-colors option-btn"
+                                    onclick="selectOption(this, '${option}', '${card.answer}')"
+                                >
+                                    ${option}
+                                </button>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+                case 'translation':
+                    exerciseHTML = `
+                        <div class="text-4xl font-bold text-blue-600 mb-4">🌐 ${card.word}</div>
+                        <div class="text-lg text-gray-700 mb-4">${card.exercise}</div>
+                        <input type="text" class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-500 focus:outline-none" placeholder="Translation here...">
+                        <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            Check Translation
+                        </button>
+                    `;
+                    break;
+                default:
+                    exerciseHTML = `
+                        <div class="text-4xl font-bold text-indigo-600 mb-4">🎯 ${card.word}</div>
+                        <div class="text-lg text-gray-700 mb-4">${card.exercise}</div>
+                        <div class="text-md text-indigo-600 bg-indigo-50 p-3 rounded-lg">Example: ${card.example}</div>
+                    `;
+            }
+            cardContent.innerHTML = exerciseHTML;
+        }
+
+        window.selectOption = function(button, selected, correct) {
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('bg-green-500', 'bg-red-500', 'text-white', 'border-green-500', 'border-red-500');
+                btn.classList.add('border-gray-300');
+            });
+            if (selected === correct) {
+                button.classList.remove('border-gray-300');
+                button.classList.add('bg-green-500', 'text-white', 'border-green-500');
+                showVoiceStatus('Correct! 🎉', 'correct');
+            } else {
+                button.classList.remove('border-gray-300');
+                button.classList.add('bg-red-500', 'text-white', 'border-red-500');
+                showVoiceStatus('Wrong. Try again.', 'wrong');
+                setTimeout(() => {
+                    document.querySelectorAll('.option-btn').forEach(btn => {
+                        if (btn.textContent.trim() === correct) {
+                            btn.classList.remove('border-gray-300');
+                            btn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+                        }
+                    });
+                }, 2000);
+            }
+        }
+
+        function showVoiceStatus(text, type) {
+            const statusDiv = document.getElementById('voiceStatus');
+            const statusText = document.getElementById('voiceStatusText');
+            statusDiv.classList.remove('hidden');
+            statusText.textContent = text;
+            if (type === 'correct') {
+                statusDiv.classList.remove('bg-red-100');
+                statusDiv.classList.add('bg-green-100');
+                statusText.classList.add('text-green-700');
+                statusText.classList.remove('text-red-700');
+            } else {
+                statusDiv.classList.remove('bg-green-100');
+                statusDiv.classList.add('bg-red-100');
+                statusText.classList.add('text-red-700');
+                statusText.classList.remove('text-green-700');
+            }
+        }
+
+        function hideVoiceStatus() {
+            const statusDiv = document.getElementById('voiceStatus');
+            statusDiv.classList.add('hidden');
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                displayCard();
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            if (currentCardIndex < currentCardSet.length - 1) {
+                currentCardIndex++;
+                displayCard();
+            }
+        });
+
+        // Sound and voice functionality
+        document.getElementById('soundBtn').addEventListener('click', function() {
+            const card = currentCardSet[currentCardIndex];
+            const textToSpeak = card.letter || card.word;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = 'te-IN';
+                window.speechSynthesis.speak(utterance);
+            }
+        });
+
+        document.getElementById('voiceTestBtn').addEventListener('click', function() {
+            if (!('webkitSpeechRecognition' in window)) {
+                showVoiceStatus('Voice recognition not supported in this browser.', 'wrong');
+                return;
+            }
+            const card = currentCardSet[currentCardIndex];
+            const expected = (card.letter || card.word).toLowerCase();
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = 'te-IN';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            showVoiceStatus('Listening... Please speak now.', 'correct');
+            recognition.onresult = function(event) {
+                const result = event.results[0][0].transcript.trim().toLowerCase();
+                if (result === expected) {
+                    showVoiceStatus('Correct! 🎉', 'correct');
+                } else {
+                    showVoiceStatus('Not matched. You said: ' + result, 'wrong');
+                }
+            };
+            recognition.onerror = function(event) {
+                showVoiceStatus('Voice recognition error: ' + event.error, 'wrong');
+            };
+            recognition.onend = function() {};
+            recognition.start();
+        });
+
+        // Initial load
+        clearSearchResults();
+    </script>
+</body>
+</html>
