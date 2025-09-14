@@ -1149,18 +1149,22 @@
                     
                     console.log('Best match:', bestMatch, 'Confidence:', highestConfidence);
                     
-                    const spokenText = bestMatch.toLowerCase();
-                    const expected = expectedText.toLowerCase();
+                    const spokenText = bestMatch.toLowerCase().trim();
+                    const expected = expectedText.toLowerCase().trim();
                     
-                    const isCorrect = spokenText.includes(expected) || 
-                                    expected.includes(spokenText) ||
-                                    spokenText === expected ||
-                                    Math.abs(spokenText.length - expected.length) <= 2;
+                    // More strict matching - only accept if words are very similar
+                    const isExactMatch = spokenText === expected;
+                    const isCloseMatch = expected.length > 2 && (
+                        spokenText.includes(expected) || 
+                        expected.includes(spokenText)
+                    ) && Math.abs(spokenText.length - expected.length) <= 1;
                     
-                    if (isCorrect || highestConfidence > 0.7) {
-                        showVoiceStatus(`అద్భుతం! మీ పలకడం సరైనది! 🎉\nమీరు చెప్పింది: "${bestMatch}"`, 'correct');
+                    const isCorrect = isExactMatch || (isCloseMatch && highestConfidence > 0.8);
+                    
+                    if (isCorrect) {
+                        showVoiceStatus(`అద్భుతం! మీ పలకడం సరైనది! 🎉`, 'correct');
                     } else {
-                        showVoiceStatus(`మళ్ళీ చెప్పండి. తప్పు పలికారు.\nమీరు చెప్పింది: "${bestMatch}"\nసరైనది: "${expectedText}"`, 'wrong');
+                        showVoiceStatus(`మళ్ళీ చెప్పండి. తప్పు పలికారు.`, 'wrong');
                     }
                     
                     setTimeout(() => hideVoiceStatus(), 5000);
@@ -1224,5 +1228,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97efd043e612848f',t:'MTc1Nzg1MjE2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97efd967a440c6ee',t:'MTc1Nzg1MjU0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
